@@ -10,6 +10,9 @@ import AboutPage from './ui/pages/AboutPage.jsx'
 import ContactPage from './ui/pages/ContactPage.jsx'
 import AccountPage from './ui/pages/AccountPage.jsx'
 
+// Get the base path for GitHub Pages
+const basename = import.meta.env.PROD ? '/First-Attempt' : ''
+
 const router = createBrowserRouter([
   { path: '/', element: <RootLayout />, children: [
     { index: true, element: <HomePage /> },
@@ -19,7 +22,9 @@ const router = createBrowserRouter([
     { path: 'contact', element: <ContactPage /> },
     { path: 'account', element: <AccountPage /> },
   ]}
-])
+], {
+  basename: basename
+})
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

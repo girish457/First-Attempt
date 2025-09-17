@@ -72,6 +72,8 @@ jobs:
           echo "📁 Preparing static deployment files"
           # Copy .nojekyll to build output
           cp .nojekyll frontend/dist/
+          # Copy 404.html from public to dist for GitHub Pages SPA support
+          cp frontend/public/404.html frontend/dist/404.html
           # List final contents
           echo "📋 Build output contents:"
           ls -la frontend/dist/
