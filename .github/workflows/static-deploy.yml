@@ -43,16 +43,28 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "📦 Installing frontend dependencies"
+          echo "📦 Installing frontend dependencies (including devDependencies for build)"
           cd frontend
-          npm ci --only=production
+          npm ci
           echo "✅ Dependencies installed"
+          
+      - name: Verify build tools
+        run: |
+          echo "🔍 Verifying build tools are available"
+          cd frontend
+          echo "Node.js version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Checking if Vite is installed:"
+          npm list vite
+          echo "Running Vite version check:"
+          npx vite --version
+          echo "✅ Vite is available"
 
       - name: Build application
         run: |
           echo "🔨 Building Golden Elegance application"
           cd frontend
-          NODE_ENV=production npm run build
+          NODE_ENV=production npx vite build
           echo "✅ Build completed successfully"
           
       - name: Prepare static files

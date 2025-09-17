@@ -54,15 +54,15 @@ jobs:
       - name: Install frontend dependencies
         run: |
           cd frontend
-          echo "Installing dependencies..."
+          echo "📦 Installing dependencies (including devDependencies for build)..."
           npm ci
           echo "✅ Dependencies installed"
 
       - name: Build frontend (Vite)
         run: |
           cd frontend
-          echo "Building with Vite..."
-          npm run build
+          echo "🔨 Building with Vite..."
+          npx vite build
           echo "✅ Build completed"
           echo "Build contents:"
           ls -la dist/
