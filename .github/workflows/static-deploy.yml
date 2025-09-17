@@ -72,8 +72,14 @@ jobs:
           echo "📁 Preparing static deployment files"
           # Copy .nojekyll to build output
           cp .nojekyll frontend/dist/
-          # Copy 404.html from public to dist for GitHub Pages SPA support
-          cp frontend/public/404.html frontend/dist/404.html
+          # Copy 404.html from public to dist for GitHub Pages SPA support (check if exists)
+          if [ -f "frontend/public/404.html" ]; then
+            cp frontend/public/404.html frontend/dist/404.html
+            echo "✅ 404.html copied for SPA routing"
+          else
+            echo "⚠️ 404.html not found, creating default one"
+            echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><script>window.location.href="/First-Attempt/"</script></head><body>Redirecting...</body></html>' > frontend/dist/404.html
+          fi
           # List final contents
           echo "📋 Build output contents:"
           ls -la frontend/dist/
