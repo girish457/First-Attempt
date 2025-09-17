@@ -1,9 +1,12 @@
-name: Deploy Golden Elegance to GitHub Pages
+name: Deploy to GitHub Pages (Force No Jekyll)
 
 on:
   push:
     branches: [ main, master ]
   workflow_dispatch:
+  schedule:
+    # Run once daily to ensure deployment
+    - cron: '0 0 * * *'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -25,25 +28,57 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verify no Jekyll processing
+        run: |
+          echo "Verifying .nojekyll file exists..."
+          if [ ! -f ".nojekyll" ]; then
+            echo "Creating .nojekyll file"
+            touch .nojekyll
+          fi
+          echo "✅ Jekyll processing disabled"
+          
+      - name: Clean any Jekyll artifacts
+        run: |
+          rm -rf _site
+          rm -f _config.yml
+          rm -f Gemfile*
+          echo "✅ Jekyll artifacts cleaned"
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install frontend dependencies
         run: |
           cd frontend
+          echo "Installing dependencies..."
           npm ci
+          echo "✅ Dependencies installed"
 
-      - name: Build frontend
+      - name: Build frontend (Vite)
         run: |
           cd frontend
+          echo "Building with Vite..."
           npm run build
+          echo "✅ Build completed"
+          echo "Build contents:"
+          ls -la dist/
         env:
           NODE_ENV: production
 
+      - name: Prepare deployment files
+        run: |
+          cd frontend
+          echo "Preparing deployment files..."
+          # Ensure .nojekyll exists in build output
+          cp ../.nojekyll dist/.nojekyll
+          echo "✅ .nojekyll copied to build output"
+          echo "Final dist contents:"
+          ls -la dist/
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

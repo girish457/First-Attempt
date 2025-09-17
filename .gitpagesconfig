@@ -1,0 +1,19 @@
+# GitHub Pages Configuration
+# This file forces GitHub to use static file serving instead of Jekyll
+
+# Disable Jekyll processing
+jekyll: false
+
+# Use GitHub Actions for deployment
+source: gh-pages
+
+# Include all files (don't ignore anything)
+include:
+  - _*
+  - .nojekyll
+
+# Don't exclude node_modules in case it's needed
+exclude: []
+
+# Force raw file serving
+plugins: []
