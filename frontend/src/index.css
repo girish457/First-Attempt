@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Golden theme defaults */
+body { 
+  @apply font-poppins text-gray-900 bg-gradient-to-br from-golden-50 to-golden-100; 
+}
+.dark body { 
+  @apply text-golden-100 bg-gradient-to-br from-gray-900 to-gray-800; 
+}
+
+/* Comprehensive dark mode support */
+.dark .hover\:bg-gray-100:hover { @apply bg-golden-800; }
+.dark .hover\:bg-golden-100:hover { @apply bg-golden-700; }
+.dark .border-gray-100 { @apply border-golden-700; }
+.dark .border-gray-200 { @apply border-golden-600; }
+.dark .border-golden-200 { @apply border-golden-600; }
+.dark .text-gray-700 { @apply text-golden-300; }
+.dark .text-gray-600 { @apply text-golden-300; }
+.dark .text-gray-500 { @apply text-golden-400; }
+.dark .text-gray-800 { @apply text-golden-200; }
+.dark .text-gray-900 { @apply text-golden-100; }
+.dark .bg-white { @apply bg-gray-900; }
+.dark .bg-gray-50 { @apply bg-gray-800; }
+.dark .bg-gray-100 { @apply bg-gray-800; }
+.dark .bg-golden-50 { @apply bg-gray-800; }
+.dark .bg-golden-100 { @apply bg-gray-700; }
+
+/* Dark mode for golden components */
+.dark .golden-card {
+  @apply bg-gray-800 bg-opacity-95 border-golden-600;
+}
+
+.dark .golden-btn {
+  @apply bg-golden-gradient text-white;
+}
+
+/* Dark mode gradients */
+.dark .from-golden-50 { @apply from-gray-800; }
+.dark .to-golden-100 { @apply to-gray-700; }
+.dark .from-white { @apply from-gray-900; }
+.dark .to-white { @apply to-gray-800; }
+.dark .from-golden-50.to-white { @apply from-gray-800 to-gray-900; }
+.dark .from-white.to-golden-50 { @apply from-gray-900 to-gray-800; }
+
+@layer components {
+  .anim-btn { 
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-golden active:translate-y-0;
+  }
+  .anim-card { 
+    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-golden-lg;
+  }
+  .anim-link { 
+    @apply transition-all duration-200 ease-out hover:text-brand-primary;
+  }
+  .golden-btn {
+    @apply bg-golden-gradient text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
+  .golden-card {
+    @apply bg-white bg-opacity-90 backdrop-blur-sm border border-golden-200 rounded-xl shadow-lg hover:shadow-golden-lg transition-all duration-300;
+  }
+  .shadow-golden {
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  }
+  .shadow-golden-lg {
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+  }
+}
+
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up { animation: fade-in-up 600ms ease-out both; }
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+.container-responsive { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom Range Slider Styles */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Range slider track */
+input[type="range"]::-webkit-slider-track {
+  background: transparent;
+  height: 4px;
+  border: none;
+  outline: none;
+}
+
+/* Range slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700, #D4AF37);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Firefox range slider thumb */
+input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700, #D4AF37);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Firefox range slider track */
+input[type="range"]::-moz-range-track {
+  background: transparent;
+  height: 4px;
+  border: none;
+  outline: none;
+}
+
+/* Specific styling for min range slider */
+.range-slider-min::-webkit-slider-thumb {
+  z-index: 1;
+}
+
+/* Specific styling for max range slider */
+.range-slider-max::-webkit-slider-thumb {
+  z-index: 2;
+}
+
+/* Focus states */
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5), 0 0 0 2px rgba(255, 215, 0, 0.5);
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5), 0 0 0 2px rgba(255, 215, 0, 0.5);
+}
+
+

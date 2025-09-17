@@ -1,0 +1,18 @@
+{
+  "name": "foodiehub-fullstack",
+  "version": "1.0.0",
+  "description": "FoodieHub - Full-stack food delivery application with Express backend and Vite frontend",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["food", "delivery", "fullstack", "express", "vite", "admin"],
+  "author": "FoodieHub Team",
+  "license": "MIT"
+}
