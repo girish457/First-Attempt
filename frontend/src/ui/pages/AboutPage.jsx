@@ -87,13 +87,13 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white">
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      {/* Hero Section with Glossy Golden Theme */}
+      <section className="relative overflow-hidden bg-glossy-gold text-white">
+        <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-[0.5px]"></div>
         <div className="relative container-responsive py-24">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up">
-              About <span className="text-yellow-300">Our Story</span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up drop-shadow-2xl">
+              About <span className="text-golden-200 drop-shadow-lg">Our Story</span>
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
               Crafting beautiful ethnic wear that celebrates tradition while embracing modernity
@@ -101,9 +101,9 @@ export default function AboutPage() {
           </div>
         </div>
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-300 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-pink-300 rounded-full opacity-20 animate-pulse"></div>
+        {/* Enhanced Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-golden-300 rounded-full opacity-30 animate-pulse shadow-glossy"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-golden-200 rounded-full opacity-30 animate-pulse shadow-glossy"></div>
       </section>
 
       {/* Our Story Section */}
@@ -118,7 +118,7 @@ export default function AboutPage() {
           }`}>
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Our <span className="text-pink-600">Journey</span>
+                Our <span className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent">Journey</span>
               </h2>
               <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
                 <p>
@@ -134,11 +134,11 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-r from-pink-500 to-purple-500 rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500">
+              <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy">
                 <img 
                   src="/Festive.avif" 
                   alt="Our Story" 
-                  className="w-full h-80 object-cover rounded-2xl shadow-2xl"
+                  className="w-full h-80 object-cover rounded-2xl shadow-2xl border-4 border-golden-200"
                 />
               </div>
             </div>
@@ -146,11 +146,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section with Golden Gradient */}
       <section 
         id="stats"
         ref={ref => sectionRefs.current.stats = ref}
-        className="py-16 bg-gradient-to-r from-gray-900 to-gray-800 text-white"
+        className="py-16 bg-glossy-gold text-white relative overflow-hidden"
       >
         <div className="container-responsive">
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-1000 ${
@@ -162,10 +162,10 @@ export default function AboutPage() {
                 className="text-center group hover:scale-110 transition-transform duration-300"
               >
                 <div className="text-4xl mb-2 group-hover:animate-bounce">{stat.icon}</div>
-                <div className="text-3xl md:text-4xl font-bold mb-2 text-yellow-400">
+                <div className="text-3xl md:text-4xl font-bold mb-2 text-golden-100 drop-shadow-lg">
                   {stat.number}
                 </div>
-                <div className="text-gray-300">{stat.label}</div>
+                <div className="text-gray-100">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -181,7 +181,7 @@ export default function AboutPage() {
         <div className="container-responsive">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Our <span className="text-pink-600">Values</span>
+              Our <span className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent">Values</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do
@@ -196,7 +196,7 @@ export default function AboutPage() {
                 key={index}
                 className="group relative overflow-hidden"
               >
-                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border border-gray-100">
+                <div className="bg-white rounded-3xl p-8 shadow-glossy hover:shadow-golden-lg transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border-2 border-golden-100 hover:border-golden-300">
                   <div className={`w-16 h-16 bg-gradient-to-r ${value.color} rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     {value.icon}
                   </div>
@@ -221,7 +221,7 @@ export default function AboutPage() {
         <div className="container-responsive">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Meet Our <span className="text-pink-600">Amazing Team</span>
+              Meet Our <span className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent">Amazing Team</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               The passionate people behind our brand
@@ -237,7 +237,7 @@ export default function AboutPage() {
                 className="group"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4">
+                <div className="bg-white rounded-3xl overflow-hidden shadow-glossy hover:shadow-golden-lg transition-all duration-500 transform hover:-translate-y-4 border-2 border-golden-100 hover:border-golden-300">
                   {/* Image Container */}
                   <div className="relative overflow-hidden">
                     <img 
@@ -251,7 +251,7 @@ export default function AboutPage() {
                   {/* Content */}
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                    <p className="text-pink-600 font-semibold mb-3">{member.role}</p>
+                    <p className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent font-semibold mb-3">{member.role}</p>
                     <p className="text-gray-600 text-sm leading-relaxed">{member.description}</p>
                   </div>
                 </div>
@@ -261,19 +261,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Mission Section with Enhanced Golden Theme */}
       <section 
         id="mission"
         ref={ref => sectionRefs.current.mission = ref}
-        className="py-20 bg-gradient-to-r from-purple-900 via-pink-800 to-indigo-900 text-white relative overflow-hidden"
+        className="py-20 bg-glossy-gold text-white relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div className="relative container-responsive">
           <div className={`text-center transition-all duration-1000 ${
             isVisible.mission ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Our <span className="text-yellow-300">Mission</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 drop-shadow-2xl">
+              Our <span className="text-golden-200 drop-shadow-lg">Mission</span>
             </h2>
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed mb-12">
               To preserve and celebrate the beauty of Indian ethnic fashion while making it accessible 
@@ -282,19 +282,19 @@ export default function AboutPage() {
             </p>
             
             <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-              <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+              <button className="bg-golden-200 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-golden-100 transition-all duration-300 transform hover:scale-105 shadow-glossy">
                 Shop Our Collection
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
+              <button className="border-2 border-golden-200 text-golden-100 px-8 py-4 rounded-full font-bold text-lg hover:bg-golden-100 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                 Contact Us
               </button>
             </div>
           </div>
         </div>
         
-        {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-24 h-24 border-2 border-yellow-300/30 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 border-2 border-pink-300/30 rounded-full animate-pulse"></div>
+        {/* Enhanced Decorative elements */}
+        <div className="absolute top-10 left-10 w-24 h-24 border-2 border-golden-200/40 rounded-full animate-pulse shadow-glossy"></div>
+        <div className="absolute bottom-10 right-10 w-32 h-32 border-2 border-golden-100/40 rounded-full animate-pulse shadow-glossy"></div>
       </section>
     </div>
   );

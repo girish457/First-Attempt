@@ -828,7 +828,10 @@ const ShopPage = () => {
     { value: 'Red', label: 'Red', color: '#EF4444', count: 12 },
     { value: 'White', label: 'White', color: '#FFFFFF', count: 8 },
     { value: 'Yellow', label: 'Yellow', color: '#FDE047', count: 18 },
-    { value: 'Lavender', label: 'Lavender', color: '#C4B5FD', count: 1 }
+    { value: 'Lavender', label: 'Lavender', color: '#C4B5FD', count: 1 },
+    { value: 'Golden', label: 'Golden', color: '#FFD700', count: 25 },
+    { value: 'Copper', label: 'Copper', color: '#B87333', count: 8 },
+    { value: 'Bronze', label: 'Bronze', color: '#CD7F32', count: 6 }
   ];
 
   const discountOptions = [

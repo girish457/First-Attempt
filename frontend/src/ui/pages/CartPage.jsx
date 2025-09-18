@@ -86,12 +86,12 @@ export default function CartPage(){
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <div className="relative w-32 h-32 mx-auto mb-8">
-              <div className="w-32 h-32 bg-golden-gradient rounded-full flex items-center justify-center shadow-golden animate-pulse">
+              <div className="w-32 h-32 bg-glossy-gold rounded-full flex items-center justify-center shadow-glossy animate-pulse border-4 border-golden-300">
                 <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6m0 0h15.5m-15.5 0L5.4 5M7 13h10M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z" />
                 </svg>
               </div>
-              <div className="absolute -top-2 -right-2 w-10 h-10 bg-golden-gradient rounded-full flex items-center justify-center shadow-golden">
+              <div className="absolute -top-2 -right-2 w-10 h-10 bg-glossy-gold rounded-full flex items-center justify-center shadow-glossy border-2 border-golden-200">
                 <span className="text-white text-lg font-bold">0</span>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function CartPage(){
             <div className="space-y-6">
               <Link 
                 to="/shop" 
-                className="golden-btn text-lg px-10 py-4 shadow-golden-lg transform hover:scale-105"
+                className="golden-btn text-lg px-10 py-4 shadow-glossy transform hover:scale-105 hover:shadow-golden-lg bg-glossy-gold border-2 border-golden-300"
               >
                 <i className="fa fa-shopping-bag mr-3 text-xl"></i>
                 Start Shopping Now

@@ -110,13 +110,13 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white">
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      {/* Hero Section with Glossy Golden Theme */}
+      <section className="relative overflow-hidden bg-glossy-gold text-white">
+        <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-[0.5px]"></div>
         <div className="relative container-responsive py-24">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up">
-              Get In <span className="text-yellow-300">Touch</span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up drop-shadow-2xl">
+              Get In <span className="text-golden-200 drop-shadow-lg">Touch</span>
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
               We'd love to hear from you. Send us a message and we'll respond as soon as possible.
@@ -124,9 +124,9 @@ export default function ContactPage() {
           </div>
         </div>
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-300 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-pink-300 rounded-full opacity-20 animate-pulse"></div>
+        {/* Enhanced Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-golden-300 rounded-full opacity-30 animate-pulse shadow-glossy"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-golden-200 rounded-full opacity-30 animate-pulse shadow-glossy"></div>
       </section>
 
       {/* Contact Info Cards */}
@@ -145,12 +145,12 @@ export default function ContactPage() {
                 className="group"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border border-gray-100">
+                <div className="bg-white rounded-3xl p-6 shadow-glossy hover:shadow-golden-lg transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 border-2 border-golden-100 hover:border-golden-300 relative overflow-hidden">
                   <div className={`w-14 h-14 bg-gradient-to-r ${info.color} rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     {info.icon}
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
-                  <p className="text-pink-600 font-semibold mb-2">{info.detail}</p>
+                  <p className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent font-semibold mb-2">{info.detail}</p>
                   <p className="text-gray-600 text-sm">{info.description}</p>
                   
                   {/* Hover overlay */}
@@ -174,9 +174,9 @@ export default function ContactPage() {
             <div className={`transition-all duration-1000 ${
               isVisible['contact-form'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-              <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <div className="bg-white rounded-3xl p-8 shadow-glossy border-2 border-golden-100">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Send us a <span className="text-pink-600">Message</span>
+                  Send us a <span className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent">Message</span>
                 </h2>
                 
                 {submitStatus === 'success' && (
@@ -197,7 +197,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border-2 border-golden-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-400 focus:border-transparent transition-all duration-200"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -250,7 +250,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-pink-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-glossy-gold text-white py-4 px-8 rounded-xl font-bold text-lg hover:bg-golden-400 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-glossy"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
@@ -273,14 +273,14 @@ export default function ContactPage() {
               isVisible['contact-form'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="relative">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500">
+                <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy">
                   <img 
                     src="/Girls.webp" 
                     alt="Contact Us" 
                     className="w-full h-96 object-cover rounded-2xl shadow-2xl"
                   />
                 </div>
-                <div className="absolute -bottom-6 -right-6 bg-yellow-400 text-gray-900 p-4 rounded-2xl shadow-lg">
+                <div className="absolute -bottom-6 -right-6 bg-golden-200 text-gray-900 p-4 rounded-2xl shadow-glossy border-2 border-golden-300">
                   <p className="font-bold text-lg">24/7 Support</p>
                   <p className="text-sm">We're here to help!</p>
                 </div>
@@ -299,7 +299,7 @@ export default function ContactPage() {
         <div className="container-responsive">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked <span className="text-pink-600">Questions</span>
+              Frequently Asked <span className="text-glossy-gold bg-glossy-gold bg-clip-text text-transparent">Questions</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Find answers to common questions about our products and services
@@ -312,7 +312,7 @@ export default function ContactPage() {
             {faqs.map((faq, index) => (
               <div 
                 key={index}
-                className="mb-6 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="mb-6 bg-white rounded-2xl shadow-glossy overflow-hidden hover:shadow-golden-lg transition-shadow duration-300 border-2 border-golden-100 hover:border-golden-300"
               >
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
@@ -328,13 +328,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-900 via-pink-800 to-indigo-900 text-white relative overflow-hidden">
+      {/* CTA Section with Enhanced Golden Theme */}
+      <section className="py-20 bg-glossy-gold text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div className="relative container-responsive">
           <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Ready to <span className="text-yellow-300">Connect?</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 drop-shadow-2xl">
+              Ready to <span className="text-golden-200 drop-shadow-lg">Connect?</span>
             </h2>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mb-12">
               Join thousands of satisfied customers who trust us for their ethnic wear needs. 
@@ -342,19 +342,19 @@ export default function ContactPage() {
             </p>
             
             <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-              <button className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+              <button className="bg-golden-200 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-golden-100 transition-all duration-300 transform hover:scale-105 shadow-glossy">
                 Start Shopping
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
+              <button className="border-2 border-golden-200 text-golden-100 px-8 py-4 rounded-full font-bold text-lg hover:bg-golden-100 hover:text-gray-900 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                 Call Us Now
               </button>
             </div>
           </div>
         </div>
         
-        {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-24 h-24 border-2 border-yellow-300/30 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 border-2 border-pink-300/30 rounded-full animate-pulse"></div>
+        {/* Enhanced Decorative elements */}
+        <div className="absolute top-10 left-10 w-24 h-24 border-2 border-golden-200/40 rounded-full animate-pulse shadow-glossy"></div>
+        <div className="absolute bottom-10 right-10 w-32 h-32 border-2 border-golden-100/40 rounded-full animate-pulse shadow-glossy"></div>
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useScrollAnimation, useScrollAnimationSingle } from '../../hooks/useScrollAnimation'
 
 const bannerImages = [
   '/sample 1.png',
@@ -50,6 +51,45 @@ export default function HomePage() {
   const startX = React.useRef(0)
   const delta = React.useRef(0)
   const productCatsRef = React.useRef(null)
+  
+  // Scroll animation hooks for different sections
+  const { addToRefs: addToCategoryRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 60 
+  })
+  const { addToRefs: addToArrivalRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 40 
+  })
+  const { addToRefs: addToVideoRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 50 
+  })
+  const { addToRefs: addToShopRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 80 
+  })
+  const { addToRefs: addToTrendingRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 30 
+  })
+  const { addToRefs: addToPromoRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 100 
+  })
+  const { addToRefs: addToInstaRefs } = useScrollAnimation({ 
+    threshold: 0.2, 
+    staggerDelay: 20 
+  })
+  
+  // Section title animations
+  const { elementRef: categoryTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
+  const { elementRef: arrivalTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
+  const { elementRef: videoTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
+  const { elementRef: shopTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
+  const { elementRef: trendingTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
+  const { elementRef: promoTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
+  const { elementRef: instaTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
 
   React.useEffect(() => {
     const t = setInterval(() => setCurrent((c) => (c + 1) % bannerImages.length), 4500)
@@ -75,33 +115,29 @@ export default function HomePage() {
           <div className="absolute inset-0 flex items-center justify-center text-center z-10">
             <div className="max-w-4xl px-4">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-2xl">
-                <span className="bg-golden-gradient bg-clip-text text-transparent">✨ Golden Elegance ✨</span>
+               
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-lg font-medium">
-                Discover our luxurious collection of ethnic wear with a golden touch
-              </p>
+            
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/shop" className="golden-btn text-lg px-8 py-4 text-white shadow-golden-lg border border-white/30">
-                  EXPLORE COLLECTION
-                </Link>
-                <button className="px-8 py-4 rounded-lg border-2 border-white/80 text-white font-medium hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-                  WATCH LOOKBOOK
-                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Product Categories Carousel (full-bleed) */}
-      <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
-        <h2 className="text-center text-2xl md:text-3xl font-bold tracking-wide mb-8 text-brand-primary">✨ PRODUCT CATEGORIES ✨</h2>
-        <div className="relative">
-          <button aria-label="Prev" onClick={()=>{productCatsRef.current?.scrollBy({left:-300, behavior:'smooth'})}} className="hidden md:grid absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
+      {/* Product Categories Carousel with Enhanced Animations */}
+      <section className="w-full py-16 md:py-20 bg-gradient-to-br from-golden-50 to-white overflow-visible">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-wide text-gray-800 dark:text-golden-300">
+            PRODUCT CATEGORIES
+          </h2>
+        </div>
+        <div className="relative overflow-visible">
+          <button aria-label="Prev" onClick={()=>{productCatsRef.current?.scrollBy({left:-300, behavior:'smooth'})}} className="hidden md:grid absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
             <i className="fa-solid fa-chevron-left"></i>
           </button>
-          <div ref={productCatsRef} className="overflow-x-auto snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16">
+          <div ref={productCatsRef} className="overflow-x-auto overflow-y-visible snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-8">
+            <div className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 overflow-visible">
               {[
                 {label:'Vacation',img:'/vacation.jpg'},
                 {label:'Baby',img:'/Baby.jpg'},
@@ -109,71 +145,131 @@ export default function HomePage() {
                 {label:'Girls',img:'/Girls.webp'},
                 {label:'Festive',img:'/Festive.avif'},
                 {label:'Night Suits',img:'/Night Suits.webp'},
-              ].map((c)=> (
-                <div key={c.label} className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group">
-                  <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden ring-2 ring-golden-300 transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden hover:ring-4 hover:ring-brand-primary">
+              ].map((c, index)=> (
+                <div 
+                  key={c.label} 
+                  ref={addToCategoryRefs}
+                  className="scroll-animate-scale snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10"
+                >
+                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-110 hover:-translate-y-4 hover:rotate-3 transition-all duration-500 ease-out shadow-golden hover:shadow-glossy animate-float relative z-10">
                     <img
                       src={c.img}
                       alt={c.label}
-                      className="w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-110"
+                      className="w-full h-full object-cover rounded-full transition-all duration-500 ease-out group-hover:scale-125 group-hover:brightness-110 group-hover:contrast-110"
                       style={{
                         objectPosition: c.label === 'Vacation' ? '50% 52%' : '50% 28%',
                         transform: c.label === 'Vacation' ? 'scale(1.03)' : undefined
                       }}
                     />
                   </div>
-                  <div className="mt-3 text-sm md:text-base transition-all duration-300 group-hover:text-brand-primary group-hover:font-bold">{c.label}</div>
+                  <div className="mt-4 text-sm md:text-base transition-all duration-500 group-hover:text-brand-primary group-hover:font-bold group-hover:scale-110 group-hover:-translate-y-1 relative z-10 text-gray-700 dark:text-golden-300 font-medium">{c.label}</div>
                 </div>
               ))}
             </div>
           </div>
-          <button aria-label="Next" onClick={()=>{productCatsRef.current?.scrollBy({left:300, behavior:'smooth'})}} className="hidden md:grid absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
+          <button aria-label="Next" onClick={()=>{productCatsRef.current?.scrollBy({left:300, behavior:'smooth'})}} className="hidden md:grid absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
             <i className="fa-solid fa-chevron-right"></i>
           </button>
         </div>
       </section>
-      {/* New Arrival block just below Product Categories */}
+      {/* New Arrival block with Enhanced Animations */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-white to-golden-50">
-        <h2 className="px-8 md:px-16 text-center text-3xl md:text-5xl font-bold tracking-wide mb-2 text-brand-primary">✨ NEW ARRIVAL ✨</h2>
-        <p className="px-8 md:px-16 text-center text-golden-700 italic mb-8 font-medium">Shop our all-new styles in ethnic and contemporary fashion for women.</p>
+        <h2 className="text-center text-3xl md:text-4xl font-bold tracking-wide mb-6 text-gray-800 dark:text-golden-300">
+          NEW ARRIVAL
+        </h2>
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {newArrivalImages.map((src, idx)=> (
-            <div key={idx} className="rounded-2xl overflow-hidden golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer">
-              <img src={src} alt="New arrival" className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-300 ease-out hover:scale-110" />
-            </div>
-          ))}
+          {newArrivalImages.map((src, idx)=> {
+            const productNames = [
+              'Elegant Red Dress',
+              'Floral Print Kurti',
+              'Designer Anarkali',
+              'Silk Saree',
+              'Cotton Lehenga',
+              'Embroidered Suit',
+              'Party Wear Gown',
+              'Traditional Outfit'
+            ];
+            
+            return (
+              <div 
+                key={idx} 
+                ref={addToArrivalRefs}
+                className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out"
+              >
+                <div className="relative overflow-hidden">
+                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
+                    <i className="fa-solid fa-heart text-white text-sm"></i>
+                  </div>
+                  {/* Product name overlay */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+                      <h3 className="text-sm md:text-base font-semibold text-gray-800 truncate">{productNames[idx]}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-        <div className="px-8 md:px-16 mt-6 flex justify-center">
-          <Link to="/shop" className="golden-btn tracking-wide">VIEW ALL COLLECTION</Link>
+        <div className="px-8 md:px-16 mt-8 flex justify-center">
+          <Link to="/shop" className="golden-btn tracking-wide text-lg px-8 py-4 hover:scale-110 hover:shadow-glossy animate-pulse3d">VIEW ALL COLLECTION</Link>
         </div>
       </section>
 
       {/* Watch and Buy block (videos) - same layout as NEW ARRIVAL */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
-        <h2 className="px-8 md:px-16 text-center text-3xl md:text-5xl font-bold tracking-wide mb-2 text-brand-primary">🎬 Watch and Buy 🎬</h2>
-        <p className="px-8 md:px-16 text-center text-golden-700 italic mb-8 font-medium">Autoplay lookbook videos you can shop from instantly.</p>
+        <h2 className="text-center text-3xl md:text-4xl font-bold tracking-wide mb-6 text-gray-800 dark:text-golden-300">
+          Watch & BUY
+        </h2>
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {watchVideos.map((v, idx)=> (
-            <div key={idx} className="group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer">
-              <div className="relative overflow-hidden rounded-t-2xl">
-                <video src={v.src} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-300 ease-out group-hover:scale-110" autoPlay muted loop playsInline />
-              </div>
-              <div className="p-4">
-                <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">{v.title}</div>
-                <div className="mt-1 flex items-center gap-2">
-                  <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">{v.price}</div>
-                  <div className="text-gray-500 line-through text-sm">{v.oldPrice}</div>
+          {watchVideos.map((v, idx)=> {
+            const videoNames = [
+              'Blue Co-ord Set',
+              'Mustard Ethnic',
+              'Anarkali Collection',
+              'Red Traditional'
+            ];
+            
+            return (
+              <div 
+                key={idx} 
+                ref={addToVideoRefs}
+                className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+              >
+                <div className="relative overflow-hidden rounded-t-2xl">
+                  <video src={v.src} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-300 ease-out group-hover:scale-110" autoPlay muted loop playsInline />
+                  {/* Video name overlay */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                      <h3 className="text-sm md:text-base font-semibold text-white truncate">{videoNames[idx]}</h3>
+                    </div>
+                  </div>
                 </div>
-                <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">{v.discount}</div>
+                <div className="p-4">
+                  <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">{v.title}</div>
+                  <div className="mt-1 flex items-center gap-2">
+                    <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">{v.price}</div>
+                    <div className="text-gray-500 line-through text-sm">{v.oldPrice}</div>
+                  </div>
+                  <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">{v.discount}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* Shop by Categories (3 large frames) */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-white to-golden-50">
-        <h2 className="text-center text-2xl md:text-3xl font-bold tracking-wide mb-6 text-brand-primary">🛍️ SHOP BY CATEGORIES 🛍️</h2>
+        <h2 
+          ref={shopTitleRef}
+          className="scroll-animate text-center text-2xl md:text-3xl font-bold tracking-wide mb-6 text-gray-800 dark:text-golden-300"
+          style={{textShadow: '2px 2px 4px rgba(0,0,0,0.1)'}}
+        >
+          SHOP BY CATEGORIES
+        </h2>
         <div className="relative px-4 md:px-10 lg:px-16">
           <button aria-label="Prev" className="hidden md:grid absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
             <i className="fa-solid fa-chevron-left"></i>
@@ -183,12 +279,16 @@ export default function HomePage() {
               {label:'Kurta Set', img:'/LBL101ks396_1_1200x.jpeg'},
               {label:'Anarkali Set', img:'/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg'},
               {label:'Co-Ords', img:'/040A1369_1200x.jpeg'}
-            ].map((c)=> (
-              <div key={c.label} className="group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer overflow-hidden">
+            ].map((c, index)=> (
+              <div 
+                key={c.label} 
+                ref={addToShopRefs}
+                className="scroll-animate-scale group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer overflow-hidden"
+              >
                 <div className="rounded-2xl overflow-hidden">
                   <img src={c.img} alt={c.label} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" />
                 </div>
-                <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg">{c.label}</div>
+                <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
               </div>
             ))}
           </div>
@@ -200,7 +300,13 @@ export default function HomePage() {
 
       {/* NEW BORN showcase (8 items) */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
-        <h2 className="text-center text-3xl md:text-4xl font-bold tracking-wide mb-8 text-brand-primary">👶 NEW BORN 👶</h2>
+        <h2 
+          ref={trendingTitleRef}
+          className="scroll-animate text-center text-3xl md:text-4xl font-bold tracking-wide mb-8 text-gray-800 dark:text-golden-300"
+          style={{textShadow: '2px 2px 4px rgba(0,0,0,0.2)'}}
+        >
+          Trending Products
+        </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
           {[
             {img:'/040A1369_1200x.jpeg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
@@ -212,7 +318,11 @@ export default function HomePage() {
             {img:'/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg', title:'Newborn Muslin Gift Set', price:'Rs. 900.00'},
             {img:'/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg', title:'Muslin Blanket', price:'Rs. 900.00'}
           ].map((p, i)=> (
-            <div key={i} className="golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden">
+            <div 
+              key={i} 
+              ref={addToTrendingRefs}
+              className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden"
+            >
               <img src={p.img} alt={p.title} className="w-full h-60 md:h-64 object-cover transition-all duration-300 ease-out group-hover:scale-110" />
               <div className="p-4">
                 <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">{p.title}</div>
@@ -223,20 +333,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Promotional trio block similar to screenshot */}
-      <section className="w-full py-12 md:py-16 bg-gradient-to-br from-white to-golden-50">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 px-4 md:px-10 lg:px-16">
+      {/* Promotional trio block with enhanced glossy effects */}
+      <section className="w-full py-12 md:py-16 bg-gradient-to-br from-white to-golden-100 relative overflow-hidden">
+        <div className="absolute inset-0 bg-glossy-shine opacity-10"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 px-4 md:px-10 lg:px-16 relative z-10">
           {[
             {title:'NEW ARRIVAL', cta:'SHOP NOW', img:'/LBL101ks396_1_1200x.jpeg'},
             {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:'/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg'},
             {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:'/040A1369_1200x.jpeg'}
-          ].map((item)=> (
-            <div key={item.title} className="relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer">
+          ].map((item, index)=> (
+            <div 
+              key={item.title} 
+              ref={addToPromoRefs}
+              className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
+            >
               <img src={item.img} alt={item.title} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent transition-all duration-300 group-hover:from-golden-900/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-golden-900/70"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-                <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200">✨ {item.title} ✨</div>
-                <button className="golden-btn text-xs md:text-sm tracking-widest border border-white/90 bg-golden-gradient/80 hover:bg-golden-gradient transition-all duration-300">{item.cta}</button>
+                <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.7)'}}>{item.title}</div>
+                <button className="golden-btn text-xs md:text-sm tracking-widest border-2 border-golden-300 bg-glossy-gold/90 hover:bg-glossy-gold transition-all duration-300 shadow-glossy hover:shadow-golden-lg">{item.cta}</button>
               </div>
             </div>
           ))}
@@ -245,7 +360,13 @@ export default function HomePage() {
 
       {/* Instagram-style feed */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
-        <h2 className="px-4 md:px-10 lg:px-16 text-center text-2xl md:text-3xl font-bold tracking-wide mb-8 text-brand-primary">📷 WHAT'S ON OUR INSTA FEED 📷</h2>
+        <h2 
+          ref={instaTitleRef}
+          className="scroll-animate px-4 md:px-10 lg:px-16 text-center text-2xl md:text-3xl font-bold tracking-wide mb-8 text-gray-800 dark:text-golden-300"
+          style={{textShadow: '2px 2px 4px rgba(0,0,0,0.1)'}}
+        >
+          WHAT'S ON OUR INSTA FEED
+        </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5">
           {[
             {src:'/insta1.mp4', type:'video'},
@@ -261,7 +382,11 @@ export default function HomePage() {
             {src:'/insta12.png', type:'image'},
             {src:'/insta 14.mp4', type:'video'}
           ].map((item, i) => (
-            <div key={i} className="rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden cursor-pointer border-2 border-transparent hover:border-brand-primary">
+            <div 
+              key={i} 
+              ref={addToInstaRefs}
+              className="scroll-animate-scale rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden cursor-pointer border-2 border-transparent hover:border-brand-primary"
+            >
               {item.type === 'video' ? (
                 <video src={item.src} className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" autoPlay muted loop playsInline />
               ) : (

@@ -3,12 +3,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Golden theme defaults */
+/* Golden glossy theme defaults */
 body { 
   @apply font-poppins text-gray-900 bg-gradient-to-br from-golden-50 to-golden-100; 
 }
 .dark body { 
   @apply text-golden-100 bg-gradient-to-br from-gray-900 to-gray-800; 
+}
+
+/* Enhanced golden glossy effects */
+.glossy-effect {
+  background: linear-gradient(145deg, #FFD700 0%, #FFEB3B 25%, #FFC107 50%, #FF8F00 75%, #FF6F00 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.glossy-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 /* Comprehensive dark mode support */
@@ -47,7 +70,7 @@ body {
 
 @layer components {
   .anim-btn { 
-    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-golden active:translate-y-0;
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glossy active:translate-y-0;
   }
   .anim-card { 
     @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-golden-lg;
@@ -56,16 +79,193 @@ body {
     @apply transition-all duration-200 ease-out hover:text-brand-primary;
   }
   .golden-btn {
-    @apply bg-golden-gradient text-white font-medium px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+    @apply bg-glossy-gold text-white font-medium px-6 py-3 rounded-lg shadow-glossy hover:shadow-golden-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden;
+  }
+  .golden-btn::before {
+    content: '';
+    @apply absolute inset-0 bg-glossy-shine opacity-0 hover:opacity-100 transition-opacity duration-300;
   }
   .golden-card {
-    @apply bg-white bg-opacity-90 backdrop-blur-sm border border-golden-200 rounded-xl shadow-lg hover:shadow-golden-lg transition-all duration-300;
+    @apply bg-white bg-opacity-95 backdrop-blur-sm border border-golden-200 rounded-xl shadow-golden hover:shadow-glossy transition-all duration-300 relative overflow-hidden;
+  }
+  .golden-card::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-transparent via-golden-100/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300;
   }
   .shadow-golden {
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
   }
   .shadow-golden-lg {
-    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+  }
+  .shadow-glossy {
+    box-shadow: 0 8px 32px rgba(255, 193, 7, 0.6), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .text-glossy-gold {
+    @apply bg-glossy-gold bg-clip-text text-transparent;
+  }
+  .border-glossy {
+    @apply border-2 border-golden-400 shadow-golden-inset;
+  }
+  
+  /* Enhanced Category Circle Animations */
+  .category-circle {
+    @apply relative overflow-hidden transition-all duration-500 ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .category-circle::before {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 transition-all duration-500;
+    background: linear-gradient(45deg, rgba(255,215,0,0.3), rgba(255,193,7,0.3));
+    transform: scale(0);
+  }
+  
+  .category-circle:hover::before {
+    @apply opacity-100;
+    transform: scale(1.1);
+  }
+  
+  .category-circle::after {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 transition-all duration-300;
+    background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.4), transparent);
+    animation: rotateGlow 3s linear infinite;
+  }
+  
+  .category-circle:hover::after {
+    @apply opacity-100;
+  }
+  
+  /* New Arrival Card Animations */
+  .arrival-card {
+    @apply relative overflow-hidden transition-all duration-500 ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .arrival-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 opacity-0 transition-all duration-500;
+    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    animation: shimmerWave 2s ease-in-out infinite;
+  }
+  
+  .arrival-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  .arrival-card::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-all duration-300 pointer-events-none;
+    background: radial-gradient(circle at center, rgba(255,215,0,0.1) 0%, transparent 70%);
+  }
+  
+  .arrival-card:hover::after {
+    @apply opacity-100;
+  }
+  
+  /* Staggered Animation Classes */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+  
+  /* Scroll Animation Base Classes - Fast Animations */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .scroll-animate-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate-left.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .scroll-animate-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate-right.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .scroll-animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate-scale.animate-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .scroll-animate-rotate {
+    opacity: 0;
+    transform: rotate(-5deg) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate-rotate.animate-in {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  
+  /* Enhanced Fast Animation Variants */
+  .scroll-animate-fade {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    will-change: opacity;
+  }
+  
+  .scroll-animate-fade.animate-in {
+    opacity: 1;
+  }
+  
+  .scroll-animate-zoom {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate-zoom.animate-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .scroll-animate-flip {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-45deg);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  
+  .scroll-animate-flip.animate-in {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg);
   }
 }
 

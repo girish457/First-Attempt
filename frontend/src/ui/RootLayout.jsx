@@ -76,18 +76,21 @@ export default function RootLayout(){
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="w-full bg-golden-gradient text-white text-xs md:text-sm shadow-lg">
-        <div className="container-responsive py-2 overflow-hidden">
-          <div className="md:text-center whitespace-nowrap md:whitespace-normal [animation:marquee_12s_linear_infinite] md:[animation:none] font-medium">
+      <div className="w-full bg-glossy-gold text-white text-xs md:text-sm shadow-glossy relative overflow-hidden">
+        <div className="container-responsive py-2 overflow-hidden relative z-10">
+          <div className="md:text-center whitespace-nowrap md:whitespace-normal [animation:marquee_12s_linear_infinite] md:[animation:none] font-medium drop-shadow-lg">
             ✨ Free Shipping on Orders Above ₹999 | Easy Returns | Premium Golden Collection ✨
           </div>
         </div>
       </div>
-      <header className="sticky top-0 z-40 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-golden-200 dark:border-golden-700 shadow-lg">
+      <header className="sticky top-0 z-40 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-golden-300 dark:border-golden-700 shadow-glossy">
         <div className="container-responsive flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3 font-bold text-brand-primary hover:text-brand-secondary transition-all duration-300 transform hover:scale-105">
             <span className="text-3xl animate-goldShimmer"><i className="fa-solid fa-crown"></i></span>
-            <span className="text-xl bg-golden-gradient bg-clip-text text-transparent">Golden Elegance</span>
+            <div className="flex flex-col">
+              <span className="text-xl bg-glossy-gold bg-clip-text text-transparent font-bold drop-shadow-sm">Runway</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-normal -mt-1">by yogesh</span>
+            </div>
           </Link>
           <button className="md:hidden p-2" onClick={()=>setIsMobileMenu(v=>!v)} aria-label="Menu"><i className="fa-solid fa-bars text-xl"></i></button>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -97,24 +100,24 @@ export default function RootLayout(){
             <NavLink to="/contact" className={({isActive})=>`hover:text-brand-primary transition-all duration-300 hover:scale-105 ${isActive? 'text-brand-primary font-semibold' : 'text-gray-700 dark:text-gray-300'}`}>Contact Us</NavLink>
           </nav>
           <div className="flex items-center gap-3">
-            <Tooltip label="Search"><button className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-100 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300"><i className="fa-solid fa-magnifying-glass"></i></button></Tooltip>
+            <Tooltip label="Search"><button className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-200 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300 shadow-sm hover:shadow-glossy"><i className="fa-solid fa-magnifying-glass"></i></button></Tooltip>
             <Tooltip label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
               <button 
-                className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-100 dark:hover:bg-golden-700 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300 relative overflow-hidden" 
+                className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-200 dark:hover:bg-golden-700 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300 relative overflow-hidden shadow-sm hover:shadow-glossy" 
                 onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')} 
                 aria-label="Toggle theme"
               >
                 <div className="relative">
                   {theme === 'dark' ? (
-                    <i className="fa-solid fa-sun text-lg text-golden-300 animate-pulse"></i>
+                    <i className="fa-solid fa-sun text-lg text-golden-300 animate-pulse drop-shadow-sm"></i>
                   ) : (
-                    <i className="fa-solid fa-moon text-lg text-golden-600"></i>
+                    <i className="fa-solid fa-moon text-lg text-golden-600 drop-shadow-sm"></i>
                   )}
                 </div>
               </button>
             </Tooltip>
-            <Tooltip label="Account"><NavLink to="/account" className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-100 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300"><i className="fa-regular fa-user"></i></NavLink></Tooltip>
-            <Tooltip label="Wishlist"><button className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-100 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300"><i className="fa-regular fa-heart"></i></button></Tooltip>
+            <Tooltip label="Account"><NavLink to="/account" className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-200 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300 shadow-sm hover:shadow-glossy"><i className="fa-regular fa-user"></i></NavLink></Tooltip>
+            <Tooltip label="Wishlist"><button className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-200 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300 shadow-sm hover:shadow-glossy"><i className="fa-regular fa-heart"></i></button></Tooltip>
             <Tooltip label="Cart"><NavLink to="/cart" className="relative inline-flex items-center justify-center w-11 h-11 rounded-full bg-golden-gradient text-white hover:scale-110 transition-all duration-300 anim-btn shadow-lg hover:shadow-golden"><i className="fa-solid fa-bag-shopping"></i><span className="absolute -top-1 -right-1 text-[10px] bg-golden-800 text-white rounded-full px-1.5 py-0.5 cart-count transition-transform shadow-sm">{cartCount}</span></NavLink></Tooltip>
           </div>
         </div>
@@ -136,14 +139,14 @@ export default function RootLayout(){
 
       <main className="flex-1"><Outlet /></main>
 
-      <footer className="bg-gradient-to-r from-golden-50 to-golden-100 dark:from-gray-800 dark:to-gray-900 border-t border-golden-200 dark:border-gray-600 shadow-lg">
-        <div className="container-responsive py-12 grid md:grid-cols-4 gap-8 text-sm">
-          <div><div className="flex items-center gap-3 font-bold text-brand-primary mb-4"><i className="fa-solid fa-crown text-2xl"></i><span className="text-lg bg-golden-gradient bg-clip-text text-transparent">Golden Elegance</span></div><p className="text-gray-600 dark:text-gray-400 leading-relaxed">Curating elegant ethnic wear with golden touch for women and kids.</p></div>
-          <div><h4 className="font-bold mb-4 text-brand-primary">Newsletter</h4><p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Subscribe for new arrivals and exclusive golden offers.</p><form className="flex gap-2"><input type="email" placeholder="Email address" className="flex-1 border border-golden-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all" /><button className="golden-btn text-sm">Join</button></form></div>
+      <footer className="bg-gradient-to-r from-golden-100 to-golden-200 dark:from-gray-800 dark:to-gray-900 border-t border-golden-300 dark:border-gray-600 shadow-glossy relative overflow-hidden">
+        <div className="container-responsive py-12 grid md:grid-cols-4 gap-8 text-sm relative z-10">
+          <div><div className="flex items-center gap-3 font-bold text-brand-primary mb-4"><i className="fa-solid fa-crown text-2xl drop-shadow-sm"></i><div className="flex flex-col"><span className="text-lg bg-glossy-gold bg-clip-text text-transparent font-bold drop-shadow-sm">Runway</span><span className="text-xs text-gray-600 dark:text-gray-400 font-normal -mt-1">by yogesh</span></div></div><p className="text-gray-600 dark:text-gray-400 leading-relaxed">Curating elegant ethnic wear with golden touch for women and kids.</p></div>
+          <div><h4 className="font-bold mb-4 text-brand-primary">Newsletter</h4><p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Subscribe for new arrivals and exclusive golden offers.</p><form className="flex gap-2"><input type="email" placeholder="Email address" className="flex-1 border-2 border-golden-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-lg px-4 py-2 focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all" /><button className="golden-btn text-sm shadow-glossy">Join</button></form></div>
           <div><h4 className="font-bold mb-4 text-brand-primary">Links</h4><ul className="space-y-3 text-gray-600 dark:text-gray-400"><li><a href="#" className="hover:text-brand-primary transition-colors duration-300">Terms</a></li><li><a href="#" className="hover:text-brand-primary transition-colors duration-300">Privacy Policy</a></li><li><a href="#" className="hover:text-brand-primary transition-colors duration-300">Shipping</a></li><li><Link to="/contact" className="hover:text-brand-primary transition-colors duration-300">Contact</Link></li></ul></div>
           <div><h4 className="font-bold mb-4 text-brand-primary">Follow</h4><div className="flex gap-4 text-gray-600 dark:text-gray-400 text-xl"><a href="#" className="hover:text-brand-primary transition-all duration-300 hover:scale-110" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a><a href="#" className="hover:text-brand-primary transition-all duration-300 hover:scale-110" aria-label="Facebook"><i className="fa-brands fa-facebook"></i></a><a href="#" className="hover:text-brand-primary transition-all duration-300 hover:scale-110" aria-label="Pinterest"><i className="fa-brands fa-pinterest"></i></a></div></div>
         </div>
-        <div className="text-center text-xs text-gray-500 dark:text-gray-400 py-6 border-t border-golden-200 dark:border-gray-600 bg-golden-50 dark:bg-gray-800">© {new Date().getFullYear()} Golden Elegance. All rights reserved. ✨ Crafted with luxury in mind.</div>
+        <div className="text-center text-xs text-gray-500 dark:text-gray-400 py-6 border-t border-golden-300 dark:border-gray-600 bg-golden-200 dark:bg-gray-800">© {new Date().getFullYear()} Runway by yogesh. All rights reserved. ✨ Crafted with luxury in mind.</div>
       </footer>
     </div>
   )

@@ -148,11 +148,11 @@ const AccountPage = () => {
   if (isAuthenticated && user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white py-16">
-          <div className="container-responsive text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Welcome, <span className="text-yellow-300">{user.name}</span>!
+        {/* Hero Section with Glossy Golden Theme */}
+        <section className="bg-glossy-gold text-white py-16 relative overflow-hidden">
+          <div className="container-responsive text-center relative z-10">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-2xl">
+              Welcome, <span className="text-golden-200 drop-shadow-lg">{user.name}</span>!
             </h1>
             <p className="text-xl">Manage your account and orders</p>
           </div>
@@ -164,10 +164,10 @@ const AccountPage = () => {
             <div className="max-w-4xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8">
                 
-                {/* Account Info Card */}
-                <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                {/* Account Info Card with Golden Enhancement */}
+                <div className="bg-white rounded-3xl p-8 shadow-glossy border-2 border-golden-200 hover:border-golden-300 transition-all duration-300">
                   <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl flex items-center justify-center text-2xl text-white mr-4">
+                    <div className="w-16 h-16 bg-glossy-gold rounded-2xl flex items-center justify-center text-2xl text-white mr-4 shadow-glossy">
                       👤
                     </div>
                     <div>
@@ -198,10 +198,10 @@ const AccountPage = () => {
                   </div>
                 </div>
 
-                {/* Quick Actions Card */}
-                <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                {/* Quick Actions Card with Golden Enhancement */}
+                <div className="bg-white rounded-3xl p-8 shadow-glossy border-2 border-golden-200 hover:border-golden-300 transition-all duration-300">
                   <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-2xl text-white mr-4">
+                    <div className="w-16 h-16 bg-glossy-gold rounded-2xl flex items-center justify-center text-2xl text-white mr-4 shadow-glossy">
                       ⚡
                     </div>
                     <div>
@@ -211,13 +211,13 @@ const AccountPage = () => {
                   </div>
                   
                   <div className="space-y-4">
-                    <button className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105">
+                    <button className="w-full bg-glossy-gold text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-400 transition-all duration-300 transform hover:scale-105 shadow-glossy">
                       View Orders
                     </button>
-                    <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
+                    <button className="w-full bg-golden-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-700 transition-all duration-300 transform hover:scale-105 shadow-glossy">
                       View Wishlist
                     </button>
-                    <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105">
+                    <button className="w-full bg-golden-500 text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-600 transition-all duration-300 transform hover:scale-105 shadow-glossy">
                       Edit Profile
                     </button>
                     <button 
@@ -231,13 +231,13 @@ const AccountPage = () => {
 
               </div>
 
-              {/* Recent Activity */}
-              <div className="mt-12 bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              {/* Recent Activity with Golden Enhancement */}
+              <div className="mt-12 bg-white rounded-3xl p-8 shadow-glossy border-2 border-golden-200">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Recent Activity</h2>
                 <div className="text-center py-8 text-gray-500">
                   <div className="text-4xl mb-4">📦</div>
                   <p>No recent orders or activity to display.</p>
-                  <button className="mt-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 px-6 rounded-full font-semibold hover:from-pink-600 hover:to-purple-600 transition-all duration-300">
+                  <button className="mt-4 bg-glossy-gold text-white py-2 px-6 rounded-full font-semibold hover:bg-golden-400 transition-all duration-300 shadow-glossy">
                     Start Shopping
                   </button>
                 </div>
@@ -252,11 +252,11 @@ const AccountPage = () => {
   // Login/Signup form
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white py-16">
-        <div className="container-responsive text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            My <span className="text-yellow-300">Account</span>
+      {/* Hero Section with Glossy Golden Theme */}
+      <section className="bg-glossy-gold text-white py-16 relative overflow-hidden">
+        <div className="container-responsive text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-2xl">
+            My <span className="text-golden-200 drop-shadow-lg">Account</span>
           </h1>
           <p className="text-xl">
             {isLogin ? 'Welcome back! Please sign in to your account.' : 'Join our community and start shopping!'}
@@ -268,11 +268,11 @@ const AccountPage = () => {
       <section className="py-20">
         <div className="container-responsive">
           <div className="max-w-md mx-auto">
-            <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+            <div className="bg-white rounded-3xl p-8 shadow-glossy border-2 border-golden-200">
               
               {/* Form Header */}
               <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl flex items-center justify-center text-3xl text-white mx-auto mb-4">
+                <div className="w-20 h-20 bg-glossy-gold rounded-2xl flex items-center justify-center text-3xl text-white mx-auto mb-4 shadow-glossy">
                   👤
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">
@@ -304,8 +304,8 @@ const AccountPage = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 ${
-                        errors.name ? 'border-red-400' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-400 focus:border-transparent transition-all duration-200 ${
+                        errors.name ? 'border-red-400' : 'border-golden-300'
                       }`}
                       placeholder="Enter your full name"
                     />
@@ -324,7 +324,7 @@ const AccountPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 ${
-                      errors.email ? 'border-red-400' : 'border-gray-300'
+                      errors.email ? 'border-red-400' : 'border-golden-300'
                     }`}
                     placeholder="Enter your email address"
                   />
@@ -342,8 +342,8 @@ const AccountPage = () => {
                       name="mobile"
                       value={formData.mobile}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 ${
-                        errors.mobile ? 'border-red-400' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-400 focus:border-transparent transition-all duration-200 ${
+                        errors.mobile ? 'border-red-400' : 'border-golden-300'
                       }`}
                       placeholder="Enter your mobile number"
                     />
@@ -362,8 +362,8 @@ const AccountPage = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 pr-12 ${
-                        errors.password ? 'border-red-400' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-400 focus:border-transparent transition-all duration-200 pr-12 ${
+                        errors.password ? 'border-red-400' : 'border-golden-300'
                       }`}
                       placeholder="Enter your password"
                     />
@@ -389,8 +389,8 @@ const AccountPage = () => {
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-200 ${
-                        errors.confirmPassword ? 'border-red-400' : 'border-gray-300'
+                      className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-golden-400 focus:border-transparent transition-all duration-200 ${
+                        errors.confirmPassword ? 'border-red-400' : 'border-golden-300'
                       }`}
                       placeholder="Confirm your password"
                     />
@@ -402,7 +402,7 @@ const AccountPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-pink-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-glossy-gold text-white py-4 px-8 rounded-xl font-bold text-lg hover:bg-golden-400 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-glossy"
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center gap-2">
@@ -425,7 +425,7 @@ const AccountPage = () => {
                   {isLogin ? "Don't have an account?" : "Already have an account?"}
                   <button
                     onClick={toggleAuthMode}
-                    className="ml-2 text-pink-600 font-semibold hover:text-pink-700 transition-colors"
+                    className="ml-2 text-glossy-gold bg-glossy-gold bg-clip-text text-transparent font-semibold hover:text-golden-600 transition-colors"
                   >
                     {isLogin ? 'Sign Up' : 'Sign In'}
                   </button>
