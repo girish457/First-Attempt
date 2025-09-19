@@ -47,6 +47,7 @@ const products = [
 ]
 
 export default function HomePage() {
+  // Updated with Google Drive images for product categories
   const [current, setCurrent] = React.useState(0)
   const startX = React.useRef(0)
   const delta = React.useRef(0)
@@ -139,10 +140,10 @@ export default function HomePage() {
           <div ref={productCatsRef} className="overflow-x-auto overflow-y-visible snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-8">
             <div className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 overflow-visible">
               {[
-                {label:'Vacation',img:'/vacation.jpg'},
-                {label:'Baby',img:'/Baby.jpg'},
-                {label:'Boys',img:'/boys.jpg'},
-                {label:'Girls',img:'/Girls.webp'},
+                {label:'Vacation',img:'https://lh3.googleusercontent.com/d/1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
+                {label:'Baby',img:'https://lh3.googleusercontent.com/d/1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
+                {label:'Boys',img:'https://lh3.googleusercontent.com/d/1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
+                {label:'Girls',img:'https://lh3.googleusercontent.com/d/1sGpzhPZoW-UmwXPrpCKMA4L_vTMPGCPe'},
                 {label:'Festive',img:'/Festive.avif'},
                 {label:'Night Suits',img:'/Night Suits.webp'},
               ].map((c, index)=> (
@@ -159,6 +160,14 @@ export default function HomePage() {
                       style={{
                         objectPosition: c.label === 'Vacation' ? '50% 52%' : '50% 28%',
                         transform: c.label === 'Vacation' ? 'scale(1.03)' : undefined
+                      }}
+                      onError={(e) => {
+                        console.log(`Failed to load image for ${c.label}: ${c.img}`);
+                        // Fallback to a placeholder or default image
+                        e.target.src = `https://via.placeholder.com/200x200/d4af37/ffffff?text=${c.label}`;
+                      }}
+                      onLoad={() => {
+                        console.log(`Successfully loaded image for ${c.label}`);
                       }}
                     />
                   </div>
