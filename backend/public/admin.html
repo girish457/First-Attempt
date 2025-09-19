@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodieHub Admin Dashboard</title>
+    <title>Golden Elegance - Admin Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,121 +14,71 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .admin-container {
-            display: flex;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: #fff;
             min-height: 100vh;
         }
 
-        .sidebar {
-            width: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 0 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-header h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .sidebar-header p {
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        .nav-menu {
-            list-style: none;
-        }
-
-        .nav-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
+        .admin-header {
+            background: linear-gradient(90deg, #b8860b, #daa520);
             padding: 1rem 2rem;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .nav-link:hover,
-        .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-right: 3px solid #fff;
-        }
-
-        .nav-link i {
-            margin-right: 1rem;
-            width: 20px;
-        }
-
-        .main-content {
-            margin-left: 250px;
-            flex: 1;
-            padding: 2rem;
-        }
-
-        .header {
-            background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .header h1 {
-            color: #333;
-            font-size: 2rem;
-            font-weight: 700;
+        .admin-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .logout-btn {
-            background: #dc3545;
-            color: white;
+            background: rgba(255,255,255,0.2);
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
+            color: #1a1a1a;
             cursor: pointer;
-            font-weight: 500;
             transition: all 0.3s ease;
         }
 
         .logout-btn:hover {
-            background: #c82333;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .stat-card {
-            background: white;
-            padding: 2rem;
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
             text-align: center;
+            border: 1px solid #b8860b;
             transition: transform 0.3s ease;
         }
 
@@ -137,121 +87,69 @@
         }
 
         .stat-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
+            color: #daa520;
             margin-bottom: 1rem;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #667eea;
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: #666;
-            font-size: 1rem;
+            color: #ccc;
+            font-size: 0.9rem;
         }
 
         .content-section {
-            background: white;
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             margin-bottom: 2rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #f8f9fa;
+            border: 1px solid #b8860b;
         }
 
         .section-title {
             font-size: 1.5rem;
-            font-weight: 600;
-            color: #333;
+            color: #daa520;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #b8860b;
+            padding-bottom: 0.5rem;
         }
 
-        .refresh-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .refresh-btn:hover {
-            background: #218838;
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
+        .users-table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 1rem;
         }
 
-        th, td {
+        .users-table th,
+        .users-table td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #444;
         }
 
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-            color: #333;
+        .users-table th {
+            background: rgba(184, 134, 11, 0.1);
+            color: #daa520;
+            font-weight: bold;
         }
 
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            margin-right: 1rem;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-details h4 {
-            margin-bottom: 0.25rem;
-            color: #333;
-        }
-
-        .user-details p {
-            color: #666;
-            font-size: 0.9rem;
+        .users-table tr:hover {
+            background: rgba(184, 134, 11, 0.05);
         }
 
         .delete-btn {
             background: #dc3545;
-            color: white;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
+            color: white;
             cursor: pointer;
-            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
@@ -259,570 +157,390 @@
             background: #c82333;
         }
 
-        .login-container {
+        .loading {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
         }
 
-        .login-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
+        .spinner {
+            border: 3px solid #444;
+            border-top: 3px solid #daa520;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
         }
 
-        .login-header {
-            text-align: center;
-            margin-bottom: 2rem;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .login-header h1 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .login-header p {
-            color: #666;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .login-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
+        .alert {
             padding: 1rem;
             border-radius: 5px;
             margin-bottom: 1rem;
-            border: 1px solid #f5c6cb;
         }
 
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
+        .alert-success {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            color: #28a745;
         }
 
-        .hidden {
-            display: none !important;
+        .alert-error {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
         }
 
         @media (max-width: 768px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+            .dashboard-container {
+                padding: 0 1rem;
             }
-
-            .main-content {
-                margin-left: 0;
-            }
-
+            
             .stats-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .users-table {
+                font-size: 0.9rem;
+            }
+            
+            .users-table th,
+            .users-table td {
+                padding: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Login Screen -->
-    <div id="loginScreen" class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <h1><i class="fas fa-shield-alt"></i> Admin Login</h1>
-                <p>FoodieHub Admin Dashboard</p>
-            </div>
-            <div id="errorMessage" class="error-message hidden"></div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="login-btn">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Dashboard -->
-    <div id="adminDashboard" class="admin-container hidden">
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h2><i class="fas fa-utensils"></i> First Attempt</h2>
-                <p>Admin Dashboard</p>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" data-section="overview">
-                        <i class="fas fa-chart-pie"></i>
-                        Overview
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-section="users">
-                        <i class="fas fa-users"></i>
-                        Users
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-section="products">
-                        <i class="fas fa-box"></i>
-                        Products
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="main-content">
-            <div class="header">
-                <h1 id="pageTitle">Dashboard Overview</h1>
+    <header class="admin-header">
+        <div class="header-content">
+            <h1 class="admin-title">
+                <i class="fas fa-crown"></i>
+                Golden Elegance - Admin Dashboard
+            </h1>
+            <div class="user-info">
+                <span id="admin-name">Admin User</span>
                 <button class="logout-btn" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
                 </button>
             </div>
+        </div>
+    </header>
 
-            <!-- Overview Section -->
-            <div id="overviewSection" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Statistics</h2>
-                    <button class="refresh-btn" onclick="loadStats()">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
+    <div class="dashboard-container">
+        <div id="alert-container"></div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
                 </div>
-                <div class="stats-grid" id="statsGrid">
-                    <div class="loading">Loading statistics...</div>
-                </div>
+                <div class="stat-value" id="total-users">-</div>
+                <div class="stat-label">Total Users</div>
             </div>
-
-            <!-- Users Section -->
-            <div id="usersSection" class="content-section hidden">
-                <div class="section-header">
-                    <h2 class="section-title">User Management</h2>
-                    <button class="refresh-btn" onclick="loadUsers()">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-box"></i>
                 </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User</th>
-                                <th>Email</th>
-                                <th>Mobile</th>
-                                <th>Joined</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="usersTable">
-                            <tr>
-                                <td colspan="5" class="loading">Loading users...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="stat-value" id="total-products">-</div>
+                <div class="stat-label">Total Products</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="stat-value" id="total-wishlists">-</div>
+                <div class="stat-label">Total Wishlists</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="stat-value" id="total-carts">-</div>
+                <div class="stat-label">Active Carts</div>
+            </div>
+        </div>
 
-            <!-- Products Section -->
-            <div id="productsSection" class="content-section hidden">
-                <div class="section-header">
-                    <h2 class="section-title">Product Analytics</h2>
-                    <button class="refresh-btn" onclick="loadStats()">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
-                </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Rating & Reviews</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productsTable">
-                            <tr>
-                                <td colspan="4" class="loading">Loading products...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i>
+                User Management
+            </h2>
+            <div id="users-loading" class="loading">
+                <div class="spinner"></div>
+            </div>
+            <div id="users-content" style="display: none;">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar"></i>
+                Analytics
+            </h2>
+            <div class="chart-container">
+                <canvas id="userChart"></canvas>
             </div>
         </div>
     </div>
 
     <script>
-        let authToken = localStorage.getItem('adminToken');
-        let currentUser = null;
+        let authToken = localStorage.getItem('authToken');
+        let chart = null;
 
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', async function() {
-            // Check if backend is running
-            try {
-                const healthResponse = await fetch('http://localhost:3001/api/health');
-                if (!healthResponse.ok) {
-                    throw new Error('Backend server is not running');
-                }
-            } catch (error) {
-                showError('Cannot connect to backend server. Please make sure the server is running on http://localhost:3001');
-                return;
+        // Check if user is authenticated and is admin
+        function checkAuth() {
+            if (!authToken) {
+                showUnauthorized();
+                return false;
             }
-
-            if (authToken) {
-                showDashboard();
-                loadStats();
-            } else {
-                showLogin();
-            }
-        });
-
-        // Login form handler
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            try {
-                console.log('Attempting login with:', { email, password: '***' });
-                
-                const response = await fetch('http://localhost:3001/api/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
-                });
-
-                console.log('Response status:', response.status);
-                console.log('Response headers:', response.headers);
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.log('Error response:', errorText);
-                    let errorMessage = 'Login failed';
-                    try {
-                        const errorData = JSON.parse(errorText);
-                        errorMessage = errorData.message || errorMessage;
-                    } catch (e) {
-                        errorMessage = errorText || errorMessage;
-                    }
-                    throw new Error(errorMessage);
-                }
-
-                const data = await response.json();
-                console.log('Login successful:', data);
-
-                // Check if user is admin
-                if (data.user.role !== 'admin') {
-                    throw new Error('Access denied. Admin role required.');
-                }
-
-                authToken = data.token;
-                currentUser = data.user;
-                localStorage.setItem('adminToken', authToken);
-                
-                showDashboard();
-                loadStats();
-            } catch (error) {
-                showError(error.message);
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (user.role !== 'admin') {
+                showUnauthorized();
+                return false;
             }
-        });
-
-        // Navigation handlers
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Update active nav
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show corresponding section
-                const section = this.dataset.section;
-                showSection(section);
-            });
-        });
-
-        function showLogin() {
-            document.getElementById('loginScreen').classList.remove('hidden');
-            document.getElementById('adminDashboard').classList.add('hidden');
+            
+            document.getElementById('admin-name').textContent = user.name || 'Admin User';
+            return true;
         }
 
-        function showDashboard() {
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('adminDashboard').classList.remove('hidden');
-        }
-
-        function showSection(section) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(s => s.classList.add('hidden'));
-            
-            // Show selected section
-            document.getElementById(section + 'Section').classList.remove('hidden');
-            
-            // Update page title
-            const titles = {
-                overview: 'Dashboard Overview',
-                users: 'User Management',
-                products: 'Product Analytics'
-            };
-            document.getElementById('pageTitle').textContent = titles[section];
-            
-            // Load section data
-            if (section === 'users') {
-                loadUsers();
-            } else if (section === 'products') {
-                loadProducts();
-            }
-        }
-
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            errorDiv.textContent = message;
-            errorDiv.classList.remove('hidden');
-            setTimeout(() => {
-                errorDiv.classList.add('hidden');
-            }, 5000);
-        }
-
-        async function loadStats() {
-            try {
-                const response = await fetch('http://localhost:3001/api/admin/stats', {
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to load statistics');
-                }
-
-                const stats = await response.json();
-                displayStats(stats);
-            } catch (error) {
-                console.error('Error loading stats:', error);
-                document.getElementById('statsGrid').innerHTML = '<div class="error-message">Failed to load statistics</div>';
-            }
-        }
-
-        function displayStats(stats) {
-            const statsGrid = document.getElementById('statsGrid');
-            statsGrid.innerHTML = `
-                <div class="stat-card">
-                    <div class="stat-icon" style="color: #667eea;">
-                        <i class="fas fa-users"></i>
+        // Show unauthorized access page
+        function showUnauthorized() {
+            document.body.innerHTML = `
+                <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); color: white; font-family: 'Segoe UI', sans-serif;">
+                    <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, #2d2d2d, #3d3d3d); border-radius: 20px; border: 2px solid #dc3545; max-width: 500px; margin: 2rem;">
+                        <div style="font-size: 4rem; color: #dc3545; margin-bottom: 1rem;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h1 style="color: #dc3545; margin-bottom: 1rem; font-size: 2rem;">Access Denied</h1>
+                        <p style="margin-bottom: 2rem; color: #ccc; line-height: 1.6;">You need to be logged in as an administrator to access this dashboard.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="/admin-login" style="background: linear-gradient(135deg, #b8860b, #daa520); color: #1a1a1a; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">
+                                <i class="fas fa-sign-in-alt"></i> Admin Login
+                            </a>
+                            <a href="http://localhost:5174" style="background: #666; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">
+                                <i class="fas fa-home"></i> Back to Site
+                            </a>
+                        </div>
                     </div>
-                    <div class="stat-number">${stats.totalUsers}</div>
-                    <div class="stat-label">Total Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="color: #28a745;">
-                        <i class="fas fa-box"></i>
-                    </div>
-                    <div class="stat-number">${stats.totalProducts}</div>
-                    <div class="stat-label">Total Products</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="color: #ffc107;">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="stat-number">${stats.totalWishlistItems}</div>
-                    <div class="stat-label">Wishlist Items</div>
                 </div>
             `;
         }
 
+        // API call helper
+        async function apiCall(endpoint, options = {}) {
+            const response = await fetch(`http://localhost:3001${endpoint}`, {
+                ...options,
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                }
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'API call failed');
+            }
+            
+            return await response.json();
+        }
+
+        // Show alert message
+        function showAlert(message, type = 'success') {
+            const alertContainer = document.getElementById('alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            alertContainer.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Load dashboard stats
+        async function loadStats() {
+            try {
+                const stats = await apiCall('/api/admin/stats');
+                document.getElementById('total-users').textContent = stats.totalUsers || 0;
+                document.getElementById('total-products').textContent = stats.totalProducts || 0;
+                document.getElementById('total-wishlists').textContent = stats.totalWishlists || 0;
+                document.getElementById('total-carts').textContent = stats.totalCarts || 0;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                showAlert('Failed to load statistics', 'error');
+            }
+        }
+
+        // Load users
         async function loadUsers() {
             try {
-                const response = await fetch('http://localhost:3001/api/admin/users', {
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                    },
+                const users = await apiCall('/api/admin/users');
+                const tbody = document.getElementById('users-table-body');
+                tbody.innerHTML = '';
+                
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.name || 'N/A'}</td>
+                        <td>${user.email}</td>
+                        <td>${user.mobile || 'N/A'}</td>
+                        <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteUser(${user.id})">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
                 });
-
-                if (!response.ok) {
-                    throw new Error('Failed to load users');
-                }
-
-                const users = await response.json();
-                displayUsers(users);
+                
+                document.getElementById('users-loading').style.display = 'none';
+                document.getElementById('users-content').style.display = 'block';
+                
+                // Update chart
+                updateChart(users);
             } catch (error) {
                 console.error('Error loading users:', error);
-                document.getElementById('usersTable').innerHTML = '<tr><td colspan="5" class="error-message">Failed to load users</td></tr>';
+                showAlert('Failed to load users', 'error');
             }
         }
 
-        function displayUsers(users) {
-            const usersTable = document.getElementById('usersTable');
-            
-            if (users.length === 0) {
-                usersTable.innerHTML = '<tr><td colspan="5" class="loading">No users found</td></tr>';
-                return;
-            }
-
-            usersTable.innerHTML = users.map(user => `
-                <tr>
-                    <td>
-                        <div class="user-info">
-                            <div class="user-avatar">
-                                ${user.name.charAt(0).toUpperCase()}
-                            </div>
-                            <div class="user-details">
-                                <h4>${user.name}</h4>
-                            </div>
-                        </div>
-                    </td>
-                    <td>${user.email}</td>
-                    <td>${user.mobile || 'Not provided'}</td>
-                    <td>${new Date(user.createdAt).toLocaleDateString()}</td>
-                    <td>
-                        <button class="delete-btn" onclick="deleteUser(${user.id})">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        async function loadProducts() {
-            try {
-                const response = await fetch('http://localhost:3001/api/products');
-
-                if (!response.ok) {
-                    throw new Error('Failed to load products');
-                }
-
-                const products = await response.json();
-                displayProducts(products);
-            } catch (error) {
-                console.error('Error loading products:', error);
-                document.getElementById('productsTable').innerHTML = '<tr><td colspan="4" class="error-message">Failed to load products</td></tr>';
-            }
-        }
-
-        function displayProducts(products) {
-            const productsTable = document.getElementById('productsTable');
-            
-            if (products.length === 0) {
-                productsTable.innerHTML = '<tr><td colspan="4" class="loading">No products found</td></tr>';
-                return;
-            }
-
-            productsTable.innerHTML = products.map(product => `
-                <tr>
-                    <td>
-                        <div class="user-info">
-                            <img src="${product.image}" alt="${product.name}" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover; margin-right: 1rem;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23f0f0f0%22/><text x=%2250%22 y=%2250%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%23999%22>IMG</text></svg>'">
-                            <div class="user-details">
-                                <h4>${product.name}</h4>
-                                <p style="color: #666; font-size: 0.9rem; margin: 0;">${product.description || 'No description'}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>${product.category}</td>
-                    <td>
-                        <div style="display: flex; flex-direction: column; gap: 0.25rem;">
-                            <span style="font-weight: 600; color: #333;">₹${product.price}</span>
-                            ${product.originalPrice ? `<span style="font-size: 0.8rem; color: #999; text-decoration: line-through;">₹${product.originalPrice}</span>` : ''}
-                            ${product.discount ? `<span style="background: #ff4444; color: white; padding: 0.125rem 0.5rem; border-radius: 12px; font-size: 0.7rem; align-self: flex-start;">${product.discount}% OFF</span>` : ''}
-                        </div>
-                    </td>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="background: #ffc107; color: #333; padding: 0.25rem 0.5rem; border-radius: 15px; font-size: 0.8rem;">
-                                ⭐ ${product.rating || 'N/A'}
-                            </span>
-                            ${product.reviews ? `<span style="color: #666; font-size: 0.8rem;">(${product.reviews} reviews)</span>` : ''}
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
+        // Delete user
         async function deleteUser(userId) {
             if (!confirm('Are you sure you want to delete this user?')) {
                 return;
             }
-
+            
             try {
-                const response = await fetch(`http://localhost:3001/api/admin/users/${userId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`,
-                    },
+                await apiCall(`/api/admin/users/${userId}`, {
+                    method: 'DELETE'
                 });
-
-                if (!response.ok) {
-                    throw new Error('Failed to delete user');
-                }
-
-                // Reload users
+                showAlert('User deleted successfully');
                 loadUsers();
-                loadStats(); // Update stats
+                loadStats();
             } catch (error) {
                 console.error('Error deleting user:', error);
-                alert('Failed to delete user');
+                showAlert('Failed to delete user', 'error');
             }
         }
 
-        function logout() {
-            authToken = null;
-            currentUser = null;
-            localStorage.removeItem('adminToken');
-            showLogin();
+        // Update chart
+        function updateChart(users) {
+            const ctx = document.getElementById('userChart').getContext('2d');
+            
+            // Group users by month
+            const usersByMonth = {};
+            users.forEach(user => {
+                const month = new Date(user.createdAt).toLocaleDateString('en', { year: 'numeric', month: 'short' });
+                usersByMonth[month] = (usersByMonth[month] || 0) + 1;
+            });
+            
+            const months = Object.keys(usersByMonth).slice(-6); // Last 6 months
+            const counts = months.map(month => usersByMonth[month] || 0);
+            
+            if (chart) {
+                chart.destroy();
+            }
+            
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'New Users',
+                        data: counts,
+                        borderColor: '#daa520',
+                        backgroundColor: 'rgba(218, 165, 32, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#ccc'
+                            },
+                            grid: {
+                                color: '#444'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#ccc'
+                            },
+                            grid: {
+                                color: '#444'
+                            }
+                        }
+                    }
+                }
+            });
         }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            window.location.href = 'http://localhost:5173';
+        }
+
+        // Initialize dashboard
+        async function init() {
+            if (!checkAuth()) {
+                return;
+            }
+            
+            await loadStats();
+            await loadUsers();
+        }
+
+        // Start the dashboard when page loads
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>

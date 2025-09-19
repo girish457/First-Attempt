@@ -12,7 +12,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3001'], // Allow both frontend and admin
+  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3001'], // Allow both frontend ports and admin
   credentials: true
 }));
 app.use(express.json());
@@ -380,6 +380,11 @@ app.delete('/api/admin/users/:userId', authenticateToken, async (req, res) => {
 // Serve admin.html
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+// Serve admin-login.html
+app.get('/admin-login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin-login.html'));
 });
 
 // Health check endpoint

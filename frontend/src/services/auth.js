@@ -6,6 +6,43 @@ export class AuthService {
     this.user = JSON.parse(localStorage.getItem('user') || 'null');
   }
 
+  async adminLogin() {
+    try {
+      // Use predefined admin credentials
+      const adminEmail = 'admin@foodiehub.com';
+      const adminPassword = 'admin123';
+      
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: adminEmail, password: adminPassword }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Admin login failed');
+      }
+
+      // Verify that the user is actually an admin
+      if (data.user.role !== 'admin') {
+        throw new Error('Access denied. Admin privileges required.');
+      }
+
+      // Store token and user data
+      this.token = data.token;
+      this.user = data.user;
+      localStorage.setItem('authToken', this.token);
+      localStorage.setItem('user', JSON.stringify(this.user));
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async login(email, password) {
     try {
       const response = await fetch(`${API_BASE_URL}/auth/login`, {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AuthService } from '../../services/auth.js';
 
 const AccountPage = () => {
+  // Updated with admin login functionality - separate login flow
   const [isLogin, setIsLogin] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
@@ -130,6 +131,11 @@ const AccountPage = () => {
       password: '',
       confirmPassword: ''
     });
+  };
+
+  const handleAdminLogin = () => {
+    // Open admin login page in new tab
+    window.open('http://localhost:3001/admin-login', '_blank');
   };
 
   const toggleAuthMode = () => {
@@ -418,6 +424,19 @@ const AccountPage = () => {
                 </button>
 
               </form>
+
+              {/* Admin Login Button (only show in login mode) */}
+              {isLogin && (
+                <div className="mt-6">
+                  <button
+                    onClick={handleAdminLogin}
+                    className="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 text-white py-3 px-6 rounded-xl font-semibold hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <i className="fas fa-user-shield text-lg"></i>
+                    Login as Admin
+                  </button>
+                </div>
+              )}
 
               {/* Toggle Auth Mode */}
               <div className="mt-8 text-center">

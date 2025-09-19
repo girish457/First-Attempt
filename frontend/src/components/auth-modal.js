@@ -1,4 +1,5 @@
 export class AuthModal {
+  // Updated with admin login functionality
   constructor(app) {
     this.app = app;
     this.currentTab = 'login';
@@ -31,7 +32,9 @@ export class AuthModal {
               <button type="submit" class="form-submit">Login</button>
             </form>
             <div class="form-switch">
-              Don't have an account? <a href="#" data-action="switch-to-signup">Sign up here</a>
+              <button type="button" class="admin-login-btn" data-action="admin-login">
+                <i class="fas fa-user-shield"></i> Login as Admin
+              </button>
             </div>
           </div>
           
@@ -87,6 +90,14 @@ export class AuthModal {
       });
     });
 
+    // Admin login button
+    document.querySelectorAll('[data-action="admin-login"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleAdminLogin();
+      });
+    });
+
     // Close modal
     document.querySelectorAll('[data-action="close"]').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -127,6 +138,20 @@ export class AuthModal {
 
     this.currentTab = tab;
     this.hideMessage();
+  }
+
+  async handleAdminLogin() {
+    try {
+      this.showMessage('Logging in as admin...', 'loading');
+      await this.app.authService.adminLogin();
+      this.hideMessage();
+      this.app.hideAuthModal();
+      
+      // Redirect to admin dashboard
+      window.open('http://localhost:3001/admin', '_blank');
+    } catch (error) {
+      this.showMessage(error.message, 'error');
+    }
   }
 
   async handleLogin(e) {

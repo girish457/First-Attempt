@@ -8,7 +8,9 @@ export class CartService {
   getCart() {
     try {
       const cartData = localStorage.getItem(this.cartKey);
-      return cartData ? JSON.parse(cartData) : [];
+      const cart = cartData ? JSON.parse(cartData) : [];
+      console.log('CartService: Getting cart:', cart); // Debug log
+      return cart;
     } catch (error) {
       console.error('Error getting cart:', error);
       return [];
@@ -23,8 +25,9 @@ export class CartService {
 
       if (existingItem) {
         existingItem.quantity += quantity;
+        console.log('CartService: Updated existing item:', existingItem); // Debug log
       } else {
-        cart.push({
+        const newItem = {
           id: product.id,
           name: product.name,
           price: product.price,
@@ -32,10 +35,13 @@ export class CartService {
           image: product.image,
           category: product.category,
           quantity: quantity
-        });
+        };
+        cart.push(newItem);
+        console.log('CartService: Added new item:', newItem); // Debug log
       }
 
       localStorage.setItem(this.cartKey, JSON.stringify(cart));
+      console.log('CartService: Cart after adding:', cart); // Debug log
       this.updateCartCount();
       return cart;
     } catch (error) {

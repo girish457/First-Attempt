@@ -270,14 +270,17 @@ class DataStorage {
     const users = await this.getUsers();
     const products = await this.getProducts();
     const wishlists = await this.getWishlists();
+    const carts = await this.getCarts();
     
     const regularUsers = users.filter(u => u.role !== 'admin');
     const totalWishlistItems = Object.values(wishlists).reduce((sum, items) => sum + items.length, 0);
+    const activeCarts = Object.keys(carts).filter(userId => carts[userId].length > 0).length;
     
     return {
       totalUsers: regularUsers.length,
       totalProducts: products.length,
-      totalWishlistItems,
+      totalWishlists: totalWishlistItems,
+      totalCarts: activeCarts,
       recentUsers: regularUsers.slice(-5).reverse(),
       popularProducts: this.getPopularProducts(products, wishlists)
     };
