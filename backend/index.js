@@ -395,5 +395,8 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Backend server running on http://localhost:${PORT}`);
   console.log(`Admin dashboard available at http://localhost:${PORT}/admin`);
-  console.log(`Admin credentials: admin@foodiehub.com / admin123`);
+  console.log(`Admin login page available at http://localhost:${PORT}/admin-login`);
+  console.log(`Admin credentials:`);
+  console.log(`  - Original: admin@foodiehub.com / admin123`);
+  console.log(`  - New: admin@runway7790@lx / runway@7790@lx`);
 });

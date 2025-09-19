@@ -248,13 +248,13 @@
         <form id="admin-login-form">
             <div class="form-group">
                 <label for="admin-email">
-                    <i class="fas fa-envelope"></i> Email Address
+                    <i class="fas fa-user"></i> Username
                 </label>
                 <input 
-                    type="email" 
+                    type="text" 
                     id="admin-email" 
                     name="email" 
-                    placeholder="Enter admin email" 
+                    placeholder="Enter admin username" 
                     required
                 >
             </div>
@@ -327,7 +327,7 @@
             e.preventDefault();
             
             const formData = new FormData(form);
-            const email = formData.get('email');
+            const username = formData.get('email'); // Still using 'email' name for backend compatibility
             const password = formData.get('password');
             
             // Disable button and show loading
@@ -340,7 +340,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ email: username, password }),
                 });
 
                 const data = await response.json();
