@@ -47,7 +47,7 @@ const products = [
 ]
 
 export default function HomePage() {
-  // Updated with Google Drive images for product categories
+  // Updated with new Google Drive images for frames 4-6
   const [current, setCurrent] = React.useState(0)
   const startX = React.useRef(0)
   const delta = React.useRef(0)
@@ -140,31 +140,56 @@ export default function HomePage() {
           <div ref={productCatsRef} className="overflow-x-auto overflow-y-visible snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-8">
             <div className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 overflow-visible">
               {[
-                {label:'Vacation',img:'https://lh3.googleusercontent.com/d/1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
-                {label:'Baby',img:'https://lh3.googleusercontent.com/d/1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
-                {label:'Boys',img:'https://lh3.googleusercontent.com/d/1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
-                {label:'Girls',img:'https://lh3.googleusercontent.com/d/1sGpzhPZoW-UmwXPrpCKMA4L_vTMPGCPe'},
-                {label:'Festive',img:'/Festive.avif'},
-                {label:'Night Suits',img:'/Night Suits.webp'},
+                {label:'Vacation', img:'https://drive.google.com/uc?export=download&id=1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
+                {label:'Baby', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
+                {label:'Boys', img:'https://drive.google.com/uc?export=download&id=1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
+                {label:'Girls', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
+                {label:'Festive', img:'https://drive.google.com/uc?export=download&id=1KovYWfbsqWIcBemAdd2T_tdWQK0APcFp'},
+                {label:'Night Suits', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
               ].map((c, index)=> (
                 <div 
                   key={c.label} 
                   ref={addToCategoryRefs}
                   className="scroll-animate-scale snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10"
                 >
-                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-110 hover:-translate-y-4 hover:rotate-3 transition-all duration-500 ease-out shadow-golden hover:shadow-glossy animate-float relative z-10">
+                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-110 hover:-translate-y-4 hover:rotate-3 transition-all duration-500 ease-out shadow-golden hover:shadow-glossy animate-float relative z-10 bg-gray-100 overflow-hidden">
                     <img
                       src={c.img}
                       alt={c.label}
                       className="w-full h-full object-cover rounded-full transition-all duration-500 ease-out group-hover:scale-125 group-hover:brightness-110 group-hover:contrast-110"
                       style={{
-                        objectPosition: c.label === 'Vacation' ? '50% 52%' : '50% 28%',
-                        transform: c.label === 'Vacation' ? 'scale(1.03)' : undefined
+                        objectPosition: c.label === 'Vacation' ? '50% 20%' : '50% 15%',
+                        transform: c.label === 'Vacation' ? 'scale(1.1)' : undefined
                       }}
                       onError={(e) => {
-                        console.log(`Failed to load image for ${c.label}: ${c.img}`);
-                        // Fallback to a placeholder or default image
-                        e.target.src = `https://via.placeholder.com/200x200/d4af37/ffffff?text=${c.label}`;
+                        console.log(`Failed to load image for ${c.label}: ${e.target.src}`);
+                        // Extract file ID from current URL
+                        let fileId = e.target.src.split('id=')[1];
+                        if (fileId) {
+                          // Try different Google Drive formats sequentially
+                          if (e.target.src.includes('export=download')) {
+                            console.log(`Trying lh3 format for ${c.label}`);
+                            e.target.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                          } else if (e.target.src.includes('lh3.googleusercontent.com')) {
+                            console.log(`Trying uc?id format for ${c.label}`);
+                            e.target.src = `https://drive.google.com/uc?id=${fileId}`;
+                          } else if (e.target.src.includes('uc?id=')) {
+                            console.log(`Trying export=view format for ${c.label}`);
+                            e.target.src = `https://drive.google.com/uc?export=view&id=${fileId}`;
+                          } else {
+                            console.log(`Using reliable fallback for ${c.label}`);
+                            // Final fallback to ensure visibility
+                            const fallbackImages = {
+                              'Vacation': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
+                              'Baby': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
+                              'Boys': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
+                              'Girls': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces',
+                              'Festive': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
+                              'Night Suits': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'
+                            };
+                            e.target.src = fallbackImages[c.label];
+                          }
+                        }
                       }}
                       onLoad={() => {
                         console.log(`Successfully loaded image for ${c.label}`);
