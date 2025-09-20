@@ -50,9 +50,14 @@ export default function HomePage() {
   // Updated with new Google Drive images for frames 4-6
   const [current, setCurrent] = React.useState(0)
   const [categoryOffset, setCategoryOffset] = React.useState(0) // Carousel state
-  const startX = React.useRef(0)
+  const [isDragging, setIsDragging] = React.useState(false)
+  const [startX, setStartX] = React.useState(0)
+  const [currentX, setCurrentX] = React.useState(0)
+  const [translateX, setTranslateX] = React.useState(0)
+  const startXRef = React.useRef(0)
   const delta = React.useRef(0)
   const productCatsRef = React.useRef(null)
+  const containerRef = React.useRef(null)
   
   // Categories data with images (6 total: only the main 6 categories)
   const categories = [
@@ -109,24 +114,124 @@ export default function HomePage() {
     return () => clearInterval(t)
   }, [])
 
-  // Category carousel navigation functions
-  const maxOffset = 2; // User can only click right arrow 2 times maximum
+  // Category carousel navigation functions with touch support
+  const maxOffset = 2; // User can scroll through categories
+  const categoryWidth = 100 / 6; // Each category takes this percentage
   
   const nextCategory = () => {
     if (categoryOffset < maxOffset) {
       setCategoryOffset(prev => prev + 1)
+      setTranslateX(-(categoryOffset + 1) * categoryWidth)
     }
   }
 
   const prevCategory = () => {
     if (categoryOffset > 0) {
       setCategoryOffset(prev => prev - 1)
+      setTranslateX(-(categoryOffset - 1) * categoryWidth)
     }
   }
   
-  // Check if arrows should be disabled
-  const isLeftDisabled = categoryOffset === 0
-  const isRightDisabled = categoryOffset === maxOffset
+  // Touch/Mouse handlers for manual sliding
+  const handleStart = (clientX) => {
+    setIsDragging(true)
+    setStartX(clientX)
+    setCurrentX(clientX)
+    startXRef.current = clientX
+  }
+  
+  const handleMove = (clientX) => {
+    if (!isDragging) return
+    
+    const deltaX = clientX - startX
+    const maxTranslate = categoryWidth * maxOffset
+    const currentTranslate = -(categoryOffset * categoryWidth) + (deltaX / window.innerWidth) * 100
+    
+    // Limit the translation within bounds
+    const newTranslate = Math.max(-maxTranslate, Math.min(0, currentTranslate))
+    setTranslateX(newTranslate)
+    setCurrentX(clientX)
+  }
+  
+  const handleEnd = () => {
+    if (!isDragging) return
+    
+    setIsDragging(false)
+    const deltaX = currentX - startX
+    const threshold = 50 // Minimum distance to trigger slide
+    
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0 && categoryOffset > 0) {
+        // Swiped right - go to previous
+        prevCategory()
+      } else if (deltaX < 0 && categoryOffset < maxOffset) {
+        // Swiped left - go to next
+        nextCategory()
+      } else {
+        // Snap back to current position
+        setTranslateX(-(categoryOffset * categoryWidth))
+      }
+    } else {
+      // Snap back to current position
+      setTranslateX(-(categoryOffset * categoryWidth))
+    }
+  }
+  
+  // Mouse events
+  const handleMouseDown = (e) => {
+    e.preventDefault()
+    handleStart(e.clientX)
+  }
+  
+  const handleMouseMove = (e) => {
+    handleMove(e.clientX)
+  }
+  
+  const handleMouseUp = () => {
+    handleEnd()
+  }
+  
+  // Touch events
+  const handleTouchStart = (e) => {
+    handleStart(e.touches[0].clientX)
+  }
+  
+  const handleTouchMove = (e) => {
+    e.preventDefault()
+    handleMove(e.touches[0].clientX)
+  }
+  
+  const handleTouchEnd = () => {
+    handleEnd()
+  }
+  
+  // Add mouse event listeners
+  React.useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      if (isDragging) {
+        handleMouseMove(e)
+      }
+    }
+    
+    const handleGlobalMouseUp = () => {
+      if (isDragging) {
+        handleMouseUp()
+      }
+    }
+    
+    document.addEventListener('mousemove', handleGlobalMouseMove)
+    document.addEventListener('mouseup', handleGlobalMouseUp)
+    
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove)
+      document.removeEventListener('mouseup', handleGlobalMouseUp)
+    }
+  }, [isDragging, currentX, startX, categoryOffset])
+  
+  // Initialize translate position
+  React.useEffect(() => {
+    setTranslateX(-(categoryOffset * categoryWidth))
+  }, [])
 
   return (
     <div>
@@ -165,19 +270,23 @@ export default function HomePage() {
           </h2>
         </div>
         <div className="relative overflow-visible">
-          <div className="overflow-hidden py-8">
+          <div className="overflow-hidden py-8" ref={containerRef}>
             <div 
-              className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 transition-transform duration-150 ease-out transform-gpu will-change-transform"
+              className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 transition-transform duration-300 ease-out transform-gpu will-change-transform cursor-grab active:cursor-grabbing"
               style={{
-                transform: `translate3d(-${(categoryOffset * 100) / 6}%, 0, 0)`,
-                width: '100%' // Width for exactly 6 categories
+                transform: `translate3d(${translateX}%, 0, 0)`,
+                width: '150%' // Width to accommodate all categories with scrolling
               }}
+              onMouseDown={handleMouseDown}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
-              {/* All 6 categories (7th and 8th frames removed) */}
+              {/* All 6 categories with touch slider support */}
               {categories.map((category, index) => (
                 <div 
                   key={`category-${index}`}
-                  className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10 flex-shrink-0"
+                  className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10 flex-shrink-0 select-none"
                 >
                   <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-105 hover:-translate-y-2 transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden">
                     {/* Image placeholder for when no image is available */}
