@@ -21,10 +21,10 @@ const watchVideos = [
 // Public folder images for the NEW ARRIVAL block (8 unique)
 const newArrivalImages = [
   'https://lh3.googleusercontent.com/d/15gXb3f1o4ZkZLRUWEd6tHyZIOi6xhP_k',
-  'https://drive.google.com/uc?export=download&id=1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp',
-  'https://drive.google.com/uc?export=download&id=18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
-  'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
-  'https://drive.google.com/uc?export=download&id=1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
+  'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp',
+  'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
+  'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
+  'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
   '/LBL101ks396_1_1200x.jpeg',
   '/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg',
   '/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg',
@@ -307,26 +307,39 @@ export default function HomePage() {
                         }}
                         onError={(e) => {
                           console.log(`Image failed to load for ${category.label}, trying fallback...`);
-                          // Multi-tier fallback system for reliable image loading
-                          const fileId = e.target.src.split('id=')[1] || e.target.src.split('/d/')[1]?.split('/')[0];
-                          if (fileId && !e.target.src.includes('lh3.googleusercontent.com')) {
-                            e.target.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                          } else if (fileId && !e.target.src.includes('drive.google.com/uc')) {
-                            e.target.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
-                          } else {
-                            // Use reliable fallback immediately
+                          // Enhanced fallback system for reliable image loading
+                          const img = e.target;
+                          const originalSrc = img.src;
+                          
+                          if (originalSrc.includes('drive.google.com/uc')) {
+                            // Try lh3.googleusercontent.com format
+                            const fileId = originalSrc.split('id=')[1];
+                            if (fileId && !img.dataset.tried_lh3) {
+                              img.dataset.tried_lh3 = 'true';
+                              img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                              return;
+                            }
+                          } else if (originalSrc.includes('lh3.googleusercontent.com')) {
+                            // Try direct drive link
+                            const fileId = originalSrc.split('/d/')[1];
+                            if (fileId && !img.dataset.tried_drive) {
+                              img.dataset.tried_drive = 'true';
+                              img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                              return;
+                            }
+                          }
+                          
+                          // Final fallback to reliable Unsplash images
+                          if (!img.dataset.tried_fallback) {
+                            img.dataset.tried_fallback = 'true';
                             const fallbacks = {
-                              'Vacation': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
-                              'Baby': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
-                              'Boys': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
-                              'Girls': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces',
-                              'Festive': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
-                              'Night Suits': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center',
-                              'Ethnic Wear': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
-                              'Traditional': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'
+                              'Royal aura': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
+                              'Everyday elegance ': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
+                              'Threads loom ': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
+                              'Handpaint love': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces'
                             };
-                            e.target.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
-                            e.target.style.display = 'block';
+                            img.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
+                            img.style.display = 'block';
                           }
                         }}
                         onLoad={() => {
@@ -367,7 +380,45 @@ export default function HomePage() {
                 className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out"
               >
                 <div className="relative overflow-hidden">
-                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" />
+                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" 
+                    onError={(e) => {
+                      // Enhanced fallback for NEW ARRIVAL images
+                      const img = e.target;
+                      const originalSrc = img.src;
+                      
+                      if (originalSrc.includes('lh3.googleusercontent.com') && !img.dataset.tried_drive) {
+                        const fileId = originalSrc.split('/d/')[1];
+                        if (fileId) {
+                          img.dataset.tried_drive = 'true';
+                          img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                          return;
+                        }
+                      } else if (originalSrc.includes('drive.google.com') && !img.dataset.tried_lh3) {
+                        const fileId = originalSrc.split('id=')[1];
+                        if (fileId) {
+                          img.dataset.tried_lh3 = 'true';
+                          img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                          return;
+                        }
+                      }
+                      
+                      // Final fallback to Unsplash
+                      if (!img.dataset.tried_fallback) {
+                        img.dataset.tried_fallback = 'true';
+                        const fallbackImages = [
+                          'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1545199097-56d6fd8f2df5?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1542060748-10c28b62716a?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1593032457861-573d56b83a25?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1596066373295-8f0130a0d23e?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&h=800&fit=crop',
+                          'https://images.unsplash.com/photo-1585386959984-a41552231698?w=600&h=800&fit=crop'
+                        ];
+                        img.src = fallbackImages[idx] || fallbackImages[0];
+                      }
+                    }}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
                   <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
                     <i className="fa-solid fa-heart text-white text-sm"></i>
@@ -447,7 +498,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10">
             {[
               {label:'Kurta Set', img:'/LBL101ks396_1_1200x.jpeg'},
-              {label:'Anarkali Set', img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
+              {label:'Anarkali Set', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
               {label:'Co-Ords', img:'/040A1369_1200x.jpeg'}
             ].map((c, index)=> (
               <div 
@@ -456,7 +507,40 @@ export default function HomePage() {
                 className="scroll-animate-scale group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer overflow-hidden"
               >
                 <div className="rounded-2xl overflow-hidden">
-                  <img src={c.img} alt={c.label} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" />
+                  <img src={c.img} alt={c.label} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" 
+                    onError={(e) => {
+                      // Enhanced fallback for shop categories
+                      const img = e.target;
+                      const originalSrc = img.src;
+                      
+                      if (originalSrc.includes('lh3.googleusercontent.com') && !img.dataset.tried_drive) {
+                        const fileId = originalSrc.split('/d/')[1];
+                        if (fileId) {
+                          img.dataset.tried_drive = 'true';
+                          img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                          return;
+                        }
+                      } else if (originalSrc.includes('drive.google.com') && !img.dataset.tried_lh3) {
+                        const fileId = originalSrc.split('id=')[1];
+                        if (fileId) {
+                          img.dataset.tried_lh3 = 'true';
+                          img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                          return;
+                        }
+                      }
+                      
+                      // Final fallback
+                      if (!img.dataset.tried_fallback) {
+                        img.dataset.tried_fallback = 'true';
+                        const fallbacks = {
+                          'Kurta Set': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop',
+                          'Anarkali Set': 'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&h=800&fit=crop',
+                          'Co-Ords': 'https://images.unsplash.com/photo-1593032457861-573d56b83a25?w=600&h=800&fit=crop'
+                        };
+                        img.src = fallbacks[c.label] || 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop';
+                      }
+                    }}
+                  />
                 </div>
                 <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
               </div>
@@ -481,10 +565,10 @@ export default function HomePage() {
           {[
             {img:'/040A1369_1200x.jpeg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
             {img:'/LBL101ks396_1_1200x.jpeg', title:'Cotton Muslin Baby | Pastel Pink', price:'Rs. 549.00'},
-            {img:'https://drive.google.com/uc?export=download&id=18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
-            {img:'https://drive.google.com/uc?export=download&id=1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
-            {img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
-            {img:'https://drive.google.com/uc?export=download&id=1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym', title:'Swaddle | Marigold', price:'Rs. 475.00'},
+            {img:'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
+            {img:'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
+            {img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
+            {img:'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym', title:'Swaddle | Marigold', price:'Rs. 475.00'},
             {img:'/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg', title:'Newborn Muslin Gift Set', price:'Rs. 900.00'},
             {img:'/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg', title:'Muslin Blanket', price:'Rs. 900.00'}
           ].map((p, i)=> (
@@ -493,7 +577,45 @@ export default function HomePage() {
               ref={addToTrendingRefs}
               className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden"
             >
-              <img src={p.img} alt={p.title} className="w-full h-60 md:h-64 object-cover transition-all duration-300 ease-out group-hover:scale-110" />
+              <img src={p.img} alt={p.title} className="w-full h-60 md:h-64 object-cover transition-all duration-300 ease-out group-hover:scale-110" 
+                onError={(e) => {
+                  // Enhanced fallback for trending products
+                  const img = e.target;
+                  const originalSrc = img.src;
+                  
+                  if (originalSrc.includes('lh3.googleusercontent.com') && !img.dataset.tried_drive) {
+                    const fileId = originalSrc.split('/d/')[1];
+                    if (fileId) {
+                      img.dataset.tried_drive = 'true';
+                      img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                      return;
+                    }
+                  } else if (originalSrc.includes('drive.google.com') && !img.dataset.tried_lh3) {
+                    const fileId = originalSrc.split('id=')[1];
+                    if (fileId) {
+                      img.dataset.tried_lh3 = 'true';
+                      img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                      return;
+                    }
+                  }
+                  
+                  // Final fallback
+                  if (!img.dataset.tried_fallback) {
+                    img.dataset.tried_fallback = 'true';
+                    const fallbackImages = [
+                      'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1545199097-56d6fd8f2df5?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1542060748-10c28b62716a?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1593032457861-573d56b83a25?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1596066373295-8f0130a0d23e?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400&h=400&fit=crop',
+                      'https://images.unsplash.com/photo-1585386959984-a41552231698?w=400&h=400&fit=crop'
+                    ];
+                    img.src = fallbackImages[i] || fallbackImages[0];
+                  }
+                }}
+              />
               <div className="p-4">
                 <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">{p.title}</div>
                 <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">{p.price}</div>
