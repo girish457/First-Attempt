@@ -21,10 +21,10 @@ const watchVideos = [
 // Public folder images for the NEW ARRIVAL block (8 unique)
 const newArrivalImages = [
   'https://lh3.googleusercontent.com/d/15gXb3f1o4ZkZLRUWEd6tHyZIOi6xhP_k',
-  '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg',
-  '/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg',
-  '/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg',
-  '/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg',
+  'https://drive.google.com/uc?export=download&id=1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp',
+  'https://drive.google.com/uc?export=download&id=18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
+  'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
+  'https://drive.google.com/uc?export=download&id=1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
   '/LBL101ks396_1_1200x.jpeg',
   '/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg',
   '/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg',
@@ -447,7 +447,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10">
             {[
               {label:'Kurta Set', img:'/LBL101ks396_1_1200x.jpeg'},
-              {label:'Anarkali Set', img:'/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg'},
+              {label:'Anarkali Set', img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
               {label:'Co-Ords', img:'/040A1369_1200x.jpeg'}
             ].map((c, index)=> (
               <div 
@@ -481,10 +481,10 @@ export default function HomePage() {
           {[
             {img:'/040A1369_1200x.jpeg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
             {img:'/LBL101ks396_1_1200x.jpeg', title:'Cotton Muslin Baby | Pastel Pink', price:'Rs. 549.00'},
-            {img:'/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
-            {img:'/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg', title:'Sleeve Romper', price:'Rs. 560.00'},
-            {img:'/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
-            {img:'/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg', title:'Swaddle | Marigold', price:'Rs. 475.00'},
+            {img:'https://drive.google.com/uc?export=download&id=18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym', title:'Swaddle | Marigold', price:'Rs. 475.00'},
             {img:'/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg', title:'Newborn Muslin Gift Set', price:'Rs. 900.00'},
             {img:'/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg', title:'Muslin Blanket', price:'Rs. 900.00'}
           ].map((p, i)=> (
