@@ -62,10 +62,10 @@ export default function HomePage() {
   // Categories data with images (4 total: only the main 4 categories)
   const categories = [
     // First 4 main categories only
-    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
-    {label:'Everyday elegance ', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
-    {label:'Threads loom ', img:'https://drive.google.com/uc?export=download&id=1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
-    {label:'Handpaint love', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
+    {label:'Royal aura', img:'https://lh3.googleusercontent.com/d/1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
+    {label:'Everyday elegance ', img:'https://lh3.googleusercontent.com/d/1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
+    {label:'Threads loom ', img:'https://lh3.googleusercontent.com/d/1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
+    {label:'Handpaint love', img:'https://lh3.googleusercontent.com/d/15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
   ]
   
   // Scroll animation hooks for different sections
