@@ -1,0 +1,633 @@
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { cartService } from '../../services/cart.js';
+
+const ProductDetailPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [cartUpdateTrigger, setCartUpdateTrigger] = useState(0);
+
+  // Enhanced product data with more details for product page
+  const enhancedProducts = {
+    1: {
+      brand: "METRONAUT",
+      title: "Men Regular Fit Solid Spread Collar Casual Shirt",
+      images: [
+        "/040A1369_1200x.jpeg",
+        "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+        "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg"
+      ],
+      colors: [
+        { name: 'Green', value: '#10B981', image: '/040A1369_1200x.jpeg' },
+        { name: 'Blue', value: '#3B82F6', image: '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg' },
+        { name: 'Pink', value: '#EC4899', image: '/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg' },
+        { name: 'Light Blue', value: '#60A5FA', image: '/LBL101ks396_1_1200x.jpeg' },
+        { name: 'Navy', value: '#1E40AF', image: '/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg' }
+      ],
+      sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
+      offers: [
+        {
+          type: 'Bank Offer',
+          description: '10% Off on Supermoney UPI. Max discount of ₹50. Minimum order value of ₹250.',
+          terms: 'T&C'
+        },
+        {
+          type: 'Bank Offer', 
+          description: '5% cashback on Flipkart SBI Credit Card upto ₹4,000 per calendar quarter',
+          terms: 'T&C'
+        },
+        {
+          type: 'Bank Offer',
+          description: '5% cashback on Axis Bank Flipkart Debit Card',
+          terms: 'T&C'
+        },
+        {
+          type: 'Combo Offer',
+          description: 'Buy 2 items save 5%; Buy 3 save 7%; Buy 4+ save 10%',
+          terms: 'T&C',
+          link: 'See all products'
+        }
+      ],
+      additionalOffers: 10
+    },
+    2: {
+      brand: "RUNWAY",
+      title: "Elegant Evening Dress - Premium Collection",
+      images: [
+        "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+        "/040A1369_1200x.jpeg",
+        "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg"
+      ],
+      colors: [
+        { name: 'Maroon', value: '#7C2D12', image: '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg' },
+        { name: 'Green', value: '#10B981', image: '/040A1369_1200x.jpeg' },
+        { name: 'Golden', value: '#FFD700', image: '/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg' }
+      ],
+      sizes: ['XS', 'S', 'M', 'L', 'XL'],
+      offers: [
+        {
+          type: 'Bank Offer',
+          description: '10% Off on Supermoney UPI. Max discount of ₹50. Minimum order value of ₹250.',
+          terms: 'T&C'
+        },
+        {
+          type: 'Combo Offer',
+          description: 'Buy 2 items save 5%; Buy 3 save 7%; Buy 4+ save 10%',
+          terms: 'T&C'
+        }
+      ],
+      additionalOffers: 8
+    }
+    // Note: For products without specific enhanced data, we'll use defaults
+  };
+
+  // Sample products data from ShopPage
+  const allProducts = [
+    {
+      id: 1,
+      name: "Premium Cotton Blend T-Shirt",
+      price: 1599,
+      originalPrice: 2499,
+      discount: 36,
+      rating: 4.5,
+      reviews: 128,
+      image: "/040A1369_1200x.jpeg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 2,
+      name: "Elegant Evening Dress",
+      price: 4999,
+      originalPrice: 6999,
+      discount: 29,
+      rating: 4.8,
+      reviews: 95,
+      image: "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 3,
+      name: "Casual Denim Jacket",
+      price: 2899,
+      originalPrice: 3999,
+      discount: 28,
+      rating: 4.3,
+      reviews: 156,
+      image: "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg",
+      category: "child-girl"
+    },
+    {
+      id: 4,
+      name: "Summer Floral Maxi Dress",
+      price: 3599,
+      originalPrice: 4999,
+      discount: 28,
+      rating: 4.6,
+      reviews: 203,
+      image: "/LBL101ks396_1_1200x.jpeg",
+      category: "child-girl"
+    },
+    {
+      id: 5,
+      name: "Professional Blazer",
+      price: 5999,
+      originalPrice: 8999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 87,
+      image: "/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg",
+      category: "child-boy"
+    },
+    {
+      id: 6,
+      name: "Comfortable Yoga Pants",
+      price: 1899,
+      originalPrice: 2699,
+      discount: 30,
+      rating: 4.4,
+      reviews: 312,
+      image: "/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg",
+      category: "child-boy"
+    },
+    {
+      id: 7,
+      name: "Ethnic Indo Western Outfit",
+      price: 4599,
+      originalPrice: 6999,
+      discount: 34,
+      rating: 4.6,
+      reviews: 89,
+      image: "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 8,
+      name: "Festive Traditional Wear",
+      price: 3299,
+      originalPrice: 4999,
+      discount: 34,
+      rating: 4.5,
+      reviews: 145,
+      image: "/Festive.avif",
+      category: "ethnic-woman"
+    },
+    {
+      id: 9,
+      name: "Girls Casual Dress",
+      price: 1499,
+      originalPrice: 2199,
+      discount: 32,
+      rating: 4.3,
+      reviews: 267,
+      image: "/Girls.webp",
+      category: "child-girl"
+    },
+    {
+      id: 10,
+      name: "Boys Casual Outfit",
+      price: 1799,
+      originalPrice: 2499,
+      discount: 28,
+      rating: 4.4,
+      reviews: 198,
+      image: "/boys.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 11,
+      name: "Night Suit Set",
+      price: 999,
+      originalPrice: 1499,
+      discount: 33,
+      rating: 4.2,
+      reviews: 345,
+      image: "/Night Suits.webp",
+      category: "child-girl"
+    },
+    {
+      id: 12,
+      name: "Baby Cotton Wear",
+      price: 799,
+      originalPrice: 1199,
+      discount: 33,
+      rating: 4.7,
+      reviews: 456,
+      image: "/Baby.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 13,
+      name: "Vacation Beach Wear",
+      price: 2299,
+      originalPrice: 3299,
+      discount: 30,
+      rating: 4.5,
+      reviews: 123,
+      image: "/vacation.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 14,
+      name: "Designer Ethnic Kurta",
+      price: 1899,
+      originalPrice: 2799,
+      discount: 32,
+      rating: 4.6,
+      reviews: 189,
+      image: "/sample 1.png",
+      category: "ethnic-woman"
+    },
+    {
+      id: 15,
+      name: "Traditional Lehenga",
+      price: 6999,
+      originalPrice: 9999,
+      discount: 30,
+      rating: 4.8,
+      reviews: 67,
+      image: "/sample 2.png",
+      category: "ethnic-woman"
+    },
+    {
+      id: 16,
+      name: "Casual Summer Top",
+      price: 899,
+      originalPrice: 1299,
+      discount: 31,
+      rating: 4.2,
+      reviews: 234,
+      image: "/sample 3.jpeg",
+      category: "child-girl"
+    },
+    {
+      id: 17,
+      name: "Formal Shirt Set",
+      price: 1599,
+      originalPrice: 2299,
+      discount: 30,
+      rating: 4.4,
+      reviews: 156,
+      image: "/sample 4.png",
+      category: "child-boy"
+    },
+    {
+      id: 18,
+      name: "Cotton Casual Wear",
+      price: 1299,
+      originalPrice: 1899,
+      discount: 32,
+      rating: 4.3,
+      reviews: 298,
+      image: "/sample 5.jpeg",
+      category: "child-girl"
+    },
+    {
+      id: 19,
+      name: "Elegant Party Dress",
+      price: 3999,
+      originalPrice: 5999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 89,
+      image: "/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 20,
+      name: "Designer Ethnic Wear",
+      price: 2899,
+      originalPrice: 4299,
+      discount: 33,
+      rating: 4.5,
+      reviews: 145,
+      image: "/040A1369_1200x.jpeg",
+      category: "ethnic-woman"
+    }
+  ];
+
+  useEffect(() => {
+    const fetchProduct = () => {
+      try {
+        setLoading(true);
+        // Simulate API call delay
+        setTimeout(() => {
+          const foundProduct = allProducts.find(p => p.id === parseInt(id));
+          if (foundProduct) {
+            setProduct(foundProduct);
+            // Set default selections
+            const enhanced = enhancedProducts[foundProduct.id];
+            if (enhanced) {
+              if (enhanced.colors && enhanced.colors.length > 0) setSelectedColor(enhanced.colors[0].name);
+              if (enhanced.sizes && enhanced.sizes.length > 0) setSelectedSize(enhanced.sizes[0]);
+            }
+          } else {
+            setError('Product not found');
+          }
+          setLoading(false);
+        }, 500);
+      } catch (err) {
+        setError('Failed to load product');
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  const addToCart = () => {
+    if (product) {
+      try {
+        cartService.addToCart(product, 1);
+        setCartUpdateTrigger(prev => prev + 1);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    }
+  };
+
+  const getCartQuantity = (productId) => {
+    const cart = cartService.getCart();
+    const item = cart.find(item => item.id === productId);
+    return item ? item.quantity : 0;
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-primary mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
+          <p className="text-gray-600 mb-6">{error || 'The product you are looking for does not exist.'}</p>
+          <Link to="/shop" className="bg-brand-primary text-white px-6 py-2 rounded-lg hover:bg-brand-secondary transition-colors">
+            Back to Shop
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const enhanced = enhancedProducts[product.id] || {
+    brand: "RUNWAY",
+    title: product.name,
+    images: [product.image],
+    colors: [
+      { name: 'Default', value: '#6B7280', image: product.image }
+    ],
+    sizes: ['S', 'M', 'L', 'XL'],
+    offers: [
+      {
+        type: 'Bank Offer',
+        description: '10% Off on Supermoney UPI. Max discount of ₹50. Minimum order value of ₹250.',
+        terms: 'T&C'
+      },
+      {
+        type: 'Combo Offer',
+        description: 'Buy 2 items save 5%; Buy 3 save 7%; Buy 4+ save 10%',
+        terms: 'T&C'
+      }
+    ],
+    additionalOffers: 5
+  };
+
+  const currentImages = enhanced.images || [product.image];
+  const currentImage = currentImages[selectedImageIndex];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Breadcrumb */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <nav className="flex items-center gap-2 text-sm">
+            <Link to="/" className="text-gray-500 hover:text-brand-primary">Home</Link>
+            <span className="text-gray-400">›</span>
+            <Link to="/shop" className="text-gray-500 hover:text-brand-primary">Clothing and Accessories</Link>
+            <span className="text-gray-400">›</span>
+            <span className="text-gray-500">Topwear</span>
+            <span className="text-gray-400">›</span>
+            <span className="text-gray-500">Shirts</span>
+            <span className="text-gray-400">›</span>
+            <span className="text-gray-500">Men's Shirts</span>
+            <span className="text-gray-400">›</span>
+            <span className="text-gray-500">Casual Shirts</span>
+            <span className="text-gray-400">›</span>
+            <span className="text-brand-primary font-medium">METRONAUT...</span>
+            <span className="text-gray-400">›</span>
+            <span className="text-brand-primary font-medium">METRONAU...</span>
+          </nav>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Left Side - Product Images */}
+          <div className="space-y-4">
+            {/* Thumbnail Images */}
+            <div className="flex gap-2 overflow-x-auto">
+              {currentImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index)}
+                  className={`flex-shrink-0 w-16 h-20 border-2 rounded-lg overflow-hidden ${
+                    selectedImageIndex === index ? 'border-brand-primary' : 'border-gray-200'
+                  }`}
+                >
+                  <img src={img} alt={`Product ${index + 1}`} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+
+            {/* Main Product Image */}
+            <div className="aspect-[4/5] bg-white rounded-lg overflow-hidden shadow-lg">
+              <img 
+                src={currentImage} 
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 gap-4">
+              <button 
+                onClick={addToCart}
+                className="bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+              >
+                <i className="fa-solid fa-shopping-cart"></i>
+                ADD TO CART
+              </button>
+              <button className="bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-700 transition-colors flex items-center justify-center gap-2">
+                <i className="fa-solid fa-bolt"></i>
+                BUY NOW
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side - Product Details */}
+          <div className="space-y-6">
+            {/* Product Title & Brand */}
+            <div>
+              <p className="text-gray-600 text-sm">{enhanced.brand || "RUNWAY"}</p>
+              <h1 className="text-2xl font-semibold text-gray-900 mt-1">
+                {enhanced.title || product.name}
+              </h1>
+            </div>
+
+            {/* Price & Rating */}
+            <div>
+              <p className="text-green-600 text-sm font-medium mb-2">Special price</p>
+              <div className="flex items-center gap-4 mb-3">
+                <span className="text-3xl font-bold text-gray-900">₹{product.price}</span>
+                <span className="text-lg text-gray-500 line-through">₹{product.originalPrice}</span>
+                <span className="text-green-600 font-bold">{product.discount}% off</span>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 bg-green-600 text-white px-2 py-1 rounded text-sm">
+                  <span>{product.rating}</span>
+                  <i className="fa-solid fa-star text-xs"></i>
+                </div>
+                <span className="text-gray-600 text-sm">{product.reviews} ratings and 0 reviews</span>
+                <img src="/assured-badge.png" alt="Assured" className="h-5" />
+              </div>
+            </div>
+
+            {/* Color Selection */}
+            {enhanced.colors && enhanced.colors.length > 0 && (
+              <div>
+                <h3 className="font-medium text-gray-900 mb-3">Color</h3>
+                <div className="flex gap-3">
+                  {enhanced.colors.map((color) => (
+                    <button
+                      key={color.name}
+                      onClick={() => {
+                        setSelectedColor(color.name);
+                        const imageIndex = currentImages.findIndex(img => img === color.image);
+                        if (imageIndex !== -1) setSelectedImageIndex(imageIndex);
+                      }}
+                      className={`w-16 h-20 border-2 rounded-lg overflow-hidden ${
+                        selectedColor === color.name ? 'border-brand-primary' : 'border-gray-200'
+                      }`}
+                    >
+                      <img src={color.image} alt={color.name} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Size Selection */}
+            {enhanced.sizes && enhanced.sizes.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-medium text-gray-900">Size</h3>
+                  <button className="text-brand-primary text-sm font-medium">Size Chart</button>
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                  {enhanced.sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`px-4 py-2 border rounded-lg text-sm font-medium ${
+                        selectedSize === size 
+                          ? 'border-brand-primary text-brand-primary bg-blue-50' 
+                          : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Available Offers */}
+            {enhanced.offers && enhanced.offers.length > 0 && (
+              <div>
+                <h3 className="font-medium text-gray-900 mb-3">Available offers</h3>
+                <div className="space-y-2">
+                  {enhanced.offers.map((offer, index) => (
+                    <div key={index} className="flex items-start gap-2">
+                      <i className="fa-solid fa-tag text-green-600 mt-1 text-sm"></i>
+                      <div className="text-sm">
+                        <span className="font-medium">{offer.type}</span> {offer.description}
+                        <button className="text-brand-primary ml-1 font-medium">{offer.terms}</button>
+                        {offer.link && (
+                          <button className="text-brand-primary ml-1 font-medium">{offer.link}</button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  {enhanced.additionalOffers && (
+                    <button className="text-brand-primary text-sm font-medium">
+                      +{enhanced.additionalOffers} more offers
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Delivery Info */}
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <i className="fa-solid fa-location-dot text-gray-600"></i>
+                <h3 className="font-medium text-gray-900">Deliver to</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <input 
+                  type="text" 
+                  placeholder="Enter pincode"
+                  className="border border-gray-300 px-3 py-2 rounded-lg text-sm flex-1"
+                />
+                <button className="text-brand-primary font-medium text-sm">Check</button>
+              </div>
+              
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center gap-2">
+                  <i className="fa-solid fa-truck text-gray-600"></i>
+                  <span className="text-sm text-gray-700">Cash on Delivery available</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <i className="fa-solid fa-shield-alt text-gray-600"></i>
+                  <span className="text-sm text-gray-700">7 days Return Policy</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Services */}
+            <div className="border-t pt-4">
+              <h3 className="font-medium text-gray-900 mb-3">Services</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <i className="fa-solid fa-money-bill text-blue-600"></i>
+                  <span>Cash on Delivery available</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <i className="fa-solid fa-undo text-blue-600"></i>
+                  <span>Easy returns</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetailPage;

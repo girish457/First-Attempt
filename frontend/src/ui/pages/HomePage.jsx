@@ -20,7 +20,7 @@ const watchVideos = [
 
 // Public folder images for the NEW ARRIVAL block (8 unique)
 const newArrivalImages = [
-  '/040A1369_1200x.jpeg',
+  'https://lh3.googleusercontent.com/d/15gXb3f1o4ZkZLRUWEd6tHyZIOi6xhP_k',
   '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg',
   '/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg',
   '/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg',
@@ -54,19 +54,15 @@ export default function HomePage() {
   const delta = React.useRef(0)
   const productCatsRef = React.useRef(null)
   
-  // Categories data with images (9 total: 6 main + 3 extra)
+  // Categories data with images (6 total: only the main 6 categories)
   const categories = [
-    // First 6 main categories
-    {label:'Vacation', img:'https://drive.google.com/uc?export=download&id=1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
-    {label:'Baby', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
-    {label:'Boys', img:'https://drive.google.com/uc?export=download&id=1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
-    {label:'Girls', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
+    // First 6 main categories only
+    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
+    {label:'Everyday elegance ', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
+    {label:'Threads loom ', img:'https://drive.google.com/uc?export=download&id=1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
+    {label:'Handpaint love', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
     {label:'Festive', img:'https://drive.google.com/uc?export=download&id=1KovYWfbsqWIcBemAdd2T_tdWQK0APcFp'},
     {label:'Night Suits', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
-    // 3 additional categories
-    {label:'Ethnic Wear', img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center'},
-    {label:'Traditional', img:'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'},
-    {label:'Designer', img:'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces'},
   ]
   
   // Scroll animation hooks for different sections
@@ -169,84 +165,74 @@ export default function HomePage() {
           </h2>
         </div>
         <div className="relative overflow-visible">
-          <button 
-            aria-label="Prev" 
-            onClick={prevCategory} 
-            disabled={categoryOffset === 0}
-            className={`hidden md:grid absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border-2 border-white place-items-center anim-btn transition-all duration-300 ${
-              categoryOffset === 0 
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-50' 
-                : 'bg-golden-gradient text-white shadow-golden hover:scale-110'
-            }`}
-          >
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
           <div className="overflow-hidden py-8">
             <div 
               className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 transition-transform duration-150 ease-out transform-gpu will-change-transform"
               style={{
                 transform: `translate3d(-${(categoryOffset * 100) / 6}%, 0, 0)`,
-                width: '150%' // Width to accommodate 9 categories (6 + 3)
+                width: '100%' // Width for exactly 6 categories
               }}
             >
-              {/* All 9 categories */}
+              {/* All 6 categories (7th and 8th frames removed) */}
               {categories.map((category, index) => (
                 <div 
                   key={`category-${index}`}
                   className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10 flex-shrink-0"
                 >
                   <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-105 hover:-translate-y-2 transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden">
-                    <img
-                      src={category.img}
-                      alt={category.label}
-                      loading="eager"
-                      decoding="sync"
-                      className="w-full h-full object-cover rounded-full transition-all duration-150 ease-out group-hover:scale-105 group-hover:brightness-105 transform-gpu will-change-transform"
-                      style={{
-                        objectPosition: category.label === 'Vacation' ? '50% 20%' : '50% 15%',
-                        transform: category.label === 'Vacation' ? 'scale(1.05)' : undefined,
-                        willChange: 'transform'
-                      }}
-                      onError={(e) => {
-                        // Simplified error handling for faster loading
-                        const fileId = e.target.src.split('id=')[1];
-                        if (fileId && e.target.src.includes('export=download')) {
-                          e.target.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                        } else if (!e.target.src.includes('unsplash')) {
-                          // Use reliable fallback immediately
-                          const fallbacks = {
-                            'Vacation': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
-                            'Baby': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
-                            'Boys': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
-                            'Girls': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces',
-                            'Festive': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
-                            'Night Suits': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'
-                          };
-                          e.target.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
-                        }
-                      }}
-                      onLoad={() => {
-                        console.log(`Successfully loaded image for ${category.label}`);
-                      }}
-                    />
+                    {/* Image placeholder for when no image is available */}
+                    {!category.img && (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        <i className="fa-solid fa-image text-4xl"></i>
+                      </div>
+                    )}
+                    {category.img && (
+                      <img
+                        src={category.img || 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center'}
+                        alt={category.label}
+                        loading="eager"
+                        decoding="sync"
+                        className="w-full h-full object-cover rounded-full transition-all duration-150 ease-out group-hover:scale-105 group-hover:brightness-105 transform-gpu will-change-transform"
+                        style={{
+                          objectPosition: category.label === 'Vacation' ? '50% 20%' : '50% 15%',
+                          transform: category.label === 'Vacation' ? 'scale(1.05)' : undefined,
+                          willChange: 'transform'
+                        }}
+                        onError={(e) => {
+                          console.log(`Image failed to load for ${category.label}, trying fallback...`);
+                          // Multi-tier fallback system for reliable image loading
+                          const fileId = e.target.src.split('id=')[1] || e.target.src.split('/d/')[1]?.split('/')[0];
+                          if (fileId && !e.target.src.includes('lh3.googleusercontent.com')) {
+                            e.target.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                          } else if (fileId && !e.target.src.includes('drive.google.com/uc')) {
+                            e.target.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                          } else {
+                            // Use reliable fallback immediately
+                            const fallbacks = {
+                              'Vacation': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
+                              'Baby': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
+                              'Boys': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
+                              'Girls': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces',
+                              'Festive': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
+                              'Night Suits': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center',
+                              'Ethnic Wear': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
+                              'Traditional': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'
+                            };
+                            e.target.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
+                            e.target.style.display = 'block';
+                          }
+                        }}
+                        onLoad={() => {
+                          console.log(`Successfully loaded image for ${category.label}`);
+                        }}
+                      />
+                    )}
                   </div>
                   <div className="mt-4 text-sm md:text-base transition-all duration-150 group-hover:text-brand-primary group-hover:font-bold group-hover:scale-105 group-hover:-translate-y-1 relative z-10 text-gray-700 dark:text-golden-300 font-medium">{category.label}</div>
                 </div>
               ))}
             </div>
           </div>
-          <button 
-            aria-label="Next" 
-            onClick={nextCategory} 
-            disabled={categoryOffset >= maxOffset}
-            className={`hidden md:grid absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border-2 border-white place-items-center anim-btn transition-all duration-300 ${
-              categoryOffset >= maxOffset 
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-50' 
-                : 'bg-golden-gradient text-white shadow-golden hover:scale-110'
-            }`}
-          >
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
         </div>
       </section>
       {/* New Arrival block with Enhanced Animations */}

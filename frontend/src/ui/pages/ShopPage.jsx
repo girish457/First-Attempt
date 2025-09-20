@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cartService } from '../../services/cart.js';
 
 const ShopPage = () => {
+  const navigate = useNavigate();
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('default');
   const [isFilterSidebarOpen, setIsFilterSidebarOpen] = useState(false);
@@ -916,6 +918,11 @@ const ShopPage = () => {
     return getCartQuantity(productId) > 0;
   };
 
+  // Navigate to product detail page
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Category Filter Bar */}
@@ -1486,7 +1493,8 @@ const ShopPage = () => {
           {getCurrentPageProducts().map((product) => (
             <div
               key={product.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden w-full max-w-sm mx-auto"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden w-full max-w-sm mx-auto cursor-pointer"
+              onClick={() => handleProductClick(product.id)}
             >
               {/* Product Image */}
               <div className="relative aspect-[4/5] overflow-hidden">
@@ -1506,7 +1514,13 @@ const ShopPage = () => {
                 {/* View Product Button - Pops up from bottom on hover */}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300">
                   <div className="absolute bottom-4 left-4 right-4 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
-                    <button className="w-full bg-white text-gray-900 py-3 px-6 rounded-xl font-semibold shadow-lg hover:bg-gray-50 hover:shadow-xl transition-all duration-200 transform hover:scale-105">
+                    <button 
+                      className="w-full bg-white text-gray-900 py-3 px-6 rounded-xl font-semibold shadow-lg hover:bg-gray-50 hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleProductClick(product.id);
+                      }}
+                    >
                       View Product
                     </button>
                   </div>
@@ -1553,11 +1567,17 @@ const ShopPage = () => {
                 {/* Action Buttons */}
                 {!isInCart(product.id) ? (
                   <div className="flex gap-2">
-                    <button className="flex-1 border border-pink-200 text-pink-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-pink-50 hover:border-pink-300 transition-all duration-300 transform hover:scale-105">
+                    <button 
+                      className="flex-1 border border-pink-200 text-pink-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-pink-50 hover:border-pink-300 transition-all duration-300 transform hover:scale-105"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       Add to Wishlist
                     </button>
                     <button 
-                      onClick={() => addToCart(product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product);
+                      }}
                       className="flex-1 border border-blue-200 text-blue-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-blue-50 hover:border-blue-300 transition-all duration-300 transform hover:scale-105"
                     >
                       Add to Cart <i className="fa fa-cart-arrow-down" aria-hidden="true"></i>
@@ -1570,7 +1590,10 @@ const ShopPage = () => {
                       <span className="text-sm font-medium text-gray-700">In Cart:</span>
                       <div className="flex items-center gap-3">
                         <button 
-                          onClick={() => updateCartQuantity(product, -1)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            updateCartQuantity(product, -1);
+                          }}
                           className="w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
                         >
                           <span className="text-gray-600 font-medium">−</span>
@@ -1579,7 +1602,10 @@ const ShopPage = () => {
                           {getCartQuantity(product.id)}
                         </span>
                         <button 
-                          onClick={() => updateCartQuantity(product, 1)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            updateCartQuantity(product, 1);
+                          }}
                           className="w-8 h-8 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
                         >
                           <span className="text-gray-600 font-medium">+</span>
@@ -1587,7 +1613,10 @@ const ShopPage = () => {
                       </div>
                     </div>
                     {/* Wishlist Button */}
-                    <button className="w-full border border-pink-200 text-pink-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-pink-50 hover:border-pink-300 transition-all duration-300">
+                    <button 
+                      className="w-full border border-pink-200 text-pink-600 py-2 px-3 rounded-lg text-sm font-medium hover:bg-pink-50 hover:border-pink-300 transition-all duration-300"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       Add to Wishlist
                     </button>
                   </div>
