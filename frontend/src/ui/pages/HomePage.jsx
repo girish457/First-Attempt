@@ -270,7 +270,7 @@ export default function HomePage() {
         <div className="relative overflow-visible">
           <div className="overflow-hidden py-8" ref={containerRef}>
             <div 
-              className="flex items-start gap-20 md:gap-24 px-6 md:px-10 lg:px-16 transition-transform duration-300 ease-out transform-gpu will-change-transform cursor-grab active:cursor-grabbing"
+              className="flex items-start gap-32 md:gap-36 px-6 md:px-10 lg:px-16 transition-transform duration-300 ease-out transform-gpu will-change-transform cursor-grab active:cursor-grabbing"
               style={{
                 transform: `translate3d(${translateX}%, 0, 0)`,
                 width: '100%' // Width adjusted for 4 categories
