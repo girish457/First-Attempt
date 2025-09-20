@@ -59,15 +59,13 @@ export default function HomePage() {
   const productCatsRef = React.useRef(null)
   const containerRef = React.useRef(null)
   
-  // Categories data with images (6 total: only the main 6 categories)
+  // Categories data with images (4 total: only the main 4 categories)
   const categories = [
-    // First 6 main categories only
+    // First 4 main categories only
     {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
     {label:'Everyday elegance ', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
     {label:'Threads loom ', img:'https://drive.google.com/uc?export=download&id=1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
     {label:'Handpaint love', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
-    {label:'Festive', img:'https://drive.google.com/uc?export=download&id=1KovYWfbsqWIcBemAdd2T_tdWQK0APcFp'},
-    {label:'Night Suits', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
   ]
   
   // Scroll animation hooks for different sections
@@ -115,8 +113,8 @@ export default function HomePage() {
   }, [])
 
   // Category carousel navigation functions with touch support
-  const maxOffset = 2; // User can scroll through categories
-  const categoryWidth = 100 / 6; // Each category takes this percentage
+  const maxOffset = 0; // No scrolling needed with only 4 categories
+  const categoryWidth = 100 / 4; // Each category takes this percentage
   
   const nextCategory = () => {
     if (categoryOffset < maxOffset) {
@@ -272,17 +270,17 @@ export default function HomePage() {
         <div className="relative overflow-visible">
           <div className="overflow-hidden py-8" ref={containerRef}>
             <div 
-              className="flex items-start gap-10 md:gap-12 px-6 md:px-10 lg:px-16 transition-transform duration-300 ease-out transform-gpu will-change-transform cursor-grab active:cursor-grabbing"
+              className="flex items-start gap-20 md:gap-24 px-6 md:px-10 lg:px-16 transition-transform duration-300 ease-out transform-gpu will-change-transform cursor-grab active:cursor-grabbing"
               style={{
                 transform: `translate3d(${translateX}%, 0, 0)`,
-                width: '150%' // Width to accommodate all categories with scrolling
+                width: '100%' // Width adjusted for 4 categories
               }}
               onMouseDown={handleMouseDown}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              {/* All 6 categories with touch slider support */}
+              {/* All 4 categories with touch slider support */}
               {categories.map((category, index) => (
                 <div 
                   key={`category-${index}`}
