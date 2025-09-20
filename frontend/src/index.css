@@ -49,7 +49,6 @@ body {
 .dark .bg-gray-100 { @apply bg-gray-800; }
 .dark .bg-golden-50 { @apply bg-gray-800; }
 .dark .bg-golden-100 { @apply bg-gray-700; }
-
 /* Dark mode for golden components */
 .dark .golden-card {
   @apply bg-gray-800 bg-opacity-95 border-golden-600;
