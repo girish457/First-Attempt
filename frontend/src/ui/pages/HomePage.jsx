@@ -21,13 +21,13 @@ const watchVideos = [
 // Public folder images for the NEW ARRIVAL block (8 unique)
 const newArrivalImages = [
   'https://lh3.googleusercontent.com/d/15gXb3f1o4ZkZLRUWEd6tHyZIOi6xhP_k',
-  'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp',
-  'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
-  'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
-  'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
-  'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO',
-  'https://lh3.googleusercontent.com/d/1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A',
-  'https://lh3.googleusercontent.com/d/1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo',
+  'https://drive.google.com/uc?export=download&id=1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp',
+  'https://drive.google.com/uc?export=download&id=18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
+  'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
+  'https://drive.google.com/uc?export=download&id=1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
+  '/LBL101ks396_1_1200x.jpeg',
+  '/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg',
+  '/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg',
 ]
 
 const categories = [
@@ -50,6 +50,7 @@ export default function HomePage() {
   // Updated with new Google Drive images for frames 4-6
   const [current, setCurrent] = React.useState(0)
   const [categoryOffset, setCategoryOffset] = React.useState(0) // Carousel state
+  const [shopCategoryOffset, setShopCategoryOffset] = React.useState(0) // Shop categories carousel state
   const [isDragging, setIsDragging] = React.useState(false)
   const [startX, setStartX] = React.useState(0)
   const [currentX, setCurrentX] = React.useState(0)
@@ -62,10 +63,10 @@ export default function HomePage() {
   // Categories data with images (4 total: only the main 4 categories)
   const categories = [
     // First 4 main categories only
-    {label:'Royal aura', img:'https://lh3.googleusercontent.com/d/1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
-    {label:'Everyday elegance ', img:'https://lh3.googleusercontent.com/d/1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
-    {label:'Threads loom ', img:'https://lh3.googleusercontent.com/d/1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
-    {label:'Handpaint love', img:'https://lh3.googleusercontent.com/d/15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
+    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
+    {label:'Everyday elegance ', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
+    {label:'Threads loom ', img:'https://drive.google.com/uc?export=download&id=1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
+    {label:'Handpaint love', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
   ]
   
   // Scroll animation hooks for different sections
@@ -231,6 +232,15 @@ export default function HomePage() {
     setTranslateX(-(categoryOffset * categoryWidth))
   }, [])
 
+  // Shop categories navigation functions
+  const nextShopCategory = () => {
+    setShopCategoryOffset(1); // Jump directly to show the 4th frame
+  }
+
+  const prevShopCategory = () => {
+    setShopCategoryOffset(0); // Jump directly back to first position
+  }
+
   return (
     <div>
       <section className="relative">
@@ -307,39 +317,26 @@ export default function HomePage() {
                         }}
                         onError={(e) => {
                           console.log(`Image failed to load for ${category.label}, trying fallback...`);
-                          // Enhanced fallback system for reliable image loading
-                          const img = e.target;
-                          const originalSrc = img.src;
-                          
-                          if (originalSrc.includes('drive.google.com/uc')) {
-                            // Try lh3.googleusercontent.com format
-                            const fileId = originalSrc.split('id=')[1];
-                            if (fileId && !img.dataset.tried_lh3) {
-                              img.dataset.tried_lh3 = 'true';
-                              img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                              return;
-                            }
-                          } else if (originalSrc.includes('lh3.googleusercontent.com')) {
-                            // Try direct drive link
-                            const fileId = originalSrc.split('/d/')[1];
-                            if (fileId && !img.dataset.tried_drive) {
-                              img.dataset.tried_drive = 'true';
-                              img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
-                              return;
-                            }
-                          }
-                          
-                          // Final fallback to reliable Unsplash images
-                          if (!img.dataset.tried_fallback) {
-                            img.dataset.tried_fallback = 'true';
+                          // Multi-tier fallback system for reliable image loading
+                          const fileId = e.target.src.split('id=')[1] || e.target.src.split('/d/')[1]?.split('/')[0];
+                          if (fileId && !e.target.src.includes('lh3.googleusercontent.com')) {
+                            e.target.src = `https://lh3.googleusercontent.com/d/${fileId}`;
+                          } else if (fileId && !e.target.src.includes('drive.google.com/uc')) {
+                            e.target.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                          } else {
+                            // Use reliable fallback immediately
                             const fallbacks = {
-                              'Royal aura': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
-                              'Everyday elegance ': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
-                              'Threads loom ': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
-                              'Handpaint love': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces'
+                              'Vacation': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
+                              'Baby': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
+                              'Boys': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
+                              'Girls': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces',
+                              'Festive': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
+                              'Night Suits': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center',
+                              'Ethnic Wear': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
+                              'Traditional': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'
                             };
-                            img.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
-                            img.style.display = 'block';
+                            e.target.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
+                            e.target.style.display = 'block';
                           }
                         }}
                         onLoad={() => {
@@ -380,45 +377,7 @@ export default function HomePage() {
                 className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out"
               >
                 <div className="relative overflow-hidden">
-                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" 
-                    onError={(e) => {
-                      // Enhanced fallback for NEW ARRIVAL images
-                      const img = e.target;
-                      const originalSrc = img.src;
-                      
-                      if (originalSrc.includes('lh3.googleusercontent.com') && !img.dataset.tried_drive) {
-                        const fileId = originalSrc.split('/d/')[1];
-                        if (fileId) {
-                          img.dataset.tried_drive = 'true';
-                          img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
-                          return;
-                        }
-                      } else if (originalSrc.includes('drive.google.com') && !img.dataset.tried_lh3) {
-                        const fileId = originalSrc.split('id=')[1];
-                        if (fileId) {
-                          img.dataset.tried_lh3 = 'true';
-                          img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                          return;
-                        }
-                      }
-                      
-                      // Final fallback to Unsplash
-                      if (!img.dataset.tried_fallback) {
-                        img.dataset.tried_fallback = 'true';
-                        const fallbackImages = [
-                          'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1545199097-56d6fd8f2df5?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1542060748-10c28b62716a?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1593032457861-573d56b83a25?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1596066373295-8f0130a0d23e?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&h=800&fit=crop',
-                          'https://images.unsplash.com/photo-1585386959984-a41552231698?w=600&h=800&fit=crop'
-                        ];
-                        img.src = fallbackImages[idx] || fallbackImages[0];
-                      }
-                    }}
-                  />
+                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
                   <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
                     <i className="fa-solid fa-heart text-white text-sm"></i>
@@ -492,61 +451,38 @@ export default function HomePage() {
           SHOP BY CATEGORIES
         </h2>
         <div className="relative px-4 md:px-10 lg:px-16">
-          <button aria-label="Prev" className="hidden md:grid absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
+          <button aria-label="Prev" className="hidden md:grid absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center" onClick={prevShopCategory}>
             <i className="fa-solid fa-chevron-left"></i>
           </button>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10">
-            {[
-              {label:'Kurta Set', img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO'},
-              {label:'Anarkali Set', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
-              {label:'Co-Ords', img:'/040A1369_1200x.jpeg'}
-            ].map((c, index)=> (
-              <div 
-                key={c.label} 
-                ref={addToShopRefs}
-                className="scroll-animate-scale group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer overflow-hidden"
-              >
-                <div className="rounded-2xl overflow-hidden">
-                  <img src={c.img} alt={c.label} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" 
-                    onError={(e) => {
-                      // Enhanced fallback for shop categories
-                      const img = e.target;
-                      const originalSrc = img.src;
-                      
-                      if (originalSrc.includes('lh3.googleusercontent.com') && !img.dataset.tried_drive) {
-                        const fileId = originalSrc.split('/d/')[1];
-                        if (fileId) {
-                          img.dataset.tried_drive = 'true';
-                          img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
-                          return;
-                        }
-                      } else if (originalSrc.includes('drive.google.com') && !img.dataset.tried_lh3) {
-                        const fileId = originalSrc.split('id=')[1];
-                        if (fileId) {
-                          img.dataset.tried_lh3 = 'true';
-                          img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                          return;
-                        }
-                      }
-                      
-                      // Final fallback
-                      if (!img.dataset.tried_fallback) {
-                        img.dataset.tried_fallback = 'true';
-                        const fallbacks = {
-                          'Kurta Set': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop',
-                          'Anarkali Set': 'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&h=800&fit=crop',
-                          'Co-Ords': 'https://images.unsplash.com/photo-1593032457861-573d56b83a25?w=600&h=800&fit=crop'
-                        };
-                        img.src = fallbacks[c.label] || 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop';
-                      }
-                    }}
-                  />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 overflow-hidden">
+            <div 
+              className="flex transition-transform duration-300 ease-out"
+              style={{
+                transform: `translateX(-${shopCategoryOffset * 33.33}%)`,
+                width: '133.33%' // Width to accommodate 4 items when showing 3
+              }}
+            >
+              {[
+                {label:'Kurta Set', img:'/LBL101ks396_1_1200x.jpeg'},
+                {label:'Anarkali Set', img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
+                {label:'Co-Ords', img:'/040A1369_1200x.jpeg'},
+                {label:'Lehenga Set', img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop'}
+              ].map((c, index)=> (
+                <div 
+                  key={c.label} 
+                  ref={addToShopRefs}
+                  className="scroll-animate-scale group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer overflow-hidden flex-shrink-0"
+                  style={{ width: 'calc(33.33% - 20px)', marginRight: '30px' }}
+                >
+                  <div className="rounded-2xl overflow-hidden">
+                    <img src={c.img} alt={c.label} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" />
+                  </div>
+                  <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
                 </div>
-                <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <button aria-label="Next" className="hidden md:grid absolute right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center anim-btn hover:scale-110">
+          <button aria-label="Next" className="hidden md:grid absolute right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center" onClick={nextShopCategory}>
             <i className="fa-solid fa-chevron-right"></i>
           </button>
         </div>
@@ -564,58 +500,20 @@ export default function HomePage() {
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
           {[
             {img:'/040A1369_1200x.jpeg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
-            {img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO', title:'Cotton Muslin Baby | Pastel Pink', price:'Rs. 549.00'},
-            {img:'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
-            {img:'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
-            {img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
-            {img:'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym', title:'Swaddle | Marigold', price:'Rs. 475.00'},
-            {img:'https://lh3.googleusercontent.com/d/1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A', title:'Newborn Muslin Gift Set', price:'Rs. 900.00'},
-            {img:'https://lh3.googleusercontent.com/d/1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo', title:'Muslin Blanket', price:'Rs. 900.00'}
+            {img:'https://drive.google.com/uc?export=download&id=1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO', title:'Cotton Muslin Baby | Pastel Pink', price:'Rs. 549.00'},
+            {img:'https://drive.google.com/uc?export=download&id=18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym', title:'Swaddle | Marigold', price:'Rs. 475.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A', title:'Newborn Muslin Gift Set', price:'Rs. 900.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo', title:'Muslin Blanket', price:'Rs. 900.00'}
           ].map((p, i)=> (
             <div 
               key={i} 
               ref={addToTrendingRefs}
               className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden"
             >
-              <img src={p.img} alt={p.title} className="w-full h-60 md:h-64 object-cover transition-all duration-300 ease-out group-hover:scale-110" 
-                onError={(e) => {
-                  // Enhanced fallback for trending products
-                  const img = e.target;
-                  const originalSrc = img.src;
-                  
-                  if (originalSrc.includes('lh3.googleusercontent.com') && !img.dataset.tried_drive) {
-                    const fileId = originalSrc.split('/d/')[1];
-                    if (fileId) {
-                      img.dataset.tried_drive = 'true';
-                      img.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
-                      return;
-                    }
-                  } else if (originalSrc.includes('drive.google.com') && !img.dataset.tried_lh3) {
-                    const fileId = originalSrc.split('id=')[1];
-                    if (fileId) {
-                      img.dataset.tried_lh3 = 'true';
-                      img.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                      return;
-                    }
-                  }
-                  
-                  // Final fallback
-                  if (!img.dataset.tried_fallback) {
-                    img.dataset.tried_fallback = 'true';
-                    const fallbackImages = [
-                      'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1545199097-56d6fd8f2df5?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1542060748-10c28b62716a?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1593032457861-573d56b83a25?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1596066373295-8f0130a0d23e?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400&h=400&fit=crop',
-                      'https://images.unsplash.com/photo-1585386959984-a41552231698?w=400&h=400&fit=crop'
-                    ];
-                    img.src = fallbackImages[i] || fallbackImages[0];
-                  }
-                }}
-              />
+              <img src={p.img} alt={p.title} className="w-full h-80 md:h-96 object-cover transition-all duration-300 ease-out group-hover:scale-110" />
               <div className="p-4">
                 <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">{p.title}</div>
                 <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">{p.price}</div>
@@ -630,8 +528,8 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-glossy-shine opacity-10"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 px-4 md:px-10 lg:px-16 relative z-10">
           {[
-            {title:'NEW ARRIVAL', cta:'SHOP NOW', img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO'},
-            {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:'/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg'},
+            {title:'NEW ARRIVAL', cta:'SHOP NOW', img:'https://drive.google.com/uc?export=download&id=1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO'},
+            {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:'https://drive.google.com/uc?export=download&id=1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
             {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:'/040A1369_1200x.jpeg'}
           ].map((item, index)=> (
             <div 
