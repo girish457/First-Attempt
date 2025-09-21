@@ -29,10 +29,10 @@ export default function HomePage() {
   // Categories data with images (4 total: only the main 4 categories)
   const categories = [
     // First 4 main categories only
-    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
-    {label:'Everyday elegance', img:'/images/category2.jpg'},
-    {label:'Threads loom', img:'/images/category3_updated.jpg'},
-    {label:'Handpaint love', img:'/images/category3.jpg'},
+    {label:'Royal aura', img:'https://i.postimg.cc/cJMJSPsm/generated-images-016.png'},
+    {label:'Everyday elegance', img:'https://i.postimg.cc/wB0dFzqS/generated-image-1.png'},
+    {label:'Threads loom', img:'https://i.postimg.cc/NMdfyT22/generated-images-017.png'},
+    {label:'Handpaint love', img:'https://i.postimg.cc/0jLvmCkj/generated-image-03.png'},
   ]
   
   // Scroll animation hooks for different sections
@@ -260,13 +260,25 @@ export default function HomePage() {
                   key={`category-${index}`}
                   className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10 flex-shrink-0 select-none"
                 >
-                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-105 hover:-translate-y-2 transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden">
+                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden">
                     {/* Display category image if available and loaded successfully, otherwise show placeholder */}
                     {category.img && !imageError[`category-${index}`] ? (
                       <img 
                         src={category.img} 
                         alt={category.label}
                         className="w-full h-full object-cover"
+                        style={{
+                          objectPosition: 
+                            index === 0 ? 'center 48%' : 
+                            index === 1 ? 'center 10%' : 
+                            index === 2 ? '45% 55%' : 
+                            'center 40%',
+                          transform: 
+                            index === 0 ? 'scale(1.11)' : 
+                            index === 1 ? 'scale(1.05)' : 
+                            index === 2 ? 'scale(1.12)' : 
+                            'scale(1.15)'
+                        }}
                         loading="eager"
                         decoding="async"
                         fetchPriority="high"
@@ -283,13 +295,47 @@ export default function HomePage() {
                         {index === 0 ? (
                           // Default image for the first category
                           <img 
-                            src="https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X" 
+                            src="https://i.postimg.cc/cJMJSPsm/generated-images-016.png" 
                             alt="Default product"
                             className="w-3/4 h-3/4 object-contain"
+                            style={{
+                              objectPosition: 'center 48%',
+                              transform: 'scale(1.11)'
+                            }}
+                          />
+                        ) : index === 1 ? (
+                          // Fallback for second category
+                          <img 
+                            src="https://i.postimg.cc/wB0dFzqS/generated-image-1.png" 
+                            alt="Default product"
+                            className="w-3/4 h-3/4 object-contain"
+                            style={{
+                              objectPosition: 'center 10%',
+                              transform: 'scale(1.05)'
+                            }}
+                          />
+                        ) : index === 2 ? (
+                          // Fallback for third category
+                          <img 
+                            src="https://i.postimg.cc/NMdfyT22/generated-images-017.png" 
+                            alt="Default product"
+                            className="w-3/4 h-3/4 object-contain"
+                            style={{
+                              objectPosition: '45% 55%',
+                              transform: 'scale(1.12)'
+                            }}
                           />
                         ) : (
-                          // Icon fallback for other categories
-                          <i className="fa-solid fa-image text-4xl"></i>
+                          // Fallback for fourth category
+                          <img 
+                            src="https://i.postimg.cc/0jLvmCkj/generated-image-03.png" 
+                            alt="Default product"
+                            className="w-3/4 h-3/4 object-contain"
+                            style={{
+                              objectPosition: 'center 40%',
+                              transform: 'scale(1.15)'
+                            }}
+                          />
                         )}
                       </div>
                     )}
