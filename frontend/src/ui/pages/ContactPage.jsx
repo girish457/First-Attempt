@@ -275,7 +275,7 @@ export default function ContactPage() {
               <div className="relative">
                 <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy">
                   <img 
-                    src="/Girls.webp" 
+                    src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop" 
                     alt="Contact Us" 
                     className="w-full h-96 object-cover rounded-2xl shadow-2xl"
                   />

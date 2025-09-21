@@ -130,7 +130,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 267,
-      image: "/Girls.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -141,7 +141,7 @@ const ShopPage = () => {
       discount: 28,
       rating: 4.4,
       reviews: 198,
-      image: "/boys.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -152,7 +152,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.2,
       reviews: 345,
-      image: "/Night Suits.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -163,7 +163,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 456,
-      image: "/Baby.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -174,7 +174,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.5,
       reviews: 123,
-      image: "/vacation.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -185,7 +185,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.6,
       reviews: 189,
-      image: "/sample 1.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -196,7 +196,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.8,
       reviews: 67,
-      image: "/sample 2.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -207,7 +207,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.2,
       reviews: 234,
-      image: "/sample 3.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -218,7 +218,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 156,
-      image: "/sample 4.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -229,7 +229,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 298,
-      image: "/sample 5.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -362,7 +362,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.3,
       reviews: 234,
-      image: "/Girls.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -373,7 +373,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.5,
       reviews: 145,
-      image: "/boys.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -395,7 +395,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.6,
       reviews: 267,
-      image: "/Baby.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -428,7 +428,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 189,
-      image: "/vacation.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -439,7 +439,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.3,
       reviews: 234,
-      image: "/sample 1.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -450,7 +450,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.8,
       reviews: 67,
-      image: "/sample 2.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -461,7 +461,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.2,
       reviews: 345,
-      image: "/sample 3.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -472,7 +472,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.5,
       reviews: 178,
-      image: "/sample 4.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -483,7 +483,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.3,
       reviews: 298,
-      image: "/sample 5.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -494,7 +494,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.1,
       reviews: 456,
-      image: "/Night Suits.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     // Repeat some products with different IDs for demonstration
@@ -528,7 +528,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 234,
-      image: "/boys.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -550,7 +550,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.3,
       reviews: 189,
-      image: "/Girls.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -561,7 +561,7 @@ const ShopPage = () => {
       discount: 29,
       rating: 4.2,
       reviews: 267,
-      image: "/Baby.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -583,7 +583,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.1,
       reviews: 345,
-      image: "/Night Suits.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -605,7 +605,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.3,
       reviews: 198,
-      image: "/boys.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -616,7 +616,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.5,
       reviews: 167,
-      image: "/vacation.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -649,7 +649,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.4,
       reviews: 456,
-      image: "/Baby.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     }
   ];

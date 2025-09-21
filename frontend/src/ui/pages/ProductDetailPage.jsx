@@ -19,16 +19,16 @@ const ProductDetailPage = () => {
       brand: "METRONAUT",
       title: "Men Regular Fit Solid Spread Collar Casual Shirt",
       images: [
-        "/040A1369_1200x.jpeg",
-        "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
-        "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg"
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"
       ],
       colors: [
-        { name: 'Green', value: '#10B981', image: '/040A1369_1200x.jpeg' },
-        { name: 'Blue', value: '#3B82F6', image: '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg' },
-        { name: 'Pink', value: '#EC4899', image: '/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg' },
+        { name: 'Green', value: '#10B981', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
+        { name: 'Blue', value: '#3B82F6', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
+        { name: 'Pink', value: '#EC4899', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
         { name: 'Light Blue', value: '#60A5FA', image: 'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A' },
-        { name: 'Navy', value: '#1E40AF', image: '/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg' }
+        { name: 'Navy', value: '#1E40AF', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' }
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
       offers: [
@@ -60,14 +60,14 @@ const ProductDetailPage = () => {
       brand: "RUNWAY",
       title: "Elegant Evening Dress - Premium Collection",
       images: [
-        "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
-        "/040A1369_1200x.jpeg",
-        "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg"
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"
       ],
       colors: [
-        { name: 'Maroon', value: '#7C2D12', image: '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg' },
-        { name: 'Green', value: '#10B981', image: '/040A1369_1200x.jpeg' },
-        { name: 'Golden', value: '#FFD700', image: '/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg' }
+        { name: 'Maroon', value: '#7C2D12', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
+        { name: 'Green', value: '#10B981', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
+        { name: 'Golden', value: '#FFD700', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' }
       ],
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
       offers: [
@@ -97,7 +97,7 @@ const ProductDetailPage = () => {
       discount: 36,
       rating: 4.5,
       reviews: 128,
-      image: "/040A1369_1200x.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -108,7 +108,7 @@ const ProductDetailPage = () => {
       discount: 29,
       rating: 4.8,
       reviews: 95,
-      image: "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -119,7 +119,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.3,
       reviews: 156,
-      image: "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -141,7 +141,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 87,
-      image: "/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -163,7 +163,7 @@ const ProductDetailPage = () => {
       discount: 34,
       rating: 4.6,
       reviews: 89,
-      image: "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -185,7 +185,7 @@ const ProductDetailPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 267,
-      image: "/Girls.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -196,7 +196,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.4,
       reviews: 198,
-      image: "/boys.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -207,7 +207,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.2,
       reviews: 345,
-      image: "/Night Suits.webp",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -218,7 +218,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 456,
-      image: "/Baby.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -229,7 +229,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.5,
       reviews: 123,
-      image: "/vacation.jpg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -240,7 +240,7 @@ const ProductDetailPage = () => {
       discount: 32,
       rating: 4.6,
       reviews: 189,
-      image: "/sample 1.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -251,7 +251,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.8,
       reviews: 67,
-      image: "/sample 2.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     },
     {
@@ -262,7 +262,7 @@ const ProductDetailPage = () => {
       discount: 31,
       rating: 4.2,
       reviews: 234,
-      image: "/sample 3.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -273,7 +273,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 156,
-      image: "/sample 4.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-boy"
     },
     {
@@ -284,7 +284,7 @@ const ProductDetailPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 298,
-      image: "/sample 5.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "child-girl"
     },
     {
@@ -306,7 +306,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.5,
       reviews: 145,
-      image: "/040A1369_1200x.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       category: "ethnic-woman"
     }
   ];

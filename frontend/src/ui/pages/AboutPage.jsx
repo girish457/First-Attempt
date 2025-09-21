@@ -32,21 +32,21 @@ export default function AboutPage() {
       id: 1,
       name: "Priya Sharma",
       role: "Founder & CEO",
-      image: "/sample 1.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       description: "Passionate about bringing traditional Indian fashion to the modern world."
     },
     {
       id: 2,
       name: "Arjun Patel",
       role: "Creative Director",
-      image: "/sample 2.png",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       description: "Expert in blending contemporary designs with ethnic aesthetics."
     },
     {
       id: 3,
       name: "Meera Singh",
       role: "Head of Design",
-      image: "/sample 3.jpeg",
+      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       description: "Specializes in children's ethnic wear and sustainable fashion."
     }
   ];

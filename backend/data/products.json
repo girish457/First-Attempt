@@ -7,7 +7,7 @@
     "discount": 36,
     "rating": 4.5,
     "reviews": 128,
-    "image": "/040A1369_1200x.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Ethnic Woman Wear",
     "description": "Premium quality cotton blend t-shirt with elegant design"
   },
@@ -19,7 +19,7 @@
     "discount": 29,
     "rating": 4.8,
     "reviews": 95,
-    "image": "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Ethnic Woman Wear",
     "description": "Elegant evening dress perfect for special occasions"
   },
@@ -31,7 +31,7 @@
     "discount": 28,
     "rating": 4.3,
     "reviews": 156,
-    "image": "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Girl",
     "description": "Stylish denim jacket for girls, perfect for casual wear"
   },
@@ -55,7 +55,7 @@
     "discount": 33,
     "rating": 4.7,
     "reviews": 87,
-    "image": "/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Boy",
     "description": "Professional blazer for formal occasions"
   },
@@ -79,7 +79,7 @@
     "discount": 34,
     "rating": 4.6,
     "reviews": 89,
-    "image": "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Ethnic Woman Wear",
     "description": "Beautiful Indo Western outfit blending traditional and modern styles"
   },
@@ -103,7 +103,7 @@
     "discount": 32,
     "rating": 4.3,
     "reviews": 267,
-    "image": "/Girls.webp",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Girl",
     "description": "Comfortable casual dress for daily wear"
   },
@@ -115,7 +115,7 @@
     "discount": 28,
     "rating": 4.4,
     "reviews": 198,
-    "image": "/boys.jpg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Boy",
     "description": "Stylish casual outfit for boys"
   },
@@ -127,7 +127,7 @@
     "discount": 33,
     "rating": 4.2,
     "reviews": 345,
-    "image": "/Night Suits.webp",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Girl",
     "description": "Comfortable night suit set for girls"
   },
@@ -139,7 +139,7 @@
     "discount": 33,
     "rating": 4.7,
     "reviews": 456,
-    "image": "/Baby.jpg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Boy",
     "description": "Soft cotton wear for babies and toddlers"
   },
@@ -151,7 +151,7 @@
     "discount": 30,
     "rating": 4.5,
     "reviews": 123,
-    "image": "/vacation.jpg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Ethnic Woman Wear",
     "description": "Perfect beach wear for vacation and holidays"
   },
@@ -163,7 +163,7 @@
     "discount": 32,
     "rating": 4.6,
     "reviews": 189,
-    "image": "/sample 1.png",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Ethnic Woman Wear",
     "description": "Designer ethnic kurta with intricate patterns"
   },
@@ -175,7 +175,7 @@
     "discount": 30,
     "rating": 4.8,
     "reviews": 67,
-    "image": "/sample 2.png",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Ethnic Woman Wear",
     "description": "Exquisite traditional lehenga for weddings and celebrations"
   },
@@ -187,7 +187,7 @@
     "discount": 31,
     "rating": 4.2,
     "reviews": 234,
-    "image": "/sample 3.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Girl",
     "description": "Light and breezy summer top for girls"
   },
@@ -199,7 +199,7 @@
     "discount": 30,
     "rating": 4.4,
     "reviews": 156,
-    "image": "/sample 4.png",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Boy",
     "description": "Smart formal shirt set for special occasions"
   },
@@ -211,7 +211,7 @@
     "discount": 32,
     "rating": 4.3,
     "reviews": 298,
-    "image": "/sample 5.jpeg",
+    "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
     "category": "Child Girl",
     "description": "Comfortable cotton casual wear for everyday use"
   },

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { useScrollAnimation, useScrollAnimationSingle } from '../../hooks/useScrollAnimation'
 
 const bannerImages = [
-  '/sample 1.png',
-  '/sample 2.png',
-  '/sample 3.jpeg',
-  '/sample 4.png',
-  '/sample 5.jpeg',
+  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
+  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
 ]
 
 // Public folder videos for the WATCH AND BUY block
@@ -582,15 +582,15 @@ export default function HomePage() {
           {[
             {src:'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', type:'video'},
             {src:'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', type:'video'},
-            {src:'/insta3.png', type:'image'},
-            {src:'/insta4.png', type:'image'},
-            {src:'/insta5.png', type:'image'},
-            {src:'/insta6.png', type:'image'},
-            {src:'/insta7.png', type:'image'},
-            {src:'/insta8.png', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
             {src:'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', type:'video'},
-            {src:'/insta11.png', type:'image'},
-            {src:'/insta12.png', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
+            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
             {src:'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', type:'video'}
           ].map((item, i) => (
             <div 
