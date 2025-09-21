@@ -27,7 +27,7 @@ const ProductDetailPage = () => {
         { name: 'Green', value: '#10B981', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
         { name: 'Blue', value: '#3B82F6', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
         { name: 'Pink', value: '#EC4899', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
-        { name: 'Light Blue', value: '#60A5FA', image: 'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A' },
+        { name: 'Light Blue', value: '#60A5FA', image: 'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg' },
         { name: 'Navy', value: '#1E40AF', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' }
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
@@ -130,7 +130,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.6,
       reviews: 203,
-      image: "https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A",
+      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
       category: "child-girl"
     },
     {

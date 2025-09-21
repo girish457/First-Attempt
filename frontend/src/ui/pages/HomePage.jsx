@@ -25,7 +25,7 @@ const newArrivalImages = [
   'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
   'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
   'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
-  'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A',
+  'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg',
   'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg',
   'https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo',
 ]
@@ -475,7 +475,7 @@ export default function HomePage() {
               }}
             >
               {[
-                {label:'Kurta Set', img:'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A'},
+                {label:'Kurta Set', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
                 {label:'Anarkali Set', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
                 {label:'Co-Ords', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
                 {label:'Lehenga Set', img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop'}
