@@ -12,10 +12,10 @@ const bannerImages = [
 
 // Public folder videos for the WATCH AND BUY block
 const watchVideos = [
-  { src: '/whatmore_tn_54689d8a-018d-4426-822e-a12048290da9.mp4', title: 'Roza Blue Co-ord Set', price: '₹ 1,955', oldPrice: '₹ 2,300', discount: '15% off' },
-  { src: '/whatmore_tn_a85d4420-fc59-4296-b2d1-013d8c556562.mp4', title: 'Roza Mustard Co-ord Set', price: '₹ 1,955', oldPrice: '₹ 2,300', discount: '15% off' },
-  { src: '/whatmore_tn_e71dbde5-af85-49de-8b4d-0b4fa04b9413.mp4', title: 'Bhumi Blue Anarkali Set', price: '₹ 4,250', oldPrice: '₹ 5,000', discount: '15% off' },
-  { src: '/whatmore_tn_fba40a61-c29b-40f3-b599-0bfca5ebcfd5.mp4', title: 'Bhumi Red Anarkali Set', price: '₹ 4,250', oldPrice: '₹ 5,000', discount: '15% off' },
+  { src: 'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', title: 'Roza Blue Co-ord Set', price: '₹ 1,955', oldPrice: '₹ 2,300', discount: '15% off' },
+  { src: 'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', title: 'Roza Mustard Co-ord Set', price: '₹ 1,955', oldPrice: '₹ 2,300', discount: '15% off' },
+  { src: 'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', title: 'Bhumi Blue Anarkali Set', price: '₹ 4,250', oldPrice: '₹ 5,000', discount: '15% off' },
+  { src: 'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', title: 'Bhumi Red Anarkali Set', price: '₹ 4,250', oldPrice: '₹ 5,000', discount: '15% off' },
 ]
 
 // Public folder images for the NEW ARRIVAL block (8 unique)
@@ -377,7 +377,7 @@ export default function HomePage() {
                 className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out"
               >
                 <div className="relative overflow-hidden">
-                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" />
+                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" loading="lazy" decoding="async"/>
                   <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
                   <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
                     <i className="fa-solid fa-heart text-white text-sm"></i>
@@ -419,7 +419,19 @@ export default function HomePage() {
                 className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-t-2xl">
-                  <video src={v.src} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-300 ease-out group-hover:scale-110" autoPlay muted loop playsInline />
+                  <video 
+                    src={v.src} 
+                    className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-300 ease-out group-hover:scale-110" 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline 
+                    preload="metadata"
+                    controls={false}
+                    onError={(e) => {
+                      console.log('Video failed to load, trying fallback...', e);
+                    }}
+                  />
                   {/* Video name overlay */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
@@ -475,7 +487,16 @@ export default function HomePage() {
                   style={{ width: 'calc(33.33% - 20px)', marginRight: '30px' }}
                 >
                   <div className="rounded-2xl overflow-hidden">
-                    <img src={c.img} alt={c.label} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" />
+                    <img 
+                      src={c.img} 
+                      alt={c.label} 
+                      className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" 
+                      onError={(e) => {
+                        console.log(`Image failed to load for ${c.label}, trying fallback...`, e);
+                        // Fallback to Unsplash image
+                        e.target.src = 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop';
+                      }}
+                    />
                   </div>
                   <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
                 </div>
@@ -559,18 +580,18 @@ export default function HomePage() {
         </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5">
           {[
-            {src:'/insta1.mp4', type:'video'},
-            {src:'/insta2.mp4', type:'video'},
+            {src:'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', type:'video'},
+            {src:'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', type:'video'},
             {src:'/insta3.png', type:'image'},
             {src:'/insta4.png', type:'image'},
             {src:'/insta5.png', type:'image'},
             {src:'/insta6.png', type:'image'},
             {src:'/insta7.png', type:'image'},
             {src:'/insta8.png', type:'image'},
-            {src:'/insta9.mp4', type:'video'},
+            {src:'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', type:'video'},
             {src:'/insta11.png', type:'image'},
             {src:'/insta12.png', type:'image'},
-            {src:'/insta 14.mp4', type:'video'}
+            {src:'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', type:'video'}
           ].map((item, i) => (
             <div 
               key={i} 
@@ -578,9 +599,30 @@ export default function HomePage() {
               className="scroll-animate-scale rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden cursor-pointer border-2 border-transparent hover:border-brand-primary"
             >
               {item.type === 'video' ? (
-                <video src={item.src} className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" autoPlay muted loop playsInline />
+                <video 
+                  src={item.src} 
+                  className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  preload="metadata"
+                  controls={false}
+                  onError={(e) => {
+                    console.log('Video failed to load, trying fallback...', e);
+                  }}
+                />
               ) : (
-                <img src={item.src} alt="Insta highlight" className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" />
+                <img 
+                  src={item.src} 
+                  alt="Insta highlight" 
+                  className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" 
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    console.log('Image failed to load, trying fallback...', e);
+                  }}
+                />
               )}
             </div>
           ))}
