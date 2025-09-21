@@ -273,12 +273,8 @@ export default function ContactPage() {
               isVisible['contact-form'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <div className="relative">
-                <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy">
-                  <img 
-                    src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop" 
-                    alt="Contact Us" 
-                    className="w-full h-96 object-cover rounded-2xl shadow-2xl"
-                  />
+                <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy flex items-center justify-center h-96">
+                  <i className="fa-solid fa-image text-4xl text-gray-400"></i>
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-golden-200 text-gray-900 p-4 rounded-2xl shadow-glossy border-2 border-golden-300">
                   <p className="font-bold text-lg">24/7 Support</p>

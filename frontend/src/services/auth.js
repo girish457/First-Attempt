@@ -1,124 +1,60 @@
-const API_BASE_URL = 'http://localhost:3001/api';
-
+// Auth service for managing user authentication
 export class AuthService {
   constructor() {
-    this.token = localStorage.getItem('authToken');
-    this.user = JSON.parse(localStorage.getItem('user') || 'null');
+    this.userKey = 'user';
   }
 
-  async adminLogin() {
-    try {
-      // Use predefined admin credentials
-      const adminEmail = 'admin@foodiehub.com';
-      const adminPassword = 'admin123';
-      
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: adminEmail, password: adminPassword }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Admin login failed');
-      }
-
-      // Verify that the user is actually an admin
-      if (data.user.role !== 'admin') {
-        throw new Error('Access denied. Admin privileges required.');
-      }
-
-      // Store token and user data
-      this.token = data.token;
-      this.user = data.user;
-      localStorage.setItem('authToken', this.token);
-      localStorage.setItem('user', JSON.stringify(this.user));
-
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async login(email, password) {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
-      }
-
-      // Store token and user data
-      this.token = data.token;
-      this.user = data.user;
-      localStorage.setItem('authToken', this.token);
-      localStorage.setItem('user', JSON.stringify(this.user));
-
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async register(name, email, password, mobile) {
-    try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password, mobile }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
-      }
-
-      // Store token and user data
-      this.token = data.token;
-      this.user = data.user;
-      localStorage.setItem('authToken', this.token);
-      localStorage.setItem('user', JSON.stringify(this.user));
-
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  logout() {
-    this.token = null;
-    this.user = null;
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-  }
-
+  // Get current user from localStorage
   getCurrentUser() {
-    return this.user;
+    try {
+      const userData = localStorage.getItem(this.userKey);
+      return userData ? JSON.parse(userData) : null;
+    } catch (error) {
+      console.error('Error getting user:', error);
+      return null;
+    }
   }
 
-  isAuthenticated() {
-    return !!this.token;
-  }
-
-  getAuthHeaders() {
-    return {
-      'Authorization': `Bearer ${this.token}`,
-      'Content-Type': 'application/json',
+  // Login user
+  login(email, password) {
+    // In a real app, this would make an API call
+    // For now, we'll simulate a successful login
+    const user = {
+      id: 1,
+      email: email,
+      name: email.split('@')[0],
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop'
     };
+    
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+    return user;
+  }
+
+  // Signup user
+  signup(name, email, password) {
+    // In a real app, this would make an API call
+    // For now, we'll simulate a successful signup
+    const user = {
+      id: Date.now(), // Simple ID generation
+      email: email,
+      name: name,
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop'
+    };
+    
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+    return user;
+  }
+
+  // Logout user
+  logout() {
+    localStorage.removeItem(this.userKey);
+  }
+
+  // Check if user is logged in
+  isAuthenticated() {
+    return !!this.getCurrentUser();
   }
 }
 
+// Export a singleton instance
+export const authService = new AuthService();

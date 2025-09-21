@@ -42,7 +42,7 @@ const ShopPage = () => {
       discount: 36,
       rating: 4.5,
       reviews: 128,
-      image: "/040A1369_1200x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -53,7 +53,7 @@ const ShopPage = () => {
       discount: 29,
       rating: 4.8,
       reviews: 95,
-      image: "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -64,7 +64,7 @@ const ShopPage = () => {
       discount: 28,
       rating: 4.3,
       reviews: 156,
-      image: "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg",
+      image: "",
       category: "child-girl"
     },
     {
@@ -75,7 +75,7 @@ const ShopPage = () => {
       discount: 28,
       rating: 4.6,
       reviews: 203,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "child-girl"
     },
     {
@@ -86,7 +86,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 87,
-      image: "/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg",
+      image: "",
       category: "child-boy"
     },
     {
@@ -97,7 +97,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 312,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "child-boy"
     },
     {
@@ -108,7 +108,7 @@ const ShopPage = () => {
       discount: 34,
       rating: 4.6,
       reviews: 89,
-      image: "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -119,7 +119,7 @@ const ShopPage = () => {
       discount: 34,
       rating: 4.5,
       reviews: 145,
-      image: "/Festive.avif",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -130,7 +130,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 267,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -141,7 +141,7 @@ const ShopPage = () => {
       discount: 28,
       rating: 4.4,
       reviews: 198,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -152,7 +152,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.2,
       reviews: 345,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -163,7 +163,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 456,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -174,7 +174,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.5,
       reviews: 123,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -185,7 +185,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.6,
       reviews: 189,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -196,7 +196,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.8,
       reviews: 67,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -207,7 +207,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.2,
       reviews: 234,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -218,7 +218,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 156,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -229,7 +229,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 298,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -240,7 +240,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 89,
-      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -251,7 +251,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.5,
       reviews: 145,
-      image: "/040A1369_1200x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -262,7 +262,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 267,
-      image: "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
+      image: "",
       category: "child-girl"
     },
     {
@@ -273,7 +273,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.4,
       reviews: 189,
-      image: "/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg",
+      image: "",
       category: "child-boy"
     },
     {
@@ -284,7 +284,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.6,
       reviews: 123,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "child-girl"
     },
     {
@@ -295,7 +295,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.5,
       reviews: 98,
-      image: "/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -306,7 +306,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.2,
       reviews: 234,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "child-boy"
     },
     {
@@ -317,7 +317,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.6,
       reviews: 156,
-      image: "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
+      image: "",
       category: "child-girl"
     },
     {
@@ -328,7 +328,7 @@ const ShopPage = () => {
       discount: 29,
       rating: 4.3,
       reviews: 189,
-      image: "/Boys.jpg",
+      image: "",
       category: "child-boy"
     },
     {
@@ -339,7 +339,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.8,
       reviews: 67,
-      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
+      image: "",
       category: "ethnic-woman"
     },
     // Additional products for pagination (29-56)
@@ -351,7 +351,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.4,
       reviews: 178,
-      image: "/040A1369_1200x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -362,7 +362,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.3,
       reviews: 234,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -373,7 +373,7 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.5,
       reviews: 145,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -384,7 +384,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 89,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -395,328 +395,274 @@ const ShopPage = () => {
       discount: 31,
       rating: 4.6,
       reviews: 267,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
       id: 34,
-      name: "Festive Collection Dress",
-      price: 2799,
-      originalPrice: 3999,
+      name: "Designer Lehenga",
+      price: 6999,
+      originalPrice: 9999,
       discount: 30,
-      rating: 4.5,
-      reviews: 156,
-      image: "/Festive.avif",
-      category: "child-girl"
+      rating: 4.8,
+      reviews: 78,
+      image: "",
+      category: "ethnic-woman"
     },
     {
       id: 35,
-      name: "Indo Western Fusion",
-      price: 3599,
-      originalPrice: 5299,
-      discount: 32,
-      rating: 4.8,
-      reviews: 98,
-      image: "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 36,
-      name: "Vacation Outfit",
-      price: 2299,
-      originalPrice: 3299,
-      discount: 30,
-      rating: 4.4,
-      reviews: 189,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-      category: "ethnic-woman"
-    },
-    {
-      id: 37,
-      name: "Sample Design 1",
-      price: 1799,
-      originalPrice: 2599,
-      discount: 31,
-      rating: 4.3,
-      reviews: 234,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-      category: "child-girl"
-    },
-    {
-      id: 38,
-      name: "Sample Design 2",
-      price: 4999,
-      originalPrice: 7499,
-      discount: 33,
-      rating: 4.8,
-      reviews: 67,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-      category: "ethnic-woman"
-    },
-    {
-      id: 39,
-      name: "Sample Design 3",
+      name: "Kids Casual Outfit",
       price: 1299,
       originalPrice: 1899,
       discount: 32,
-      rating: 4.2,
-      reviews: 345,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      rating: 4.3,
+      reviews: 156,
+      image: "",
       category: "child-girl"
     },
     {
-      id: 40,
-      name: "Sample Design 4",
-      price: 1999,
-      originalPrice: 2899,
+      id: 36,
+      name: "Boys Formal Wear",
+      price: 1799,
+      originalPrice: 2599,
       discount: 31,
-      rating: 4.5,
-      reviews: 178,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      rating: 4.4,
+      reviews: 134,
+      image: "",
       category: "child-boy"
     },
     {
-      id: 41,
-      name: "Sample Design 5",
-      price: 1199,
-      originalPrice: 1799,
+      id: 37,
+      name: "Ethnic Cotton Kurta",
+      price: 1499,
+      originalPrice: 2199,
+      discount: 32,
+      rating: 4.5,
+      reviews: 189,
+      image: "",
+      category: "ethnic-woman"
+    },
+    {
+      id: 38,
+      name: "Girls Party Dress",
+      price: 2299,
+      originalPrice: 3299,
+      discount: 30,
+      rating: 4.6,
+      reviews: 123,
+      image: "",
+      category: "child-girl"
+    },
+    {
+      id: 39,
+      name: "Boys Ethnic Wear",
+      price: 1899,
+      originalPrice: 2799,
+      discount: 32,
+      rating: 4.4,
+      reviews: 167,
+      image: "",
+      category: "child-boy"
+    },
+    {
+      id: 40,
+      name: "Designer Saree",
+      price: 5999,
+      originalPrice: 8999,
       discount: 33,
-      rating: 4.3,
-      reviews: 298,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      rating: 4.7,
+      reviews: 89,
+      image: "",
+      category: "ethnic-woman"
+    },
+    {
+      id: 41,
+      name: "Casual Kids Wear",
+      price: 999,
+      originalPrice: 1499,
+      discount: 33,
+      rating: 4.2,
+      reviews: 234,
+      image: "",
       category: "child-girl"
     },
     {
       id: 42,
-      name: "Night Comfort Set",
+      name: "Boys Sports Wear",
       price: 1399,
       originalPrice: 1999,
       discount: 30,
-      rating: 4.1,
-      reviews: 456,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-      category: "child-girl"
+      rating: 4.3,
+      reviews: 145,
+      image: "",
+      category: "child-boy"
     },
-    // Repeat some products with different IDs for demonstration
     {
       id: 43,
-      name: "Classic Ethnic Wear",
-      price: 2899,
-      originalPrice: 4199,
-      discount: 31,
+      name: "Traditional Kurta Set",
+      price: 2999,
+      originalPrice: 4499,
+      discount: 33,
       rating: 4.6,
       reviews: 123,
-      image: "/040A1369_1200x.jpeg",
+      image: "",
       category: "ethnic-woman"
     },
     {
       id: 44,
-      name: "Designer Party Dress",
-      price: 3999,
-      originalPrice: 5999,
-      discount: 33,
-      rating: 4.7,
-      reviews: 89,
-      image: "/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg",
-      category: "ethnic-woman"
+      name: "Girls Traditional Wear",
+      price: 1699,
+      originalPrice: 2499,
+      discount: 32,
+      rating: 4.4,
+      reviews: 178,
+      image: "",
+      category: "child-girl"
     },
     {
       id: 45,
-      name: "Casual Kids Outfit",
-      price: 1599,
-      originalPrice: 2299,
-      discount: 30,
-      rating: 4.4,
-      reviews: 234,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      name: "Boys Traditional Outfit",
+      price: 1999,
+      originalPrice: 2999,
+      discount: 33,
+      rating: 4.5,
+      reviews: 156,
+      image: "",
       category: "child-boy"
     },
     {
       id: 46,
-      name: "Traditional Jumpsuit",
-      price: 2799,
-      originalPrice: 3999,
-      discount: 30,
-      rating: 4.5,
-      reviews: 156,
-      image: "/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg",
+      name: "Designer Ethnic Set",
+      price: 3999,
+      originalPrice: 5999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 98,
+      image: "",
       category: "ethnic-woman"
     },
     {
       id: 47,
-      name: "Girls Fashion Set",
-      price: 1899,
-      originalPrice: 2699,
-      discount: 30,
-      rating: 4.3,
-      reviews: 189,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      name: "Kids Summer Wear",
+      price: 799,
+      originalPrice: 1199,
+      discount: 33,
+      rating: 4.1,
+      reviews: 267,
+      image: "",
       category: "child-girl"
     },
     {
       id: 48,
-      name: "Boys Casual Collection",
-      price: 1699,
-      originalPrice: 2399,
-      discount: 29,
+      name: "Boys Summer Outfit",
+      price: 1199,
+      originalPrice: 1799,
+      discount: 33,
       rating: 4.2,
-      reviews: 267,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      reviews: 189,
+      image: "",
       category: "child-boy"
     },
     {
       id: 49,
-      name: "Premium Ethnic Collection",
-      price: 5999,
-      originalPrice: 8999,
+      name: "Elegant Cotton Saree",
+      price: 3999,
+      originalPrice: 5999,
       discount: 33,
-      rating: 4.8,
-      reviews: 78,
-      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
+      rating: 4.6,
+      reviews: 123,
+      image: "",
       category: "ethnic-woman"
     },
     {
       id: 50,
-      name: "Comfort Wear Collection",
-      price: 1299,
-      originalPrice: 1899,
+      name: "Girls Festive Wear",
+      price: 1499,
+      originalPrice: 2199,
       discount: 32,
-      rating: 4.1,
-      reviews: 345,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      rating: 4.3,
+      reviews: 156,
+      image: "",
       category: "child-girl"
     },
     {
       id: 51,
-      name: "Festival Special",
-      price: 3299,
-      originalPrice: 4799,
-      discount: 31,
-      rating: 4.6,
+      name: "Boys Festive Outfit",
+      price: 1799,
+      originalPrice: 2599,
+      discount: 29,
+      rating: 4.4,
       reviews: 134,
-      image: "/Festive.avif",
-      category: "ethnic-woman"
-    },
-    {
-      id: 52,
-      name: "Boys Smart Casual",
-      price: 1999,
-      originalPrice: 2899,
-      discount: 31,
-      rating: 4.3,
-      reviews: 198,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
-      id: 53,
-      name: "Vacation Ready Set",
-      price: 2599,
-      originalPrice: 3699,
-      discount: 30,
-      rating: 4.5,
-      reviews: 167,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      id: 52,
+      name: "Designer Party Wear",
+      price: 4999,
+      originalPrice: 7499,
+      discount: 33,
+      rating: 4.8,
+      reviews: 78,
+      image: "",
       category: "ethnic-woman"
+    },
+    {
+      id: 53,
+      name: "Kids Party Dress",
+      price: 1299,
+      originalPrice: 1899,
+      discount: 32,
+      rating: 4.3,
+      reviews: 167,
+      image: "",
+      category: "child-girl"
     },
     {
       id: 54,
-      name: "Indo Fusion Wear",
-      price: 4199,
-      originalPrice: 6299,
-      discount: 33,
-      rating: 4.7,
-      reviews: 89,
-      image: "/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg",
-      category: "ethnic-woman"
+      name: "Boys Party Outfit",
+      price: 1599,
+      originalPrice: 2299,
+      discount: 29,
+      rating: 4.4,
+      reviews: 145,
+      image: "",
+      category: "child-boy"
     },
     {
       id: 55,
-      name: "Sharara Premium Set",
-      price: 4599,
-      originalPrice: 6999,
-      discount: 34,
-      rating: 4.8,
-      reviews: 76,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      name: "Ethnic Party Wear",
+      price: 3499,
+      originalPrice: 4999,
+      discount: 30,
+      rating: 4.5,
+      reviews: 123,
+      image: "",
       category: "ethnic-woman"
     },
     {
       id: 56,
-      name: "Baby Comfort Wear",
-      price: 899,
-      originalPrice: 1299,
-      discount: 31,
-      rating: 4.4,
-      reviews: 456,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-      category: "child-boy"
+      name: "Traditional Party Set",
+      price: 2799,
+      originalPrice: 3999,
+      discount: 30,
+      rating: 4.6,
+      reviews: 156,
+      image: "",
+      category: "ethnic-woman"
     }
   ];
 
-  // Filter products based on selected option and category
-  const getFilteredProducts = () => {
-    let filtered = [...products];
+  // Filter products based on selected category
+  const filteredProducts = selectedCategory === 'all' 
+    ? products 
+    : products.filter(product => product.category === selectedCategory);
 
-    // Apply category filter first
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
-    }
-
-    // Then apply price filter if any filters are set
-    if (selectedFilters.price.min > 0 || selectedFilters.price.max < 10000) {
-      filtered = filtered.filter(product => 
-        product.price >= selectedFilters.price.min && product.price <= selectedFilters.price.max
-      );
-    }
-
-    // Apply other filters
-    if (selectedFilters.size.length > 0) {
-      filtered = filtered.filter(product => 
-        product.sizes && product.sizes.some(size => selectedFilters.size.includes(size))
-      );
-    }
-
-    if (selectedFilters.color.length > 0) {
-      filtered = filtered.filter(product => 
-        product.colors && product.colors.some(color => selectedFilters.color.includes(color))
-      );
-    }
-
-    // Apply sorting
-    switch (selectedFilter) {
-      case 'price-low':
-        filtered.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-high':
-        filtered.sort((a, b) => b.price - a.price);
-        break;
-      case 'discount':
-        filtered.sort((a, b) => b.discount - a.discount);
-        break;
-      case 'newest':
-        // Assume newer products have higher IDs
-        filtered.sort((a, b) => b.id - a.id);
-        break;
-      case 'rating':
-        filtered.sort((a, b) => b.rating - a.rating);
-        break;
-      default:
-        break;
-    }
-
-    return filtered;
-  };
-
-  const filteredProducts = getFilteredProducts();
+  // Pagination
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  // Get current page products
-  const getCurrentPageProducts = () => {
-    const startIndex = (currentPage - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-    return filteredProducts.slice(startIndex, endIndex);
-  };
 
   // Handle filter section toggle
   const toggleSection = (section) => {
@@ -959,12 +905,8 @@ const ShopPage = () => {
             <div className="flex gap-8 lg:gap-12 xl:gap-16 min-w-max px-4">
               {/* Suit Set */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="/040A1369_1200x.jpeg" 
-                    alt="Suit Set" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Suit Set
@@ -973,12 +915,8 @@ const ShopPage = () => {
 
               {/* Sarees */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg" 
-                    alt="Sarees" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Sarees
@@ -987,12 +925,8 @@ const ShopPage = () => {
 
               {/* Lehenga Sets */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg" 
-                    alt="Lehenga Sets" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Lehenga Sets
@@ -1001,12 +935,8 @@ const ShopPage = () => {
 
               {/* Dresses */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg" 
-                    alt="Dresses" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Dresses
@@ -1015,12 +945,8 @@ const ShopPage = () => {
 
               {/* Anarkali Suit */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg" 
-                    alt="Anarkali Suit" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Anarkali Suit
@@ -1029,12 +955,8 @@ const ShopPage = () => {
 
               {/* Kurta Sets */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg" 
-                    alt="Kurta Sets" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Kurta Sets
@@ -1043,12 +965,8 @@ const ShopPage = () => {
 
               {/* Loungewear */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="/indo_78a382b4-5c37-49e6-b8e6-96e8711a390c_1500x.jpeg" 
-                    alt="Loungewear" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Loungewear
@@ -1057,12 +975,8 @@ const ShopPage = () => {
 
               {/* Co ord Sets */}
               <div className="flex flex-col items-center group cursor-pointer">
-                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
-                  <img 
-                    src="/Festive.avif" 
-                    alt="Co ord Sets" 
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
                 </div>
                 <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
                   Co ord Sets
@@ -1490,19 +1404,15 @@ const ShopPage = () => {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {getCurrentPageProducts().map((product) => (
+          {currentProducts.map((product) => (
             <div
               key={product.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden w-full max-w-sm mx-auto cursor-pointer"
               onClick={() => handleProductClick(product.id)}
             >
               {/* Product Image */}
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
+              <div className="relative aspect-[4/5] overflow-hidden flex items-center justify-center bg-gray-200">
+                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
                 
                 {/* Discount Badge */}
                 {product.discount > 0 && (

@@ -2,49 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useScrollAnimation, useScrollAnimationSingle } from '../../hooks/useScrollAnimation'
 
-const bannerImages = [
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-]
+// Removed bannerImages array since we're removing all images
 
-// Public folder videos for the WATCH AND BUY block
-const watchVideos = [
-  { src: 'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', title: 'Roza Blue Co-ord Set', price: '₹ 1,955', oldPrice: '₹ 2,300', discount: '15% off' },
-  { src: 'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', title: 'Roza Mustard Co-ord Set', price: '₹ 1,955', oldPrice: '₹ 2,300', discount: '15% off' },
-  { src: 'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', title: 'Bhumi Blue Anarkali Set', price: '₹ 4,250', oldPrice: '₹ 5,000', discount: '15% off' },
-  { src: 'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', title: 'Bhumi Red Anarkali Set', price: '₹ 4,250', oldPrice: '₹ 5,000', discount: '15% off' },
-]
+// Removed watchVideos array since we're removing all images
 
-// Public folder images for the NEW ARRIVAL block (8 unique)
-const newArrivalImages = [
-  'https://lh3.googleusercontent.com/d/15gXb3f1o4ZkZLRUWEd6tHyZIOi6xhP_k',
-  'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp',
-  'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
-  'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
-  'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
-  'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg',
-  'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg',
-  'https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo',
-]
+// Removed newArrivalImages array since we're removing all images
 
-const categories = [
-  { name: 'Sarees', image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=1200&auto=format&fit=crop' },
-  { name: 'Lehengas', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1200&auto=format&fit=crop' },
-  { name: 'Kurta Sets', image: 'https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?q=80&w=1200&auto=format&fit=crop' },
-  { name: 'Kids Ethnic', image: 'https://images.unsplash.com/photo-1545199097-56d6fd8f2df5?q=80&w=1200&auto=format&fit=crop' },
-  { name: 'Anarkali', image: 'https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=1200&auto=format&fit=crop' },
-  { name: 'Jewellery', image: 'https://images.unsplash.com/photo-1585386959984-a41552231698?q=80&w=1200&auto=format&fit=crop' },
-]
+// Removed categories array since we're removing all images
 
-const products = [
-  { id: 1, name: 'Kanjivaram Silk Saree', price: 129.0, image: 'https://images.unsplash.com/photo-1592878944494-39c4367d514e?q=80&w=1200&auto=format&fit=crop' },
-  { id: 2, name: 'Embroidered Lehenga', price: 199.0, image: 'https://images.unsplash.com/photo-1542060748-10c28b62716a?q=80&w=1200&auto=format&fit=crop' },
-  { id: 3, name: 'Cotton Kurta Set', price: 79.0, image: 'https://images.unsplash.com/photo-1593032457861-573d56b83a25?q=80&w=1200&auto=format&fit=crop' },
-  { id: 4, name: 'Kid’s Sherwani', price: 89.0, image: 'https://images.unsplash.com/photo-1596066373295-8f0130a0d23e?q=80&w=1200&auto=format&fit=crop' },
-]
+// Removed products array since we're removing all images
 
 export default function HomePage() {
   // Updated with new Google Drive images for frames 4-6
@@ -57,16 +23,16 @@ export default function HomePage() {
   const [translateX, setTranslateX] = React.useState(0)
   const startXRef = React.useRef(0)
   const delta = React.useRef(0)
-  const productCatsRef = React.useRef(null)
+  const [imageError, setImageError] = React.useState({});
   const containerRef = React.useRef(null)
   
   // Categories data with images (4 total: only the main 4 categories)
   const categories = [
     // First 4 main categories only
-    {label:'Royal aura', img:'https://lh3.googleusercontent.com/d/1JDlYhEmGDLl0-KJtBAXrf8NBcM6Rjb3_'},
-    {label:'Everyday elegance ', img:'https://lh3.googleusercontent.com/d/1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
-    {label:'Threads loom ', img:'https://lh3.googleusercontent.com/d/1FZ8-1_JvbGN_1eNUQm4w5rzlqf_AJnWV'},
-    {label:'Handpaint love', img:'https://lh3.googleusercontent.com/d/15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
+    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
+    {label:'Everyday elegance ', img:''},
+    {label:'Threads loom ', img:''},
+    {label:'Handpaint love', img:''},
   ]
   
   // Scroll animation hooks for different sections
@@ -109,7 +75,7 @@ export default function HomePage() {
   const { elementRef: instaTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
 
   React.useEffect(() => {
-    const t = setInterval(() => setCurrent((c) => (c + 1) % bannerImages.length), 4500)
+    const t = setInterval(() => setCurrent((c) => (c + 1) % 5), 4500) // Changed to 5 since we removed banner images
     return () => clearInterval(t)
   }, [])
 
@@ -247,14 +213,12 @@ export default function HomePage() {
         <div className="h-[80vh] md:h-[90vh] overflow-hidden relative"
              onTouchStart={(e)=>{startX.current = e.touches[0].clientX}}
              onTouchMove={(e)=>{delta.current = e.touches[0].clientX - startX.current}}
-             onTouchEnd={()=>{ if (delta.current > 40) setCurrent(c=> (c-1+bannerImages.length)%bannerImages.length); else if (delta.current < -40) setCurrent(c=> (c+1)%bannerImages.length); delta.current = 0 }}>
-          {bannerImages.map((src, i) => (
-            <img key={i} src={src} alt="Ethnic banner" className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i===current? 'opacity-100' : 'opacity-0'}`} />
-          ))}
+             onTouchEnd={()=>{ if (delta.current > 40) setCurrent(c=> (c-1+5)%5); else if (delta.current < -40) setCurrent(c=> (c+1)%5); delta.current = 0 }}>
+          {/* Removed banner images since we're removing all images */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40" />
-          <button aria-label="Prev" onClick={()=>setCurrent(c=> (c-1+bannerImages.length)%bannerImages.length)} className="hidden md:grid absolute left-3 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white/20 place-items-center anim-btn hover:scale-110"><i className="fa-solid fa-chevron-left"></i></button>
-          <button aria-label="Next" onClick={()=>setCurrent(c=> (c+1)%bannerImages.length)} className="hidden md:grid absolute right-3 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white/20 place-items-center anim-btn hover:scale-110"><i className="fa-solid fa-chevron-right"></i></button>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-3">{bannerImages.map((_,i)=> (<button key={i} onClick={()=>setCurrent(i)} className={`w-3 h-3 rounded-full transition-all duration-300 ${i===current? 'bg-golden-400 shadow-golden scale-125' : 'bg-white/70 hover:bg-white'}`}></button>))}</div>
+          <button aria-label="Prev" onClick={()=>setCurrent(c=> (c-1+5)%5)} className="hidden md:grid absolute left-3 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white/20 place-items-center anim-btn hover:scale-110"><i className="fa-solid fa-chevron-left"></i></button>
+          <button aria-label="Next" onClick={()=>setCurrent(c=> (c+1)%5)} className="hidden md:grid absolute right-3 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white/20 place-items-center anim-btn hover:scale-110"><i className="fa-solid fa-chevron-right"></i></button>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-3">{[...Array(5)].map((_,i)=> (<button key={i} onClick={()=>setCurrent(i)} className={`w-3 h-3 rounded-full transition-all duration-300 ${i===current? 'bg-golden-400 shadow-golden scale-125' : 'bg-white/70 hover:bg-white'}`}></button>))}</div>
           
           {/* Hero Text Overlay */}
           <div className="absolute inset-0 flex items-center justify-center text-center z-10">
@@ -297,52 +261,20 @@ export default function HomePage() {
                   className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10 flex-shrink-0 select-none"
                 >
                   <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transform hover:scale-105 hover:-translate-y-2 transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden">
-                    {/* Image placeholder for when no image is available */}
-                    {!category.img && (
+                    {/* Display category image if available and loaded successfully, otherwise show placeholder */}
+                    {category.img && !imageError[`category-${index}`] ? (
+                      <img 
+                        src={category.img} 
+                        alt={category.label}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          setImageError(prev => ({ ...prev, [`category-${index}`]: true }));
+                        }}
+                      />
+                    ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-400">
                         <i className="fa-solid fa-image text-4xl"></i>
                       </div>
-                    )}
-                    {category.img && (
-                      <img
-                        src={category.img || 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center'}
-                        alt={category.label}
-                        loading="eager"
-                        decoding="sync"
-                        className="w-full h-full object-cover rounded-full transition-all duration-150 ease-out group-hover:scale-105 group-hover:brightness-105 transform-gpu will-change-transform"
-                        style={{
-                          objectPosition: category.label === 'Vacation' ? '50% 20%' : '50% 15%',
-                          transform: category.label === 'Vacation' ? 'scale(1.05)' : undefined,
-                          willChange: 'transform'
-                        }}
-                        onError={(e) => {
-                          console.log(`Image failed to load for ${category.label}, trying fallback...`);
-                          // Multi-tier fallback system for reliable image loading
-                          const fileId = e.target.src.split('id=')[1] || e.target.src.split('/d/')[1]?.split('/')[0];
-                          if (fileId && !e.target.src.includes('lh3.googleusercontent.com')) {
-                            e.target.src = `https://lh3.googleusercontent.com/d/${fileId}`;
-                          } else if (fileId && !e.target.src.includes('drive.google.com/uc')) {
-                            e.target.src = `https://drive.google.com/uc?export=download&id=${fileId}`;
-                          } else {
-                            // Use reliable fallback immediately
-                            const fallbacks = {
-                              'Vacation': 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces',
-                              'Baby': 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop&crop=faces',
-                              'Boys': 'https://images.unsplash.com/photo-1503944168719-90febeb433c9?w=400&h=400&fit=crop&crop=faces',
-                              'Girls': 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=400&fit=crop&crop=faces',
-                              'Festive': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
-                              'Night Suits': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center',
-                              'Ethnic Wear': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&crop=center',
-                              'Traditional': 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=400&h=400&fit=crop&crop=center'
-                            };
-                            e.target.src = fallbacks[category.label] || 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&crop=faces';
-                            e.target.style.display = 'block';
-                          }
-                        }}
-                        onLoad={() => {
-                          console.log(`Successfully loaded image for ${category.label}`);
-                        }}
-                      />
                     )}
                   </div>
                   <div className="mt-4 text-sm md:text-base transition-all duration-150 group-hover:text-brand-primary group-hover:font-bold group-hover:scale-105 group-hover:-translate-y-1 relative z-10 text-gray-700 dark:text-golden-300 font-medium">{category.label}</div>
@@ -358,7 +290,8 @@ export default function HomePage() {
           NEW ARRIVAL
         </h2>
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {newArrivalImages.map((src, idx)=> {
+          {/* Removed newArrivalImages.map since we're removing all images */}
+          {[...Array(8)].map((_, idx)=> {
             const productNames = [
               'Elegant Red Dress',
               'Floral Print Kurti',
@@ -377,7 +310,10 @@ export default function HomePage() {
                 className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out"
               >
                 <div className="relative overflow-hidden">
-                  <img src={src} alt={productNames[idx]} className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-500 ease-out hover:scale-125 hover:brightness-110" loading="lazy" decoding="async"/>
+                  {/* Removed image element since we're removing all images */}
+                  <div className="w-full h-72 sm:h-80 md:h-[420px] bg-gray-200 flex items-center justify-center">
+                    <i className="fa-solid fa-image text-4xl text-gray-400"></i>
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
                   <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
                     <i className="fa-solid fa-heart text-white text-sm"></i>
@@ -404,7 +340,8 @@ export default function HomePage() {
           Watch & BUY
         </h2>
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {watchVideos.map((v, idx)=> {
+          {/* Removed watchVideos.map since we're removing all images/videos */}
+          {[...Array(4)].map((_, idx)=> {
             const videoNames = [
               'Blue Co-ord Set',
               'Mustard Ethnic',
@@ -419,19 +356,10 @@ export default function HomePage() {
                 className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-t-2xl">
-                  <video 
-                    src={v.src} 
-                    className="w-full h-72 sm:h-80 md:h-[420px] object-cover transition-all duration-300 ease-out group-hover:scale-110" 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline 
-                    preload="metadata"
-                    controls={false}
-                    onError={(e) => {
-                      console.log('Video failed to load, trying fallback...', e);
-                    }}
-                  />
+                  {/* Removed video element since we're removing all images/videos */}
+                  <div className="w-full h-72 sm:h-80 md:h-[420px] bg-gray-200 flex items-center justify-center">
+                    <i className="fa-solid fa-video text-4xl text-gray-400"></i>
+                  </div>
                   {/* Video name overlay */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
@@ -440,12 +368,12 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="p-4">
-                  <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">{v.title}</div>
+                  <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
                   <div className="mt-1 flex items-center gap-2">
-                    <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">{v.price}</div>
-                    <div className="text-gray-500 line-through text-sm">{v.oldPrice}</div>
+                    <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
+                    <div className="text-gray-500 line-through text-sm">₹2,999</div>
                   </div>
-                  <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">{v.discount}</div>
+                  <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
                 </div>
               </div>
             );
@@ -475,10 +403,10 @@ export default function HomePage() {
               }}
             >
               {[
-                {label:'Kurta Set', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
-                {label:'Anarkali Set', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
-                {label:'Co-Ords', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
-                {label:'Lehenga Set', img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop'}
+                {label:'Kurta Set', img:''},
+                {label:'Anarkali Set', img:''},
+                {label:'Co-Ords', img:''},
+                {label:'Lehenga Set', img:''}
               ].map((c, index)=> (
                 <div 
                   key={c.label} 
@@ -487,16 +415,10 @@ export default function HomePage() {
                   style={{ width: 'calc(33.33% - 20px)', marginRight: '30px' }}
                 >
                   <div className="rounded-2xl overflow-hidden">
-                    <img 
-                      src={c.img} 
-                      alt={c.label} 
-                      className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" 
-                      onError={(e) => {
-                        console.log(`Image failed to load for ${c.label}, trying fallback...`, e);
-                        // Fallback to Unsplash image
-                        e.target.src = 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop';
-                      }}
-                    />
+                    {/* Removed image element since we're removing all images */}
+                    <div className="w-full h-[360px] sm:h-[420px] md:h-[520px] bg-gray-200 flex items-center justify-center">
+                      <i className="fa-solid fa-image text-4xl text-gray-400"></i>
+                    </div>
                   </div>
                   <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
                 </div>
@@ -519,25 +441,20 @@ export default function HomePage() {
           Trending Products
         </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
-          {[
-            {img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
-            {img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO', title:'Cotton Muslin Baby | Pastel Pink', price:'Rs. 549.00'},
-            {img:'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
-            {img:'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
-            {img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj', title:'Swaddle | Nayantaara', price:'Rs. 475.00'},
-            {img:'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym', title:'Swaddle | Marigold', price:'Rs. 475.00'},
-            {img:'https://lh3.googleusercontent.com/d/1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A', title:'Newborn Muslin Gift Set', price:'Rs. 900.00'},
-            {img:'https://lh3.googleusercontent.com/d/1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo', title:'Muslin Blanket', price:'Rs. 900.00'}
-          ].map((p, i)=> (
+          {/* Removed products.map since we're removing all images */}
+          {[...Array(8)].map((_, i)=> (
             <div 
               key={i} 
               ref={addToTrendingRefs}
               className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden"
             >
-              <img src={p.img} alt={p.title} className="w-full h-80 md:h-96 object-cover transition-all duration-300 ease-out group-hover:scale-110" />
+              {/* Removed image element since we're removing all images */}
+              <div className="w-full h-80 md:h-96 bg-gray-200 flex items-center justify-center">
+                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
+              </div>
               <div className="p-4">
-                <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">{p.title}</div>
-                <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">{p.price}</div>
+                <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
+                <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">Rs. 1,999.00</div>
               </div>
             </div>
           ))}
@@ -549,16 +466,19 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-glossy-shine opacity-10"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 px-4 md:px-10 lg:px-16 relative z-10">
           {[
-            {title:'NEW ARRIVAL', cta:'SHOP NOW', img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO'},
-            {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
-            {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'}
+            {title:'NEW ARRIVAL', cta:'SHOP NOW', img:''},
+            {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:''},
+            {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:''}
           ].map((item, index)=> (
             <div 
               key={item.title} 
               ref={addToPromoRefs}
               className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
             >
-              <img src={item.img} alt={item.title} className="w-full h-[360px] sm:h-[420px] md:h-[520px] object-cover transition-all duration-300 ease-out group-hover:scale-110" />
+              {/* Removed image element since we're removing all images */}
+              <div className="w-full h-[360px] sm:h-[420px] md:h-[520px] bg-gray-200 flex items-center justify-center">
+                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-golden-900/70"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
                 <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.7)'}}>{item.title}</div>
@@ -579,51 +499,17 @@ export default function HomePage() {
           WHAT'S ON OUR INSTA FEED
         </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5">
-          {[
-            {src:'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', type:'video'},
-            {src:'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', type:'video'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://drive.google.com/uc?export=download&id=1orH50LetcZqjtmZO4b28Ak7ihYwdwiia', type:'video'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=533&fit=crop', type:'image'},
-            {src:'https://drive.google.com/uc?export=download&id=1I25veOf_ibpiF98-Nw69m2zrEmt8Q1Pe', type:'video'}
-          ].map((item, i) => (
+          {/* Removed insta feed items since we're removing all images */}
+          {[...Array(12)].map((_, i) => (
             <div 
               key={i} 
               ref={addToInstaRefs}
               className="scroll-animate-scale rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden cursor-pointer border-2 border-transparent hover:border-brand-primary"
             >
-              {item.type === 'video' ? (
-                <video 
-                  src={item.src} 
-                  className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline 
-                  preload="metadata"
-                  controls={false}
-                  onError={(e) => {
-                    console.log('Video failed to load, trying fallback...', e);
-                  }}
-                />
-              ) : (
-                <img 
-                  src={item.src} 
-                  alt="Insta highlight" 
-                  className="w-full aspect-[3/4] object-cover transition-all duration-300 ease-out hover:scale-110" 
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => {
-                    console.log('Image failed to load, trying fallback...', e);
-                  }}
-                />
-              )}
+              {/* Removed image/video element since we're removing all images */}
+              <div className="w-full aspect-[3/4] bg-gray-200 flex items-center justify-center">
+                <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+              </div>
             </div>
           ))}
         </div>
@@ -633,5 +519,3 @@ export default function HomePage() {
     </div>
   )
 }
-
-

@@ -1,77 +1,55 @@
-import { AuthService } from './auth.js';
-
-const API_BASE_URL = 'http://localhost:3001/api';
-
+// Wishlist service for managing wishlist functionality with localStorage
 export class WishlistService {
   constructor() {
-    this.authService = new AuthService();
+    this.wishlistKey = 'wishlist';
   }
 
+  // Get wishlist items from localStorage
   async getWishlist() {
-    if (!this.authService.isAuthenticated()) {
+    try {
+      const wishlistData = localStorage.getItem(this.wishlistKey);
+      const wishlist = wishlistData ? JSON.parse(wishlistData) : [];
+      return wishlist;
+    } catch (error) {
+      console.error('Error getting wishlist:', error);
       return [];
     }
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/wishlist`, {
-        headers: this.authService.getAuthHeaders(),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch wishlist');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching wishlist:', error);
-      throw error;
-    }
   }
 
+  // Add item to wishlist
   async addToWishlist(productId) {
-    if (!this.authService.isAuthenticated()) {
-      throw new Error('User not authenticated');
-    }
-
     try {
-      const response = await fetch(`${API_BASE_URL}/wishlist/${productId}`, {
-        method: 'POST',
-        headers: this.authService.getAuthHeaders(),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Failed to add to wishlist');
+      const wishlist = await this.getWishlist();
+      if (!wishlist.includes(productId)) {
+        wishlist.push(productId);
+        localStorage.setItem(this.wishlistKey, JSON.stringify(wishlist));
       }
-
-      return await response.json();
+      return wishlist;
     } catch (error) {
       console.error('Error adding to wishlist:', error);
       throw error;
     }
   }
 
+  // Remove item from wishlist
   async removeFromWishlist(productId) {
-    if (!this.authService.isAuthenticated()) {
-      throw new Error('User not authenticated');
-    }
-
     try {
-      const response = await fetch(`${API_BASE_URL}/wishlist/${productId}`, {
-        method: 'DELETE',
-        headers: this.authService.getAuthHeaders(),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Failed to remove from wishlist');
-      }
-
-      return await response.json();
+      const wishlist = await this.getWishlist();
+      const updatedWishlist = wishlist.filter(id => id !== productId);
+      localStorage.setItem(this.wishlistKey, JSON.stringify(updatedWishlist));
+      return updatedWishlist;
     } catch (error) {
       console.error('Error removing from wishlist:', error);
       throw error;
     }
   }
+
+  // Check if item is in wishlist
+  async isInWishlist(productId) {
+    const wishlist = await this.getWishlist();
+    return wishlist.includes(productId);
+  }
 }
 
+// Export a singleton instance
+export const wishlistService = new WishlistService();

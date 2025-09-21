@@ -227,12 +227,8 @@ export default function CartPage(){
                   <div key={item.id} className="p-6">
                     <div className="flex items-start gap-4">
                       {/* Product Image */}
-                      <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
-                        <img 
-                          src={item.image} 
-                          alt={item.name}
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                        <i className="fa-solid fa-image text-gray-400"></i>
                       </div>
 
                       {/* Product Details */}
@@ -303,12 +299,8 @@ export default function CartPage(){
                 <div className="space-y-3 mb-6">
                   {cartItems.slice(0, 4).map((item) => (
                     <div key={item.id} className="flex items-center gap-3 text-sm">
-                      <div className="w-8 h-8 rounded bg-gray-100 flex-shrink-0">
-                        <img 
-                          src={item.image} 
-                          alt={item.name}
-                          className="w-full h-full object-cover rounded"
-                        />
+                      <div className="w-8 h-8 rounded bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                        <i className="fa-solid fa-image text-gray-400"></i>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 truncate">{item.name.length > 25 ? item.name.substring(0, 25) + '...' : item.name}</p>

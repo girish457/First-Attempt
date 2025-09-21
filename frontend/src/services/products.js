@@ -1,34 +1,63 @@
-const API_BASE_URL = 'http://localhost:3001/api';
-
+// Products service for managing product data
 export class ProductService {
+  // Get all products
   async getProducts() {
-    try {
-      const response = await fetch(`${API_BASE_URL}/products`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch products');
+    // In a real app, this would make an API call
+    // For now, we'll return sample data
+    return [
+      {
+        id: 1,
+        name: "Premium Cotton Blend T-Shirt",
+        price: 1599,
+        originalPrice: 2499,
+        discount: 36,
+        rating: 4.5,
+        reviews: 128,
+        image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        category: "ethnic-woman"
+      },
+      {
+        id: 2,
+        name: "Elegant Evening Dress",
+        price: 4999,
+        originalPrice: 6999,
+        discount: 29,
+        rating: 4.8,
+        reviews: 95,
+        image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        category: "ethnic-woman"
+      },
+      {
+        id: 3,
+        name: "Casual Denim Jacket",
+        price: 2899,
+        originalPrice: 3999,
+        discount: 28,
+        rating: 4.3,
+        reviews: 156,
+        image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+        category: "child-girl"
+      },
+      {
+        id: 4,
+        name: "Summer Floral Maxi Dress",
+        price: 3599,
+        originalPrice: 4999,
+        discount: 28,
+        rating: 4.6,
+        reviews: 203,
+        image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+        category: "child-girl"
       }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      throw error;
-    }
+    ];
   }
 
-  async getProduct(id) {
-    try {
-      const response = await fetch(`${API_BASE_URL}/products/${id}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch product');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching product:', error);
-      throw error;
-    }
+  // Get product by ID
+  async getProductById(id) {
+    const products = await this.getProducts();
+    return products.find(product => product.id === parseInt(id)) || null;
   }
 }
 
+// Export a singleton instance
+export const productService = new ProductService();

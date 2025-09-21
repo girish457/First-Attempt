@@ -12,23 +12,21 @@ const ProductDetailPage = () => {
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [cartUpdateTrigger, setCartUpdateTrigger] = useState(0);
+  // Add state for image error handling
+  const [imageError, setImageError] = useState({});
 
   // Enhanced product data with more details for product page
   const enhancedProducts = {
     1: {
       brand: "METRONAUT",
       title: "Men Regular Fit Solid Spread Collar Casual Shirt",
-      images: [
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"
-      ],
+      images: [],
       colors: [
-        { name: 'Green', value: '#10B981', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
-        { name: 'Blue', value: '#3B82F6', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
-        { name: 'Pink', value: '#EC4899', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
-        { name: 'Light Blue', value: '#60A5FA', image: 'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg' },
-        { name: 'Navy', value: '#1E40AF', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' }
+        { name: 'Green', value: '#10B981', image: '' },
+        { name: 'Blue', value: '#3B82F6', image: '' },
+        { name: 'Pink', value: '#EC4899', image: '' },
+        { name: 'Light Blue', value: '#60A5FA', image: '' },
+        { name: 'Navy', value: '#1E40AF', image: '' }
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
       offers: [
@@ -59,15 +57,11 @@ const ProductDetailPage = () => {
     2: {
       brand: "RUNWAY",
       title: "Elegant Evening Dress - Premium Collection",
-      images: [
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"
-      ],
+      images: [],
       colors: [
-        { name: 'Maroon', value: '#7C2D12', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
-        { name: 'Green', value: '#10B981', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' },
-        { name: 'Golden', value: '#FFD700', image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop' }
+        { name: 'Maroon', value: '#7C2D12', image: '' },
+        { name: 'Green', value: '#10B981', image: '' },
+        { name: 'Golden', value: '#FFD700', image: '' }
       ],
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
       offers: [
@@ -97,7 +91,7 @@ const ProductDetailPage = () => {
       discount: 36,
       rating: 4.5,
       reviews: 128,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -108,7 +102,7 @@ const ProductDetailPage = () => {
       discount: 29,
       rating: 4.8,
       reviews: 95,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -119,7 +113,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.3,
       reviews: 156,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -130,7 +124,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.6,
       reviews: 203,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "child-girl"
     },
     {
@@ -141,7 +135,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 87,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -152,7 +146,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 312,
-      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
+      image: "",
       category: "child-boy"
     },
     {
@@ -163,7 +157,7 @@ const ProductDetailPage = () => {
       discount: 34,
       rating: 4.6,
       reviews: 89,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -174,7 +168,7 @@ const ProductDetailPage = () => {
       discount: 34,
       rating: 4.5,
       reviews: 145,
-      image: "/Festive.avif",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -185,7 +179,7 @@ const ProductDetailPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 267,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -196,7 +190,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.4,
       reviews: 198,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -207,7 +201,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.2,
       reviews: 345,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -218,7 +212,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 456,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -229,7 +223,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.5,
       reviews: 123,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -240,7 +234,7 @@ const ProductDetailPage = () => {
       discount: 32,
       rating: 4.6,
       reviews: 189,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -251,7 +245,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.8,
       reviews: 67,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -262,7 +256,7 @@ const ProductDetailPage = () => {
       discount: 31,
       rating: 4.2,
       reviews: 234,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -273,7 +267,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 156,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-boy"
     },
     {
@@ -284,7 +278,7 @@ const ProductDetailPage = () => {
       discount: 32,
       rating: 4.3,
       reviews: 298,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "child-girl"
     },
     {
@@ -295,7 +289,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 89,
-      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
+      image: "",
       category: "ethnic-woman"
     },
     {
@@ -306,7 +300,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.5,
       reviews: 145,
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+      image: "",
       category: "ethnic-woman"
     }
   ];
@@ -385,9 +379,9 @@ const ProductDetailPage = () => {
   const enhanced = enhancedProducts[product.id] || {
     brand: "RUNWAY",
     title: product.name,
-    images: [product.image],
+    images: [],
     colors: [
-      { name: 'Default', value: '#6B7280', image: product.image }
+      { name: 'Default', value: '#6B7280', image: '' }
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     offers: [
@@ -405,8 +399,12 @@ const ProductDetailPage = () => {
     additionalOffers: 5
   };
 
+  const handleImageError = (index) => {
+    setImageError(prev => ({ ...prev, [index]: true }));
+  };
+
   const currentImages = enhanced.images || [product.image];
-  const currentImage = currentImages[selectedImageIndex];
+  // Removed image handling since we're removing all images
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -438,28 +436,19 @@ const ProductDetailPage = () => {
           
           {/* Left Side - Product Images */}
           <div className="space-y-4">
-            {/* Thumbnail Images */}
+            {/* Thumbnail Images - Removed since we're removing all images */}
             <div className="flex gap-2 overflow-x-auto">
-              {currentImages.map((img, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`flex-shrink-0 w-16 h-20 border-2 rounded-lg overflow-hidden ${
-                    selectedImageIndex === index ? 'border-brand-primary' : 'border-gray-200'
-                  }`}
-                >
-                  <img src={img} alt={`Product ${index + 1}`} className="w-full h-full object-cover" />
-                </button>
-              ))}
+              {/* Removed thumbnail images since we're removing all images */}
+              <div className="w-16 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                <i className="fa-solid fa-image text-gray-400"></i>
+              </div>
             </div>
 
-            {/* Main Product Image */}
-            <div className="aspect-[4/5] bg-white rounded-lg overflow-hidden shadow-lg">
-              <img 
-                src={currentImage} 
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
+            {/* Main Product Image - Removed since we're removing all images */}
+            <div className="aspect-[4/5] bg-white rounded-lg overflow-hidden shadow-lg flex items-center justify-center">
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
+              </div>
             </div>
 
             {/* Action Buttons */}
@@ -503,7 +492,10 @@ const ProductDetailPage = () => {
                   <i className="fa-solid fa-star text-xs"></i>
                 </div>
                 <span className="text-gray-600 text-sm">{product.reviews} ratings and 0 reviews</span>
-                <img src="/assured-badge.png" alt="Assured" className="h-5" />
+                {/* Removed assured badge image since we're removing all images */}
+                <div className="h-5 w-5 bg-gray-200 rounded flex items-center justify-center">
+                  <i className="fa-solid fa-shield text-xs text-gray-400"></i>
+                </div>
               </div>
             </div>
 
@@ -517,14 +509,13 @@ const ProductDetailPage = () => {
                       key={color.name}
                       onClick={() => {
                         setSelectedColor(color.name);
-                        const imageIndex = currentImages.findIndex(img => img === color.image);
-                        if (imageIndex !== -1) setSelectedImageIndex(imageIndex);
+                        // Removed image index handling since we're removing all images
                       }}
-                      className={`w-16 h-20 border-2 rounded-lg overflow-hidden ${
+                      className={`w-16 h-20 border-2 rounded-lg overflow-hidden flex items-center justify-center ${
                         selectedColor === color.name ? 'border-brand-primary' : 'border-gray-200'
                       }`}
                     >
-                      <img src={color.image} alt={color.name} className="w-full h-full object-cover" />
+                      <div className="w-8 h-8 rounded-full" style={{ backgroundColor: color.value }}></div>
                     </button>
                   ))}
                 </div>

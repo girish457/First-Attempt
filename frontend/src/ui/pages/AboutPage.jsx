@@ -32,21 +32,18 @@ export default function AboutPage() {
       id: 1,
       name: "Priya Sharma",
       role: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       description: "Passionate about bringing traditional Indian fashion to the modern world."
     },
     {
       id: 2,
       name: "Arjun Patel",
       role: "Creative Director",
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       description: "Expert in blending contemporary designs with ethnic aesthetics."
     },
     {
       id: 3,
       name: "Meera Singh",
       role: "Head of Design",
-      image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
       description: "Specializes in children's ethnic wear and sustainable fashion."
     }
   ];
@@ -134,12 +131,8 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy">
-                <img 
-                  src="/Festive.avif" 
-                  alt="Our Story" 
-                  className="w-full h-80 object-cover rounded-2xl shadow-2xl border-4 border-golden-200"
-                />
+              <div className="bg-glossy-gold rounded-3xl p-8 transform hover:scale-105 transition-transform duration-500 shadow-glossy flex items-center justify-center h-80">
+                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
               </div>
             </div>
           </div>
@@ -239,13 +232,8 @@ export default function AboutPage() {
               >
                 <div className="bg-white rounded-3xl overflow-hidden shadow-glossy hover:shadow-golden-lg transition-all duration-500 transform hover:-translate-y-4 border-2 border-golden-100 hover:border-golden-300">
                   {/* Image Container */}
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative overflow-hidden flex items-center justify-center h-64 bg-gray-200">
+                    <i className="fa-solid fa-user text-4xl text-gray-400"></i>
                   </div>
                   
                   {/* Content */}

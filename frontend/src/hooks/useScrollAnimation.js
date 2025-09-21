@@ -1,120 +1,79 @@
-import { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
-/**
- * Custom hook for scroll-triggered animations
- * Provides smooth, staggered animations for elements as they enter viewport
- */
-export const useScrollAnimation = (options = {}) => {
-  const {
-    threshold = 0.2,
-    rootMargin = '0px 0px -20px 0px',
-    triggerOnce = false,
-    staggerDelay = 50,
-  } = options;
+// Hook for scroll animations with staggered delays
+export function useScrollAnimation({ threshold = 0.1, staggerDelay = 100 } = {}) {
+  const elementsRef = React.useRef([]);
+  const [animatedElements, setAnimatedElements] = React.useState(new Set());
 
-  const elementsRef = useRef([]);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const elements = elementsRef.current;
-    if (!elements.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            
-            // Add staggered animation classes
-            const index = elements.indexOf(entry.target);
-            const delay = index * staggerDelay;
-            
-            setTimeout(() => {
-              entry.target.classList.add('animate-in');
-            }, delay);
-
-            if (triggerOnce) {
-              observer.unobserve(entry.target);
-            }
-          } else {
-            // Remove animation class when element leaves viewport
-            entry.target.classList.remove('animate-in');
-            if (!triggerOnce) {
-              setIsVisible(false);
-            }
-          }
-        });
-      },
-      {
-        threshold,
-        rootMargin,
-      }
-    );
-
-    elements.forEach((element) => {
-      if (element) observer.observe(element);
-    });
-
-    return () => {
-      elements.forEach((element) => {
-        if (element) observer.unobserve(element);
-      });
-    };
-  }, [threshold, rootMargin, triggerOnce, staggerDelay]);
-
-  const addToRefs = (el) => {
+  const addToRefs = React.useCallback((el) => {
     if (el && !elementsRef.current.includes(el)) {
       elementsRef.current.push(el);
     }
-  };
+  }, []);
 
-  return { addToRefs, isVisible };
-};
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const delay = index * staggerDelay;
+            
+            setTimeout(() => {
+              element.classList.add('animate-in');
+              setAnimatedElements(prev => new Set([...prev, element]));
+            }, delay);
+            
+            observer.unobserve(element);
+          }
+        });
+      },
+      { threshold }
+    );
 
-/**
- * Simple scroll animation hook for single elements
- */
-export const useScrollAnimationSingle = (options = {}) => {
-  const {
-    threshold = 0.2,
-    rootMargin = '0px 0px -20px 0px',
-    triggerOnce = false,
-  } = options;
+    elementsRef.current.forEach((el) => {
+      if (el && !animatedElements.has(el)) {
+        observer.observe(el);
+      }
+    });
 
-  const elementRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+    return () => {
+      elementsRef.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, [threshold, staggerDelay, animatedElements]);
 
-  useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
+  return { addToRefs };
+}
 
+// Hook for single element scroll animation
+export function useScrollAnimationSingle({ threshold = 0.1 } = {}) {
+  const elementRef = React.useRef();
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          element.classList.add('animate-in');
-          
-          if (triggerOnce) {
-            observer.unobserve(element);
-          }
-        } else {
-          // Remove animation class when element leaves viewport
-          setIsVisible(false);
-          element.classList.remove('animate-in');
+          elementRef.current?.classList.add('animate-in');
+          observer.unobserve(entry.target);
         }
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold }
     );
 
-    observer.observe(element);
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
 
     return () => {
-      observer.unobserve(element);
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
     };
-  }, [threshold, rootMargin, triggerOnce]);
+  }, [threshold]);
 
   return { elementRef, isVisible };
-};
+}
