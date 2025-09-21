@@ -2,9 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset and base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
 /* Golden glossy theme defaults */
 body { 
   @apply font-poppins text-gray-900 bg-gradient-to-br from-golden-50 to-golden-100; 
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 .dark body { 
   @apply text-golden-100 bg-gradient-to-br from-gray-900 to-gray-800; 
@@ -118,6 +133,7 @@ body {
     object-fit: cover;
     border-radius: 50%;
     transition: transform 0.3s ease-in-out;
+    display: block;
   }
   
   .category-circle:hover img {
@@ -292,6 +308,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    display: block;
   }
   
   .new-arrival-frame .original-img {
@@ -317,6 +334,39 @@ body {
   .new-arrival-frame .absolute.top-4 {
     z-index: 3;
   }
+  
+  /* Video/Image display fixes */
+  img, video, iframe {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Carousel container fixes */
+  .carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+  }
+  
+  .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  
+  /* Container responsive with no extra margins */
+  .container-responsive {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 @keyframes fade-in-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -334,7 +384,6 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
 }
-.container-responsive { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
 
 /* Line clamp utility */
 .line-clamp-2 {

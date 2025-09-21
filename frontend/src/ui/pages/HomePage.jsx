@@ -74,6 +74,45 @@ export default function HomePage() {
   const { elementRef: promoTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
   const { elementRef: instaTitleRef } = useScrollAnimationSingle({ threshold: 0.2 })
 
+  // State for video carousel
+  const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0)
+  
+  // Video data for carousel (8 videos total)
+  const videos = [
+    { 
+      src: 'https://player.vimeo.com/video/1120563936',
+      title: 'Blue Co-ord Set'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120564287',
+      title: 'Mustard Ethnic'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120564518',
+      title: 'Anarkali Collection'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120564696',
+      title: 'Red Traditional'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120563936',
+      title: 'Elegant Lehenga'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120564287',
+      title: 'Designer Kurti'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120564518',
+      title: 'Floral Dress'
+    },
+    { 
+      src: 'https://player.vimeo.com/video/1120564696',
+      title: 'Silk Saree'
+    }
+  ]
+
   React.useEffect(() => {
     const t = setInterval(() => setCurrent((c) => (c + 1) % 5), 4500) // Changed to 5 since we removed banner images
     return () => clearInterval(t)
@@ -211,9 +250,19 @@ export default function HomePage() {
     }
   }
 
+  // Video carousel navigation functions
+  const nextVideoSet = () => {
+    setCurrentVideoIndex(prev => (prev === 0 ? 1 : 0))
+  }
+
+  const prevVideoSet = () => {
+    setCurrentVideoIndex(prev => (prev === 0 ? 1 : 0))
+  }
+
   return (
-    <div>
-      <section className="relative">
+    // Removed unnecessary div wrapper to reduce nesting and potential margin issues
+    <div className="w-full">
+      <section className="relative w-full">
         <div className="h-[80vh] md:h-[90vh] overflow-hidden relative"
              onTouchStart={(e)=>{startX.current = e.touches[0].clientX}}
              onTouchMove={(e)=>{delta.current = e.touches[0].clientX - startX.current}}
@@ -465,64 +514,132 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Watch and Buy block (videos) - same layout as NEW ARRIVAL */}
+      {/* Watch and Buy block (videos) - carousel layout */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
-        <h2 className="text-center text-3xl md:text-4xl font-bold tracking-wide mb-6 text-gray-800 dark:text-golden-300">
+        <h2 
+          ref={videoTitleRef}
+          className="scroll-animate text-center text-3xl md:text-4xl font-bold tracking-wide mb-6 text-gray-800 dark:text-golden-300"
+        >
           Watch & BUY
         </h2>
-        <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Vimeo videos with autoplay, muted, loop, and hidden controls */}
-          {[
-            { 
-              src: 'https://player.vimeo.com/video/1120563936',
-              title: 'Blue Co-ord Set'
-            },
-            { 
-              src: 'https://player.vimeo.com/video/1120564287',
-              title: 'Mustard Ethnic'
-            },
-            { 
-              src: 'https://player.vimeo.com/video/1120564518',
-              title: 'Anarkali Collection'
-            },
-            { 
-              src: 'https://player.vimeo.com/video/1120564696',
-              title: 'Red Traditional'
-            }
-          ].map((video, idx) => (
+        <div className="px-8 md:px-16 relative carousel-container">
+          {/* Navigation arrows */}
+          <button 
+            onClick={prevVideoSet}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white/20 flex items-center justify-center hover:scale-110 hidden md:flex"
+            aria-label="Previous videos"
+          >
+            <i className="fa-solid fa-chevron-left"></i>
+          </button>
+          <button 
+            onClick={nextVideoSet}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white/20 flex items-center justify-center hover:scale-110 hidden md:flex"
+            aria-label="Next videos"
+          >
+            <i className="fa-solid fa-chevron-right"></i>
+          </button>
+          
+          {/* Video carousel */}
+          <div className="overflow-hidden">
             <div 
-              key={idx} 
-              ref={addToVideoRefs}
-              className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+              className="flex transition-transform duration-500 ease-in-out carousel-wrapper"
+              style={{ transform: `translateX(-${currentVideoIndex * 100}%)` }}
             >
-              <div className="relative overflow-hidden rounded-t-2xl">
-                <div className="video-wrapper relative w-full overflow-hidden rounded-t-2xl bg-black" style={{ aspectRatio: '9/16' }}>
-                  <iframe 
-                    src={`${video.src}?autoplay=1&muted=1&loop=1&autopause=0&background=1&controls=0&quality=1080p&responsive=1`}
-                    className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2 object-cover"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen"
-                    title={video.title}
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                {/* Video name overlay */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
-                    <h3 className="text-sm md:text-base font-semibold text-white truncate">{video.title}</h3>
+              {/* First set of 4 videos */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full flex-shrink-0 carousel-slide">
+                {videos.slice(0, 4).map((video, idx) => (
+                  <div 
+                    key={idx} 
+                    ref={addToVideoRefs}
+                    className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+                  >
+                    <div className="relative overflow-hidden rounded-t-2xl">
+                      <div className="video-wrapper relative w-full overflow-hidden rounded-t-2xl bg-black" style={{ aspectRatio: '9/16' }}>
+                        <iframe 
+                          src={`${video.src}?autoplay=1&muted=1&loop=1&autopause=0&background=1&controls=0&quality=1080p&responsive=1`}
+                          className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2 object-cover"
+                          frameBorder="0"
+                          allow="autoplay; fullscreen"
+                          title={video.title}
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                      {/* Video name overlay */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                          <h3 className="text-sm md:text-base font-semibold text-white truncate">{video.title}</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
+                      <div className="mt-1 flex items-center gap-2">
+                        <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
+                        <div className="text-gray-500 line-through text-sm">₹2,999</div>
+                      </div>
+                      <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-              <div className="p-4">
-                <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
-                <div className="mt-1 flex items-center gap-2">
-                  <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
-                  <div className="text-gray-500 line-through text-sm">₹2,999</div>
+              
+              {/* Second set of 4 videos */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full flex-shrink-0 carousel-slide">
+                {videos.slice(4, 8).map((video, idx) => (
+                  <div 
+                    key={idx + 4} 
+                    ref={addToVideoRefs}
+                    className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+                  >
+                    <div className="relative overflow-hidden rounded-t-2xl">
+                      <div className="video-wrapper relative w-full overflow-hidden rounded-t-2xl bg-black" style={{ aspectRatio: '9/16' }}>
+                        <iframe 
+                          src={`${video.src}?autoplay=1&muted=1&loop=1&autopause=0&background=1&controls=0&quality=1080p&responsive=1`}
+                          className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2 object-cover"
+                          frameBorder="0"
+                          allow="autoplay; fullscreen"
+                          title={video.title}
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                      {/* Video name overlay */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                          <h3 className="text-sm md:text-base font-semibold text-white truncate">{video.title}</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
+                      <div className="mt-1 flex items-center gap-2">
+                        <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
+                        <div className="text-gray-500 line-through text-sm">₹2,999</div>
+                      </div>
+                      <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
+                    </div>
                   </div>
-                <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
+          
+          {/* Dots indicator for mobile */}
+          <div className="flex justify-center mt-6 md:hidden">
+            <div className="flex gap-2">
+              {[0, 1].map((idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentVideoIndex(idx)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentVideoIndex === idx 
+                      ? 'bg-golden-400 shadow-golden scale-125' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to video set ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

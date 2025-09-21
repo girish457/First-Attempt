@@ -30,8 +30,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className="w-full h-full m-0 p-0">
+      <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 )
-
-
