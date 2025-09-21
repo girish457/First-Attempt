@@ -198,13 +198,17 @@ export default function HomePage() {
     setTranslateX(-(categoryOffset * categoryWidth))
   }, [])
 
-  // Shop categories navigation functions
+  // Shop categories navigation functions with limit of 2 clicks
   const nextShopCategory = () => {
-    setShopCategoryOffset(1); // Jump directly to show the 4th frame
+    if (shopCategoryOffset < 2) { // Limit to 2 clicks
+      setShopCategoryOffset(prev => prev + 1);
+    }
   }
 
   const prevShopCategory = () => {
-    setShopCategoryOffset(0); // Jump directly back to first position
+    if (shopCategoryOffset > 0) {
+      setShopCategoryOffset(prev => prev - 1);
+    }
   }
 
   return (
@@ -353,44 +357,60 @@ export default function HomePage() {
           NEW ARRIVAL
         </h2>
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Removed newArrivalImages.map since we're removing all images */}
-          {[...Array(8)].map((_, idx)=> {
-            const productNames = [
-              'Elegant Red Dress',
-              'Floral Print Kurti',
-              'Designer Anarkali',
-              'Silk Saree',
-              'Cotton Lehenga',
-              'Embroidered Suit',
-              'Party Wear Gown',
-              'Traditional Outfit'
-            ];
-            
-            return (
-              <div 
-                key={idx} 
-                ref={addToArrivalRefs}
-                className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out"
-              >
-                <div className="relative overflow-hidden">
-                  {/* Removed image element since we're removing all images */}
-                  <div className="w-full h-72 sm:h-80 md:h-[420px] bg-gray-200 flex items-center justify-center">
-                    <i className="fa-solid fa-image text-4xl text-gray-400"></i>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
-                    <i className="fa-solid fa-heart text-white text-sm"></i>
-                  </div>
-                  {/* Product name overlay */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
-                      <h3 className="text-sm md:text-base font-semibold text-gray-800 truncate">{productNames[idx]}</h3>
-                    </div>
+          {/* New Arrival Images */}
+          {[
+            { img: 'https://i.postimg.cc/Bvq0xb0T/generated-image01.png', name: 'Elegant Red Dress' },
+            { img: 'https://i.postimg.cc/cJMJSPsm/generated-images-016.png', name: 'Floral Print Kurti' },
+            { img: 'https://i.postimg.cc/dtbQTJ36/generated-image-011.png', name: 'Designer Anarkali' },
+            { img: 'https://i.postimg.cc/j2WKL1rB/generated-image-04.png', name: 'Silk Saree' },
+            { img: 'https://i.postimg.cc/0jLvmCkj/generated-image-03.png', name: 'Cotton Lehenga' },
+            { img: 'https://i.postimg.cc/FRCNF4wj/generated-image-05.png', name: 'Embroidered Suit' },
+            { img: 'https://i.postimg.cc/HWPkdwCf/generated-image-014.png', name: 'Party Wear Gown' },
+            { img: 'https://i.postimg.cc/YSkpb81m/generated-image-012.png', name: 'Traditional Outfit' }
+          ].map((item, idx) => (
+            <div 
+              key={idx} 
+              ref={addToArrivalRefs}
+              className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out new-arrival-frame"
+            >
+              <div className="relative overflow-hidden">
+                <img 
+                  src={item.img} 
+                  alt={item.name}
+                  className="w-full h-72 sm:h-80 md:h-[420px] object-cover"
+                  style={{
+                    objectPosition: 
+                      idx === 0 ? 'center top' : 
+                      idx === 1 ? 'center center' : 
+                      idx === 2 ? 'center bottom' : 
+                      idx === 3 ? 'center top' : 
+                      idx === 4 ? 'center center' : 
+                      idx === 5 ? 'center bottom' : 
+                      idx === 6 ? 'center top' : 
+                      'center center',
+                  }}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  onError={(e) => {
+                    console.error(`Failed to load image for new arrival ${idx}:`, item.img);
+                    // Set a default fallback image
+                    e.target.src = 'https://i.postimg.cc/0jLvmCkj/generated-image-03.png';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
+                <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
+                  <i className="fa-solid fa-heart text-white text-sm"></i>
+                </div>
+                {/* Product name overlay */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
+                    <h3 className="text-sm md:text-base font-semibold text-gray-800 truncate">{item.name}</h3>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
         <div className="px-8 md:px-16 mt-8 flex justify-center">
           <Link to="/shop" className="golden-btn tracking-wide text-lg px-8 py-4 hover:scale-110 hover:shadow-glossy animate-pulse3d">VIEW ALL COLLECTION</Link>
@@ -403,94 +423,58 @@ export default function HomePage() {
           Watch & BUY
         </h2>
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Removed watchVideos.map since we're removing all images/videos */}
-          {[...Array(4)].map((_, idx)=> {
-            const videoNames = [
-              'Blue Co-ord Set',
-              'Mustard Ethnic',
-              'Anarkali Collection',
-              'Red Traditional'
-            ];
-            
-            return (
-              <div 
-                key={idx} 
-                ref={addToVideoRefs}
-                className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
-              >
-                <div className="relative overflow-hidden rounded-t-2xl">
-                  {/* Removed video element since we're removing all images/videos */}
-                  <div className="w-full h-72 sm:h-80 md:h-[420px] bg-gray-200 flex items-center justify-center">
-                    <i className="fa-solid fa-video text-4xl text-gray-400"></i>
-                  </div>
-                  {/* Video name overlay */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
-                      <h3 className="text-sm md:text-base font-semibold text-white truncate">{videoNames[idx]}</h3>
-                    </div>
-                  </div>
+          {/* Vimeo videos with autoplay, muted, loop, and hidden controls */}
+          {[
+            { 
+              src: 'https://player.vimeo.com/video/1120563936',
+              title: 'Blue Co-ord Set'
+            },
+            { 
+              src: 'https://player.vimeo.com/video/1120564287',
+              title: 'Mustard Ethnic'
+            },
+            { 
+              src: 'https://player.vimeo.com/video/1120564518',
+              title: 'Anarkali Collection'
+            },
+            { 
+              src: 'https://player.vimeo.com/video/1120564696',
+              title: 'Red Traditional'
+            }
+          ].map((video, idx) => (
+            <div 
+              key={idx} 
+              ref={addToVideoRefs}
+              className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+            >
+              <div className="relative overflow-hidden rounded-t-2xl">
+                <div className="video-wrapper relative w-full overflow-hidden rounded-t-2xl bg-black" style={{ aspectRatio: '9/16' }}>
+                  <iframe 
+                    src={`${video.src}?autoplay=1&muted=1&loop=1&autopause=0&background=1&controls=0&quality=1080p&responsive=1`}
+                    className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2 object-cover"
+                    frameBorder="0"
+                    allow="autoplay; fullscreen"
+                    title={video.title}
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
-                <div className="p-4">
-                  <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
-                  <div className="mt-1 flex items-center gap-2">
-                    <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
-                    <div className="text-gray-500 line-through text-sm">₹2,999</div>
+                {/* Video name overlay */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                    <h3 className="text-sm md:text-base font-semibold text-white truncate">{video.title}</h3>
                   </div>
-                  <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Shop by Categories (3 large frames) */}
-      <section className="w-full py-12 md:py-16 bg-gradient-to-br from-white to-golden-50">
-        <h2 
-          ref={shopTitleRef}
-          className="scroll-animate text-center text-2xl md:text-3xl font-bold tracking-wide mb-6 text-gray-800 dark:text-golden-300"
-          style={{textShadow: '2px 2px 4px rgba(0,0,0,0.1)'}}
-        >
-          SHOP BY CATEGORIES
-        </h2>
-        <div className="relative px-4 md:px-10 lg:px-16">
-          <button aria-label="Prev" className="hidden md:grid absolute left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center" onClick={prevShopCategory}>
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-10 overflow-hidden">
-            <div 
-              className="flex transition-transform duration-300 ease-out"
-              style={{
-                transform: `translateX(-${shopCategoryOffset * 33.33}%)`,
-                width: '133.33%' // Width to accommodate 4 items when showing 3
-              }}
-            >
-              {[
-                {label:'Kurta Set', img:''},
-                {label:'Anarkali Set', img:''},
-                {label:'Co-Ords', img:''},
-                {label:'Lehenga Set', img:''}
-              ].map((c, index)=> (
-                <div 
-                  key={c.label} 
-                  ref={addToShopRefs}
-                  className="scroll-animate-scale group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg cursor-pointer overflow-hidden flex-shrink-0"
-                  style={{ width: 'calc(33.33% - 20px)', marginRight: '30px' }}
-                >
-                  <div className="rounded-2xl overflow-hidden">
-                    {/* Removed image element since we're removing all images */}
-                    <div className="w-full h-[360px] sm:h-[420px] md:h-[520px] bg-gray-200 flex items-center justify-center">
-                      <i className="fa-solid fa-image text-4xl text-gray-400"></i>
-                    </div>
+              <div className="p-4">
+                <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
+                <div className="mt-1 flex items-center gap-2">
+                  <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
+                  <div className="text-gray-500 line-through text-sm">₹2,999</div>
                   </div>
-                  <div className="mt-4 text-center font-bold transition-all duration-300 group-hover:text-brand-primary text-lg text-gray-700 dark:text-golden-300">{c.label}</div>
-                </div>
-              ))}
+                <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
+              </div>
             </div>
-          </div>
-          <button aria-label="Next" className="hidden md:grid absolute right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-golden-gradient text-white shadow-golden border-2 border-white place-items-center" onClick={nextShopCategory}>
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
+          ))}
         </div>
       </section>
 

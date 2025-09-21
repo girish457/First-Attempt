@@ -14,7 +14,18 @@
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
-  "keywords": ["ethnic-wear", "e-commerce", "fullstack", "express", "vite", "react", "golden-theme"],
+  "keywords": [
+    "ethnic-wear",
+    "e-commerce",
+    "fullstack",
+    "express",
+    "vite",
+    "react",
+    "golden-theme"
+  ],
   "author": "Golden Elegance Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }

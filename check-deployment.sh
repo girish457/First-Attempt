@@ -9,12 +9,12 @@ const ProductCard = ({ product }) => {
   // Use a default image path if the product image is missing
   const imagePath = product.image && product.image.trim() !== '' 
     ? `/images/${product.image}` 
-    : '/default-product-image.svg';
+    : 'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X';
 
   return (
     <div className="product-card">
       <img 
-        src={imageError ? '/default-product-image.svg' : imagePath} 
+        src={imageError ? 'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X' : imagePath} 
         alt={product.name}
         onError={handleImageError}
         className="product-image"
@@ -120,12 +120,12 @@ const HomePage = () => {
     // Ensure we have a valid image path
     const imagePath = product.image && product.image.trim() !== '' 
       ? `/images/${product.image}` 
-      : '/default-product-image.svg';
+      : 'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X';
 
     return (
       <div className="product-card">
         <img 
-          src={imageError ? '/default-product-image.svg' : imagePath} 
+          src={imageError ? 'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X' : imagePath} 
           alt={product.name}
           onError={handleImageError}
           className="product-image"
