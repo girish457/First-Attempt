@@ -359,25 +359,58 @@ export default function HomePage() {
         <div className="px-8 md:px-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* New Arrival Images */}
           {[
-            { img: 'https://i.postimg.cc/Bvq0xb0T/generated-image01.png', name: 'Elegant Red Dress' },
-            { img: 'https://i.postimg.cc/cJMJSPsm/generated-images-016.png', name: 'Floral Print Kurti' },
-            { img: 'https://i.postimg.cc/dtbQTJ36/generated-image-011.png', name: 'Designer Anarkali' },
-            { img: 'https://i.postimg.cc/j2WKL1rB/generated-image-04.png', name: 'Silk Saree' },
-            { img: 'https://i.postimg.cc/0jLvmCkj/generated-image-03.png', name: 'Cotton Lehenga' },
-            { img: 'https://i.postimg.cc/FRCNF4wj/generated-image-05.png', name: 'Embroidered Suit' },
-            { img: 'https://i.postimg.cc/HWPkdwCf/generated-image-014.png', name: 'Party Wear Gown' },
-            { img: 'https://i.postimg.cc/YSkpb81m/generated-image-012.png', name: 'Traditional Outfit' }
+            { 
+              img: 'https://i.postimg.cc/Bvq0xb0T/generated-image01.png', 
+              hoverImg: 'https://i.postimg.cc/5284BDFV/generated-image-10.png', // Frame 1 hover image
+              name: 'Elegant Red Dress' 
+            },
+            { 
+              img: 'https://i.postimg.cc/cJMJSPsm/generated-images-016.png', 
+              hoverImg: 'https://i.postimg.cc/59GbZfBJ/generated-image-6.png', // Frame 2 hover image
+              name: 'Floral Print Kurti' 
+            },
+            { 
+              img: 'https://i.postimg.cc/dtbQTJ36/generated-image-011.png', 
+              hoverImg: 'https://i.postimg.cc/wB0dFzqS/generated-image-1.png', // Frame 3 hover image
+              name: 'Designer Anarkali' 
+            },
+            { 
+              img: 'https://i.postimg.cc/j2WKL1rB/generated-image-04.png', 
+              hoverImg: 'https://i.postimg.cc/J7pQwhY0/generated-image-2.png', // Frame 4 hover image
+              name: 'Silk Saree' 
+            },
+            { 
+              img: 'https://i.postimg.cc/0jLvmCkj/generated-image-03.png', 
+              hoverImg: 'https://i.postimg.cc/bNHSXVwT/generated-image-3.png', // Frame 5 hover image
+              name: 'Cotton Lehenga' 
+            },
+            { 
+              img: 'https://i.postimg.cc/FRCNF4wj/generated-image-05.png', 
+              hoverImg: 'https://i.postimg.cc/SxM5N9HD/generated-image-4.png', // Frame 6 hover image
+              name: 'Embroidered Suit' 
+            },
+            { 
+              img: 'https://i.postimg.cc/HWPkdwCf/generated-image-014.png', 
+              hoverImg: 'https://i.postimg.cc/NjvYjbCP/generated-image-4.png', // Frame 7 hover image
+              name: 'Party Wear Gown' 
+            },
+            { 
+              img: 'https://i.postimg.cc/YSkpb81m/generated-image-012.png', 
+              hoverImg: 'https://i.postimg.cc/MZ01xpsV/generated-image-6.png', // Frame 8 hover image
+              name: 'Traditional Outfit' 
+            }
           ].map((item, idx) => (
             <div 
               key={idx} 
               ref={addToArrivalRefs}
               className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out new-arrival-frame"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden h-72 sm:h-80 md:h-[420px]">
+                {/* Original Image */}
                 <img 
                   src={item.img} 
                   alt={item.name}
-                  className="w-full h-72 sm:h-80 md:h-[420px] object-cover"
+                  className="w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 original-img"
                   style={{
                     objectPosition: 
                       idx === 0 ? 'center top' : 
@@ -392,18 +425,33 @@ export default function HomePage() {
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
-                  onError={(e) => {
-                    console.error(`Failed to load image for new arrival ${idx}:`, item.img);
-                    // Set a default fallback image
-                    e.target.src = 'https://i.postimg.cc/0jLvmCkj/generated-image-03.png';
+                />
+                {/* Hover Image */}
+                <img 
+                  src={item.hoverImg} 
+                  alt={`${item.name} hover`}
+                  className="w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 hover-img"
+                  style={{
+                    objectPosition: 
+                      idx === 0 ? 'center top' : 
+                      idx === 1 ? 'center center' : 
+                      idx === 2 ? 'center bottom' : 
+                      idx === 3 ? 'center top' : 
+                      idx === 4 ? 'center center' : 
+                      idx === 5 ? 'center bottom' : 
+                      idx === 6 ? 'center top' : 
+                      'center center',
                   }}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-golden-400/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"></div>
-                <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100">
+                <div className="absolute top-4 right-4 w-8 h-8 bg-glossy-gold rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300 transform scale-0 hover:scale-100 z-10">
                   <i className="fa-solid fa-heart text-white text-sm"></i>
                 </div>
                 {/* Product name overlay */}
-                <div className="absolute bottom-4 left-4 right-4">
+                <div className="absolute bottom-4 left-4 right-4 z-10">
                   <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-lg">
                     <h3 className="text-sm md:text-base font-semibold text-gray-800 truncate">{item.name}</h3>
                   </div>
