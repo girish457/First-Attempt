@@ -526,7 +526,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* NEW BORN showcase (8 items) */}
+      {/* NEW BORN showcase (16 items) */}
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
         <h2 
           ref={trendingTitleRef}
@@ -536,20 +536,128 @@ export default function HomePage() {
           Trending Products
         </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
-          {/* Removed products.map since we're removing all images */}
-          {[...Array(8)].map((_, i)=> (
+          {/* Updated to 16 items (4 rows of 4) with actual product images and hover effect */}
+          {[
+            { 
+              img: 'https://i.postimg.cc/JhSTcdwb/AVP02949.jpg', 
+              hoverImg: 'https://i.postimg.cc/fRkKwSgk/generated-image-24.png',
+              title: 'Elegant Silk Saree', 
+              price: 'Rs. 2,499.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/tCrNNmWY/AVP02962.jpg', 
+              hoverImg: 'https://i.postimg.cc/L8pwyTyL/generated-image_(7).png',
+              title: 'Designer Kurti Set', 
+              price: 'Rs. 1,899.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/qqvCt4mQ/AVP02972.jpg', 
+              hoverImg: 'https://i.postimg.cc/NfTZ7VxQ/generated-image_(8).png',
+              title: 'Floral Print Lehenga', 
+              price: 'Rs. 3,299.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/mDbPqTGR/AVP02989.jpg', 
+              hoverImg: 'https://i.postimg.cc/zGCpVYFR/generated-image_(21).png',
+              title: 'Cotton Anarkali', 
+              price: 'Rs. 1,599.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/HnrkDxvG/AVP03003.jpg', 
+              hoverImg: 'https://i.postimg.cc/9XD6zzRR/generated-image_(13).png',
+              title: 'Embroidered Suit', 
+              price: 'Rs. 2,199.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/g0B0M84y/AVP03032.jpg', 
+              hoverImg: 'https://i.postimg.cc/5jcq2sH3/generated-image_(14).png',
+              title: 'Traditional Gown', 
+              price: 'Rs. 2,799.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/h41kccW6/AVP03068.jpg', 
+              hoverImg: 'https://i.postimg.cc/WzqwVB4z/generated-image_(15).png',
+              title: 'Party Wear Dress', 
+              price: 'Rs. 1,999.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/QNFfnDNc/AVP03085.jpg', 
+              hoverImg: 'https://i.postimg.cc/pXrGdSm2/generated-image-25.png',
+              title: 'Casual Ethnic Wear', 
+              price: 'Rs. 1,299.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/d0W94HzW/AVP03096.jpg', 
+              hoverImg: 'https://i.postimg.cc/vBNtpYbC/generated-image_(16).png',
+              title: 'Designer Salwar Suit', 
+              price: 'Rs. 2,399.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/qMXy1DK8/AVP03114.jpg', 
+              hoverImg: 'https://i.postimg.cc/266xcbR4/generated-image_(17).png',
+              title: 'Banarasi Silk Dupatta', 
+              price: 'Rs. 899.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/XYqq9skN/AVP03129.jpg', 
+              hoverImg: 'https://i.postimg.cc/tgD5Ndfq/generated-image_(18).png',
+              title: 'Chanderi Kurti', 
+              price: 'Rs. 1,499.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/3x07KVZG/AVP03158.jpg', 
+              hoverImg: 'https://i.postimg.cc/4NhWR9KP/generated-image_(20).png',
+              title: 'Georgette Saree', 
+              price: 'Rs. 2,599.00' 
+            },
+            // 4th row (corrected frames)
+            { 
+              img: 'https://i.postimg.cc/0QchG0fx/AVP03174.jpg', 
+              hoverImg: 'https://i.postimg.cc/zGCpVYFR/generated-image_(21).png',
+              title: 'Designer Lehenga', 
+              price: 'Rs. 3,499.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/ZnX7j7yk/AVP03184.jpg', 
+              hoverImg: 'https://i.postimg.cc/3w31Gftf/generated-image_(22).png',
+              title: 'Floral Kurti', 
+              price: 'Rs. 1,799.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/Gp9Ls9r4/AVP03050.jpg', 
+              hoverImg: 'https://i.postimg.cc/3rt0K84c/generated-image-26.png',
+              title: 'Anarkali Suit', 
+              price: 'Rs. 2,299.00' 
+            },
+            { 
+              img: 'https://i.postimg.cc/59m2GhPN/AVP03140.jpg', 
+              hoverImg: 'https://i.postimg.cc/tC1JphHs/generated-image-27.png',
+              title: 'Silk Saree', 
+              price: 'Rs. 2,999.00' 
+            }
+          ].map((product, i)=> (
             <div 
               key={i} 
               ref={addToTrendingRefs}
-              className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden"
+              className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden new-arrival-frame"
             >
-              {/* Removed image element since we're removing all images */}
-              <div className="w-full h-80 md:h-96 bg-gray-200 flex items-center justify-center">
-                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
+              <div className="w-full h-80 md:h-96 relative overflow-hidden rounded-t-xl">
+                {/* Original Image */}
+                <img 
+                  src={product.img} 
+                  alt={product.title}
+                  className="w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 original-img"
+                />
+                {/* Hover Image */}
+                <img 
+                  src={product.hoverImg} 
+                  alt={`${product.title} hover`}
+                  className="w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 hover-img"
+                />
               </div>
               <div className="p-4">
-                <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
-                <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">Rs. 1,999.00</div>
+                <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">{product.title}</div>
+                <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">{product.price}</div>
               </div>
             </div>
           ))}
@@ -570,7 +678,6 @@ export default function HomePage() {
               ref={addToPromoRefs}
               className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
             >
-              {/* Removed image element since we're removing all images */}
               <div className="w-full h-[360px] sm:h-[420px] md:h-[520px] bg-gray-200 flex items-center justify-center">
                 <i className="fa-solid fa-image text-4xl text-gray-400"></i>
               </div>
@@ -601,7 +708,6 @@ export default function HomePage() {
               ref={addToInstaRefs}
               className="scroll-animate-scale rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden cursor-pointer border-2 border-transparent hover:border-brand-primary"
             >
-              {/* Removed image/video element since we're removing all images */}
               <div className="w-full aspect-[3/4] bg-gray-200 flex items-center justify-center">
                 <i className="fa-solid fa-image text-2xl text-gray-400"></i>
               </div>
