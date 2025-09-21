@@ -27,7 +27,7 @@ const ProductDetailPage = () => {
         { name: 'Green', value: '#10B981', image: '/040A1369_1200x.jpeg' },
         { name: 'Blue', value: '#3B82F6', image: '/0T3A2640_8e89b49b-36cc-4775-bc89-5a72e0b42ab8_1200x.jpeg' },
         { name: 'Pink', value: '#EC4899', image: '/0T3A2791_0b30f11b-5c7f-4bca-9112-2477e5d6c987_1200x.jpeg' },
-        { name: 'Light Blue', value: '#60A5FA', image: '/LBL101ks396_1_1200x.jpeg' },
+        { name: 'Light Blue', value: '#60A5FA', image: 'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A' },
         { name: 'Navy', value: '#1E40AF', image: '/jumpsuit_99e4c0d7-ded6-411f-a6d6-54fceda67cc1_1500x.jpeg' }
       ],
       sizes: ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'],
@@ -130,7 +130,7 @@ const ProductDetailPage = () => {
       discount: 28,
       rating: 4.6,
       reviews: 203,
-      image: "/LBL101ks396_1_1200x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A",
       category: "child-girl"
     },
     {
@@ -152,7 +152,7 @@ const ProductDetailPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 312,
-      image: "/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
       category: "child-boy"
     },
     {
@@ -295,7 +295,7 @@ const ProductDetailPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 89,
-      image: "/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
       category: "ethnic-woman"
     },
     {

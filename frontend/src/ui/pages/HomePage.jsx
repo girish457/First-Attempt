@@ -25,9 +25,9 @@ const newArrivalImages = [
   'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI',
   'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj',
   'https://lh3.googleusercontent.com/d/1mYW2fNV3FSZzXLiKzGcqN2X0oiOEMxym',
-  '/LBL101ks396_1_1200x.jpeg',
-  '/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg',
-  '/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg',
+  'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A',
+  'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg',
+  'https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo',
 ]
 
 const categories = [
@@ -463,9 +463,9 @@ export default function HomePage() {
               }}
             >
               {[
-                {label:'Kurta Set', img:'/LBL101ks396_1_1200x.jpeg'},
+                {label:'Kurta Set', img:'https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A'},
                 {label:'Anarkali Set', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
-                {label:'Co-Ords', img:'/040A1369_1200x.jpeg'},
+                {label:'Co-Ords', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'},
                 {label:'Lehenga Set', img:'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&h=800&fit=crop'}
               ].map((c, index)=> (
                 <div 
@@ -499,7 +499,7 @@ export default function HomePage() {
         </h2>
         <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
           {[
-            {img:'/040A1369_1200x.jpeg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
+            {img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg', title:'Cotton Muslin Baby Angrakha', price:'Rs. 549.00'},
             {img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO', title:'Cotton Muslin Baby | Pastel Pink', price:'Rs. 549.00'},
             {img:'https://lh3.googleusercontent.com/d/18ZXCRtE1xlqaSpTsAffbnsCIQZJDOkOI', title:'Baby Co-ord Set | Mermaid', price:'Rs. 845.00'},
             {img:'https://lh3.googleusercontent.com/d/1pKZau-1FX4ALJxtNxWLOBCk7jVINn0zp', title:'Sleeve Romper', price:'Rs. 560.00'},
@@ -530,7 +530,7 @@ export default function HomePage() {
           {[
             {title:'NEW ARRIVAL', cta:'SHOP NOW', img:'https://lh3.googleusercontent.com/d/1MLvYA-1x8EUCpiYzOzlXLEB7qTArGWbO'},
             {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:'https://lh3.googleusercontent.com/d/1d2512nQvvZyjsvcroQXP3GBW0zlgZ3dj'},
-            {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:'/040A1369_1200x.jpeg'}
+            {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:'https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg'}
           ].map((item, index)=> (
             <div 
               key={item.title} 

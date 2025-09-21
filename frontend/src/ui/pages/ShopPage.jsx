@@ -75,7 +75,7 @@ const ShopPage = () => {
       discount: 28,
       rating: 4.6,
       reviews: 203,
-      image: "/LBL101ks396_1_1200x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A",
       category: "child-girl"
     },
     {
@@ -97,7 +97,7 @@ const ShopPage = () => {
       discount: 30,
       rating: 4.4,
       reviews: 312,
-      image: "/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
       category: "child-boy"
     },
     {
@@ -240,7 +240,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 89,
-      image: "/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
       category: "ethnic-woman"
     },
     {
@@ -284,7 +284,7 @@ const ShopPage = () => {
       discount: 32,
       rating: 4.6,
       reviews: 123,
-      image: "/LBL101ks396_1_1200x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A",
       category: "child-girl"
     },
     {
@@ -306,7 +306,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.2,
       reviews: 234,
-      image: "/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
       category: "child-boy"
     },
     {
@@ -339,7 +339,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.8,
       reviews: 67,
-      image: "/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
       category: "ethnic-woman"
     },
     // Additional products for pagination (29-56)
@@ -384,7 +384,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.7,
       reviews: 89,
-      image: "/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
       category: "ethnic-woman"
     },
     {
@@ -572,7 +572,7 @@ const ShopPage = () => {
       discount: 33,
       rating: 4.8,
       reviews: 78,
-      image: "/Ankita_Singh_4b539387-fbfc-4825-bc6f-b9c9aa539be8.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1XVDWnoy2epwzgURMsxaSpDlr5iiDidJo",
       category: "ethnic-woman"
     },
     {
@@ -638,7 +638,7 @@ const ShopPage = () => {
       discount: 34,
       rating: 4.8,
       reviews: 76,
-      image: "/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg",
+      image: "https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg",
       category: "ethnic-woman"
     },
     {
@@ -1003,7 +1003,7 @@ const ShopPage = () => {
               <div className="flex flex-col items-center group cursor-pointer">
                 <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
                   <img 
-                    src="/LBL101ks396_1_1200x.jpeg" 
+                    src="https://drive.google.com/uc?export=download&id=1nNKYYhvphzZSyzFWQMIqW-3TNH0psi3A" 
                     alt="Dresses" 
                     className="w-full h-full object-cover"
                   />
@@ -1031,7 +1031,7 @@ const ShopPage = () => {
               <div className="flex flex-col items-center group cursor-pointer">
                 <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl">
                   <img 
-                    src="/sharara_ff2760d2-32bc-4149-9c35-2d6700926db6_1500x.jpeg" 
+                    src="https://drive.google.com/uc?export=download&id=1tfIpTtBS-WxbEebzv1DdNwDWZL6cIUCg" 
                     alt="Kurta Sets" 
                     className="w-full h-full object-cover"
                   />
