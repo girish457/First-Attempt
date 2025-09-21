@@ -29,10 +29,10 @@ export default function HomePage() {
   // Categories data with images (4 total: only the main 4 categories)
   const categories = [
     // First 4 main categories only
-    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=15nVD6eVl7PtCUizIDqOt6iusl39__80g'},
-    {label:'Everyday elegance ', img:''},
-    {label:'Threads loom ', img:''},
-    {label:'Handpaint love', img:''},
+    {label:'Royal aura', img:'https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X'},
+    {label:'Everyday elegance', img:'/images/category2.jpg'},
+    {label:'Threads loom', img:'/images/category3_updated.jpg'},
+    {label:'Handpaint love', img:'/images/category3.jpg'},
   ]
   
   // Scroll animation hooks for different sections
@@ -267,13 +267,30 @@ export default function HomePage() {
                         src={category.img} 
                         alt={category.label}
                         className="w-full h-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
                         onError={(e) => {
+                          console.error(`Failed to load image for category ${index}:`, category.img);
                           setImageError(prev => ({ ...prev, [`category-${index}`]: true }));
+                        }}
+                        onLoad={() => {
+                          console.log(`Successfully loaded image for category ${index}:`, category.img);
                         }}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        <i className="fa-solid fa-image text-4xl"></i>
+                      <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                        {index === 0 ? (
+                          // Default image for the first category
+                          <img 
+                            src="https://drive.google.com/uc?export=download&id=1EPO-gsYJ8sy0biuAx2IhBsD5VUjUFV9X" 
+                            alt="Default product"
+                            className="w-3/4 h-3/4 object-contain"
+                          />
+                        ) : (
+                          // Icon fallback for other categories
+                          <i className="fa-solid fa-image text-4xl"></i>
+                        )}
                       </div>
                     )}
                   </div>
