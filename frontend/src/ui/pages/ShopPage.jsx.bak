@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { cartService } from '../../services/cart.js';
 
 const ShopPage = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('default');
   const [isFilterSidebarOpen, setIsFilterSidebarOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeTab, setActiveTab] = useState('new-arrival'); // Add this for feature tabs
   const productsPerPage = 28;
   const [expandedSections, setExpandedSections] = useState({
     price: false,
@@ -34,14 +32,14 @@ const ShopPage = () => {
   const filterDropdownRef = useRef(null);
   const filterSidebarRef = useRef(null);
 
-  // Create a mapping of image URLs to products for IDs 1-21
-  const products1To21 = [
+  // Sample products data (28 products for 7 rows of 4)
+  const products = [
     {
       id: 1,
       name: "Ombre pink kurti with handpaint",
       price: 2199,
       originalPrice: 2499,
-      discount: 36,
+      discount: 20,
       rating: 4.5,
       reviews: 128,
       image: "https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg",
@@ -51,8 +49,8 @@ const ShopPage = () => {
       id: 2,
       name: "Sky blue kurti set",
       price: 1999,
-      originalPrice: 6999,
-      discount: 29,
+      originalPrice: 2299,
+      discount: 13,
       rating: 4.8,
       reviews: 95,
       image: "https://i.postimg.cc/JhSTcdwb/AVP02949.jpg",
@@ -62,8 +60,8 @@ const ShopPage = () => {
       id: 3,
       name: "Lavender ombre kurti set",
       price: 1899,
-      originalPrice: 3999,
-      discount: 28,
+      originalPrice: 2199,
+      discount: 14,
       rating: 4.3,
       reviews: 156,
       image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
@@ -71,10 +69,10 @@ const ShopPage = () => {
     },
     {
       id: 4,
-      name: "Yellow handpaint kurti set",
-      price: 1999,
-      originalPrice: 4999,
-      discount: 28,
+      name: "Aqua blue hand paint kurti",
+      price: 2099,
+      originalPrice: 2399,
+      discount: 13,
       rating: 4.6,
       reviews: 203,
       image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
@@ -82,10 +80,10 @@ const ShopPage = () => {
     },
     {
       id: 5,
-      name: "A line plated kurti set",
-      price: 2299,
-      originalPrice: 8999,
-      discount: 33,
+      name: "Yellow handpaint kurti set",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
       rating: 4.7,
       reviews: 87,
       image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
@@ -93,10 +91,10 @@ const ShopPage = () => {
     },
     {
       id: 6,
-      name: "Plated kurti set",
-      price: 1799,
-      originalPrice: 2699,
-      discount: 30,
+      name: "Purple handpaint kurti set",
+      price: 2199,
+      originalPrice: 2499,
+      discount: 12,
       rating: 4.4,
       reviews: 312,
       image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
@@ -104,10 +102,10 @@ const ShopPage = () => {
     },
     {
       id: 7,
-      name: "Yellow color block design dress",
-      price: 1599,
-      originalPrice: 6999,
-      discount: 34,
+      name: "Green kurti with handpaint sleeves",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
       rating: 4.6,
       reviews: 89,
       image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
@@ -115,10 +113,10 @@ const ShopPage = () => {
     },
     {
       id: 8,
-      name: "Designer kurti paint",
-      price: 2299,
-      originalPrice: 4999,
-      discount: 34,
+      name: "Green plazzo kurti set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
       rating: 4.5,
       reviews: 145,
       image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
@@ -126,21 +124,21 @@ const ShopPage = () => {
     },
     {
       id: 9,
-      name: "Beige midi dress",
-      price: 1699,
-      originalPrice: 2199,
-      discount: 32,
+      name: "Pink kurti set",
+      price: 1799,
+      originalPrice: 1999,
+      discount: 10,
       rating: 4.3,
       reviews: 267,
-      image: "https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg",
+      image: "https://i.postimg.cc/J4c4f9Pz/AVP03044.jpg",
       category: "child-girl"
     },
     {
       id: 10,
       name: "A line kurti set",
       price: 1999,
-      originalPrice: 2499,
-      discount: 28,
+      originalPrice: 2299,
+      discount: 13,
       rating: 4.4,
       reviews: 198,
       image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
@@ -148,10 +146,10 @@ const ShopPage = () => {
     },
     {
       id: 11,
-      name: "Green plazzo kurti set",
-      price: 1699,
-      originalPrice: 1499,
-      discount: 33,
+      name: "Designer kurti paint",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
       rating: 4.2,
       reviews: 345,
       image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
@@ -159,10 +157,10 @@ const ShopPage = () => {
     },
     {
       id: 12,
-      name: "Lavender ombre kurti set",
-      price: 1899,
-      originalPrice: 1199,
-      discount: 33,
+      name: "A line plated kurti set",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
       rating: 4.7,
       reviews: 456,
       image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
@@ -170,10 +168,10 @@ const ShopPage = () => {
     },
     {
       id: 13,
-      name: "Green kurti with handpaint sleeves",
-      price: 1999,
-      originalPrice: 3299,
-      discount: 30,
+      name: "Kurti plazzo set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
       rating: 4.5,
       reviews: 123,
       image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
@@ -181,10 +179,10 @@ const ShopPage = () => {
     },
     {
       id: 14,
-      name: "Aqua blue hand paint kurti",
-      price: 2099,
-      originalPrice: 2799,
-      discount: 32,
+      name: "Plated kurti set",
+      price: 1799,
+      originalPrice: 1999,
+      discount: 10,
       rating: 4.6,
       reviews: 189,
       image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
@@ -192,10 +190,10 @@ const ShopPage = () => {
     },
     {
       id: 15,
-      name: "Purple handpaint kurti set",
-      price: 2199,
-      originalPrice: 9999,
-      discount: 30,
+      name: "Yellow color block design dress",
+      price: 1599,
+      originalPrice: 1799,
+      discount: 11,
       rating: 4.8,
       reviews: 67,
       image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
@@ -203,10 +201,10 @@ const ShopPage = () => {
     },
     {
       id: 16,
-      name: "Pink kurti set",
-      price: 1799,
-      originalPrice: 1299,
-      discount: 31,
+      name: "Orange one piece dress",
+      price: 1599,
+      originalPrice: 1799,
+      discount: 11,
       rating: 4.2,
       reviews: 234,
       image: "https://i.postimg.cc/yYdsGkgv/AVP03155.jpg",
@@ -214,10 +212,10 @@ const ShopPage = () => {
     },
     {
       id: 17,
-      name: "A line dress",
+      name: "Wine midi dress",
       price: 1499,
-      originalPrice: 2299,
-      discount: 30,
+      originalPrice: 1699,
+      discount: 12,
       rating: 4.4,
       reviews: 156,
       image: "https://i.postimg.cc/JhWwRn0w/AVP03166.jpg",
@@ -225,10 +223,10 @@ const ShopPage = () => {
     },
     {
       id: 18,
-      name: "Wine midi dress",
-      price: 1499,
+      name: "Beige midi dress",
+      price: 1699,
       originalPrice: 1899,
-      discount: 32,
+      discount: 11,
       rating: 4.3,
       reviews: 298,
       image: "https://i.postimg.cc/25YtPK9r/AVP03180.jpg",
@@ -236,10 +234,10 @@ const ShopPage = () => {
     },
     {
       id: 19,
-      name: "Orange one piece dress",
-      price: 1599,
-      originalPrice: 5999,
-      discount: 33,
+      name: "A line dress",
+      price: 1499,
+      originalPrice: 1699,
+      discount: 12,
       rating: 4.7,
       reviews: 89,
       image: "https://i.postimg.cc/jjvMBdJ4/AVP03194.jpg",
@@ -247,10 +245,10 @@ const ShopPage = () => {
     },
     {
       id: 20,
-      name: "coming soon",
-      price: 12000,
-      originalPrice: 4299,
-      discount: 33,
+      name: "Coming soon",
+      price: 1200,
+      originalPrice: 1499,
+      discount: 20,
       rating: 4.5,
       reviews: 145,
       image: "https://i.postimg.cc/SKQBnP6V/AVP03208.jpg",
@@ -258,414 +256,567 @@ const ShopPage = () => {
     },
     {
       id: 21,
-      name: "coming soon",
-      price: 12000,
-      originalPrice: 2199,
-      discount: 32,
+      name: "Coming soon",
+      price: 1400,
+      originalPrice: 1699,
+      discount: 17,
       rating: 4.3,
       reviews: 267,
       image: "https://i.postimg.cc/d1rjwshf/AVP03233.jpg",
       category: "child-girl"
-    }
-  ];
-
-  // Create a map of image URLs to products for IDs 1-21
-  const imageToProductMap = {};
-  products1To21.forEach(product => {
-    imageToProductMap[product.image] = product;
-  });
-
-  // Define product arrays for feature tabs
-  const newArrivalProducts = [
-    products1To21[0],  // Ombre pink kurti with handpaint
-    products1To21[3],  // Yellow handpaint kurti set
-    products1To21[6],  // Yellow color block design dress
-    products1To21[9],  // A line kurti set
-    products1To21[12], // Green kurti with handpaint sleeves
-    products1To21[15], // Pink kurti set
-    products1To21[18]  // Orange one piece dress
-  ];
-
-  const bestSellerProducts = [
-    products1To21[1],  // Sky blue kurti set
-    products1To21[4],  // A line plated kurti set
-    products1To21[7],  // Designer kurti paint
-    products1To21[10], // Green plazzo kurti set
-    products1To21[13], // Aqua blue hand paint kurti
-    products1To21[16], // A line dress
-    products1To21[19]  // coming soon
-  ];
-
-  const topProducts = [
-    products1To21[2],  // Lavender ombre kurti set
-    products1To21[5],  // Plated kurti set
-    products1To21[8],  // Beige midi dress
-    products1To21[11], // Lavender ombre kurti set
-    products1To21[14], // Purple handpaint kurti set
-    products1To21[17], // Wine midi dress
-    products1To21[20]  // coming soon
-  ];
-
-  // Sample products data (28 products for 7 rows of 4)
-  const products = [
+    },
+    // Additional products with randomly assigned images
+    // When reusing images, we also reuse the corresponding names and prices
     {
       id: 22,
       name: "Ombre pink kurti with handpaint",
       price: 2199,
       originalPrice: 2499,
-      discount: 36,
-      rating: 4.5,
-      reviews: 128,
+      discount: 20,
+      rating: 4.4,
+      reviews: 189,
       image: "https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg",
-      category: "ethnic-woman"
+      category: "child-boy"
     },
     {
       id: 23,
       name: "Sky blue kurti set",
       price: 1999,
-      originalPrice: 6999,
-      discount: 29,
-      rating: 4.8,
-      reviews: 95,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.6,
+      reviews: 123,
       image: "https://i.postimg.cc/JhSTcdwb/AVP02949.jpg",
-      category: "ethnic-woman"
+      category: "child-girl"
     },
     {
       id: 24,
       name: "Lavender ombre kurti set",
       price: 1899,
-      originalPrice: 3999,
-      discount: 28,
-      rating: 4.3,
-      reviews: 156,
+      originalPrice: 2199,
+      discount: 14,
+      rating: 4.5,
+      reviews: 98,
       image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
-      category: "child-girl"
+      category: "ethnic-woman"
     },
     {
       id: 25,
-      name: "Yellow handpaint kurti set",
-      price: 1999,
-      originalPrice: 4999,
-      discount: 28,
-      rating: 4.6,
-      reviews: 203,
-      image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 26,
-      name: "A line plated kurti set",
-      price: 2299,
-      originalPrice: 8999,
-      discount: 33,
-      rating: 4.7,
-      reviews: 87,
-      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
-      category: "child-boy"
-    },
-    {
-      id: 27,
-      name: "Plated kurti set",
-      price: 1799,
-      originalPrice: 2699,
-      discount: 30,
-      rating: 4.4,
-      reviews: 312,
-      image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
-      category: "child-boy"
-    },
-    {
-      id: 28,
-      name: "Yellow color block design dress",
-      price: 1599,
-      originalPrice: 6999,
-      discount: 34,
-      rating: 4.6,
-      reviews: 89,
-      image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 29,
-      name: "Designer kurti paint",
-      price: 2299,
-      originalPrice: 4999,
-      discount: 34,
-      rating: 4.5,
-      reviews: 145,
-      image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 30,
-      name: "Beige midi dress",
-      price: 1699,
-      originalPrice: 2199,
-      discount: 32,
-      rating: 4.3,
-      reviews: 267,
-      image: "https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 31,
-      name: "A line kurti set",
-      price: 1999,
-      originalPrice: 2499,
-      discount: 28,
-      rating: 4.4,
-      reviews: 198,
-      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
-      category: "child-boy"
-    },
-    {
-      id: 32,
-      name: "Green plazzo kurti set",
-      price: 1699,
-      originalPrice: 1499,
-      discount: 33,
-      rating: 4.2,
-      reviews: 345,
-      image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 33,
-      name: "Lavender ombre kurti set",
-      price: 1899,
-      originalPrice: 1199,
-      discount: 33,
-      rating: 4.7,
-      reviews: 456,
-      image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
-      category: "child-boy"
-    },
-    {
-      id: 34,
-      name: "Green kurti with handpaint sleeves",
-      price: 1999,
-      originalPrice: 3299,
-      discount: 30,
-      rating: 4.5,
-      reviews: 123,
-      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 35,
       name: "Aqua blue hand paint kurti",
       price: 2099,
-      originalPrice: 2799,
-      discount: 32,
-      rating: 4.6,
-      reviews: 189,
-      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 36,
-      name: "Purple handpaint kurti set",
-      price: 2199,
-      originalPrice: 9999,
-      discount: 30,
-      rating: 4.8,
-      reviews: 67,
-      image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 37,
-      name: "Pink kurti set",
-      price: 1799,
-      originalPrice: 1299,
-      discount: 31,
+      originalPrice: 2399,
+      discount: 13,
       rating: 4.2,
       reviews: 234,
-      image: "https://i.postimg.cc/yYdsGkgv/AVP03155.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 38,
-      name: "A line dress",
-      price: 1499,
-      originalPrice: 2299,
-      discount: 30,
-      rating: 4.4,
-      reviews: 156,
-      image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 25,
-      name: "Yellow handpaint kurti set",
-      price: 1999,
-      originalPrice: 4999,
-      discount: 28,
-      rating: 4.6,
-      reviews: 203,
       image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 26,
-      name: "A line plated kurti set",
-      price: 2299,
-      originalPrice: 8999,
-      discount: 33,
-      rating: 4.7,
-      reviews: 87,
-      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
       category: "child-boy"
     },
     {
+      id: 26,
+      name: "Yellow handpaint kurti set",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.6,
+      reviews: 156,
+      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
+      category: "child-girl"
+    },
+    {
       id: 27,
-      name: "Plated kurti set",
-      price: 1799,
-      originalPrice: 2699,
-      discount: 30,
-      rating: 4.4,
-      reviews: 312,
+      name: "Purple handpaint kurti set",
+      price: 2199,
+      originalPrice: 2499,
+      discount: 12,
+      rating: 4.3,
+      reviews: 189,
       image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
       category: "child-boy"
     },
     {
       id: 28,
-      name: "Yellow color block design dress",
-      price: 1599,
-      originalPrice: 6999,
-      discount: 34,
-      rating: 4.6,
-      reviews: 89,
+      name: "Green kurti with handpaint sleeves",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.8,
+      reviews: 67,
       image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
       category: "ethnic-woman"
     },
     // Additional products for pagination (29-56)
     {
       id: 29,
-      name: "Designer cotton kurta",
-      price: 2299,
-      originalPrice: 4999,
-      discount: 34,
-      rating: 4.5,
-      reviews: 145,
+      name: "Green plazzo kurti set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
+      rating: 4.4,
+      reviews: 178,
       image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
       category: "ethnic-woman"
     },
     {
       id: 30,
-      name: "Beige midi dress",
-      price: 1699,
-      originalPrice: 2199,
-      discount: 32,
+      name: "Pink kurti set",
+      price: 1799,
+      originalPrice: 1999,
+      discount: 10,
       rating: 4.3,
-      reviews: 267,
-      image: "https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg",
+      reviews: 234,
+      image: "https://i.postimg.cc/J4c4f9Pz/AVP03044.jpg",
       category: "child-girl"
     },
     {
       id: 31,
       name: "A line kurti set",
       price: 1999,
-      originalPrice: 2499,
-      discount: 28,
-      rating: 4.4,
-      reviews: 198,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.5,
+      reviews: 145,
       image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
       category: "child-boy"
     },
     {
       id: 32,
-      name: "Green plazzo kurti set",
-      price: 1699,
-      originalPrice: 1499,
-      discount: 33,
-      rating: 4.2,
-      reviews: 345,
+      name: "Designer kurti paint",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
+      rating: 4.7,
+      reviews: 89,
       image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
-      category: "child-girl"
+      category: "ethnic-woman"
     },
     {
       id: 33,
-      name: "Lavender ombre kurti set",
-      price: 1899,
-      originalPrice: 1199,
-      discount: 33,
-      rating: 4.7,
-      reviews: 456,
+      name: "A line plated kurti set",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
+      rating: 4.6,
+      reviews: 267,
       image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
       category: "child-boy"
     },
     {
       id: 34,
-      name: "Green kurti with handpaint sleeves",
-      price: 1999,
-      originalPrice: 3299,
-      discount: 30,
-      rating: 4.5,
-      reviews: 123,
+      name: "Kurti plazzo set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
+      rating: 4.8,
+      reviews: 78,
       image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
       category: "ethnic-woman"
     },
     {
       id: 35,
+      name: "Plated kurti set",
+      price: 1799,
+      originalPrice: 1999,
+      discount: 10,
+      rating: 4.3,
+      reviews: 156,
+      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 36,
+      name: "Yellow color block design dress",
+      price: 1599,
+      originalPrice: 1799,
+      discount: 11,
+      rating: 4.4,
+      reviews: 134,
+      image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 37,
+      name: "Orange one piece dress",
+      price: 1599,
+      originalPrice: 1799,
+      discount: 11,
+      rating: 4.5,
+      reviews: 189,
+      image: "https://i.postimg.cc/yYdsGkgv/AVP03155.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 38,
+      name: "Wine midi dress",
+      price: 1499,
+      originalPrice: 1699,
+      discount: 12,
+      rating: 4.6,
+      reviews: 123,
+      image: "https://i.postimg.cc/JhWwRn0w/AVP03166.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 39,
+      name: "Beige midi dress",
+      price: 1699,
+      originalPrice: 1899,
+      discount: 11,
+      rating: 4.4,
+      reviews: 167,
+      image: "https://i.postimg.cc/25YtPK9r/AVP03180.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 40,
+      name: "A line dress",
+      price: 1499,
+      originalPrice: 1699,
+      discount: 12,
+      rating: 4.7,
+      reviews: 89,
+      image: "https://i.postimg.cc/jjvMBdJ4/AVP03194.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 41,
+      name: "Coming soon",
+      price: 1200,
+      originalPrice: 1499,
+      discount: 20,
+      rating: 4.2,
+      reviews: 234,
+      image: "https://i.postimg.cc/SKQBnP6V/AVP03208.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 42,
+      name: "Coming soon",
+      price: 1400,
+      originalPrice: 1699,
+      discount: 17,
+      rating: 4.3,
+      reviews: 145,
+      image: "https://i.postimg.cc/d1rjwshf/AVP03233.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 43,
+      name: "Ombre pink kurti with handpaint",
+      price: 2199,
+      originalPrice: 2499,
+      discount: 20,
+      rating: 4.6,
+      reviews: 123,
+      image: "https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 44,
+      name: "Sky blue kurti set",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.4,
+      reviews: 178,
+      image: "https://i.postimg.cc/JhSTcdwb/AVP02949.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 45,
+      name: "Lavender ombre kurti set",
+      price: 1899,
+      originalPrice: 2199,
+      discount: 14,
+      rating: 4.5,
+      reviews: 156,
+      image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 46,
       name: "Aqua blue hand paint kurti",
       price: 2099,
-      originalPrice: 2799,
-      discount: 32,
-      rating: 4.6,
+      originalPrice: 2399,
+      discount: 13,
+      rating: 4.7,
+      reviews: 98,
+      image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 47,
+      name: "Yellow handpaint kurti set",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.1,
+      reviews: 267,
+      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 48,
+      name: "Purple handpaint kurti set",
+      price: 2199,
+      originalPrice: 2499,
+      discount: 12,
+      rating: 4.2,
       reviews: 189,
+      image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 49,
+      name: "Green kurti with handpaint sleeves",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.6,
+      reviews: 123,
+      image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 50,
+      name: "Green plazzo kurti set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
+      rating: 4.3,
+      reviews: 156,
+      image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 51,
+      name: "A line kurti set",
+      price: 1999,
+      originalPrice: 2299,
+      discount: 13,
+      rating: 4.4,
+      reviews: 134,
+      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 52,
+      name: "Designer kurti paint",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
+      rating: 4.8,
+      reviews: 78,
+      image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 53,
+      name: "A line plated kurti set",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
+      rating: 4.3,
+      reviews: 167,
+      image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 54,
+      name: "Kurti plazzo set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
+      rating: 4.4,
+      reviews: 145,
+      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 55,
+      name: "Plated kurti set",
+      price: 1799,
+      originalPrice: 1999,
+      discount: 10,
+      rating: 4.5,
+      reviews: 123,
       image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
       category: "ethnic-woman"
     },
     {
-      id: 36,
-      name: "Purple handpaint kurti set",
-      price: 2199,
-      originalPrice: 9999,
-      discount: 30,
-      rating: 4.8,
-      reviews: 67,
+      id: 56,
+      name: "Yellow color block design dress",
+      price: 1599,
+      originalPrice: 1799,
+      discount: 11,
+      rating: 4.6,
+      reviews: 156,
       image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
+      category: "ethnic-woman"
+    }
+  ];
+
+  // Filter products based on selected category
+      id: 54,
+      name: "Kurti plazzo set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
+      rating: 4.8,
+      reviews: 123,
+      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
       category: "ethnic-woman"
     },
     {
-      id: 37,
-      name: "Pink kurti set",
+      id: 55,
+      name: "Plated kurti set",
       price: 1799,
-      originalPrice: 1299,
-      discount: 31,
-      rating: 4.2,
-      reviews: 234,
-      image: "https://i.postimg.cc/yYdsGkgv/AVP03155.jpg",
+      originalPrice: 1999,
+      discount: 10,
+      rating: 4.3,
+      reviews: 156,
+      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
       category: "child-girl"
     },
     {
-      id: 38,
-      name: "A line dress",
-      price: 1499,
+      id: 51,
+      name: "A line kurti set",
+      price: 1999,
       originalPrice: 2299,
-      discount: 30,
+      discount: 13,
       rating: 4.4,
-      reviews: 156,
-      image: "https://i.postimg.cc/JhWwRn0w/AVP03166.jpg",
+      reviews: 134,
+      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
       category: "child-boy"
     },
     {
-      id: 39,
-      name: "Wine midi dress",
-      price: 1499,
-      originalPrice: 1899,
-      discount: 32,
+      id: 52,
+      name: "Designer kurti paint",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
+      rating: 4.8,
+      reviews: 78,
+      image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 53,
+      name: "A line plated kurti set",
+      price: 2299,
+      originalPrice: 2599,
+      discount: 12,
       rating: 4.3,
-      reviews: 298,
-      image: "https://i.postimg.cc/25YtPK9r/AVP03180.jpg",
+      reviews: 167,
+      image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
       category: "child-girl"
     },
     {
-      id: 40,
-      name: "Orange one piece dress",
+      id: 54,
+      name: "Kurti plazzo set",
+      price: 1699,
+      originalPrice: 1999,
+      discount: 15,
+      rating: 4.4,
+      reviews: 145,
+      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 55,
+      name: "Plated kurti set",
+      price: 1799,
+      originalPrice: 1999,
+      discount: 10,
+      rating: 4.5,
+      reviews: 123,
+      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 56,
+      name: "Yellow color block design dress",
       price: 1599,
-      originalPrice: 5999,
+      originalPrice: 1799,
+      discount: 11,
+      rating: 4.6,
+      reviews: 156,
+      image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
+      category: "ethnic-woman"
+    }
+  ];
+      category: "child-boy"
+    },
+    {
+      id: 34,
+      name: "Designer Lehenga",
+      price: 6999,
+      originalPrice: 9999,
+      discount: 30,
+      rating: 4.8,
+      reviews: 78,
+      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 35,
+      name: "Kids Casual Outfit",
+      price: 1299,
+      originalPrice: 1899,
+      discount: 32,
+      rating: 4.3,
+      reviews: 156,
+      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 36,
+      name: "Boys Formal Wear",
+      price: 1799,
+      originalPrice: 2599,
+      discount: 31,
+      rating: 4.4,
+      reviews: 134,
+      image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 37,
+      name: "Ethnic Cotton Kurta",
+      price: 1499,
+      originalPrice: 2199,
+      discount: 32,
+      rating: 4.5,
+      reviews: 189,
+      image: "https://i.postimg.cc/yYdsGkgv/AVP03155.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 38,
+      name: "Girls Party Dress",
+      price: 2299,
+      originalPrice: 3299,
+      discount: 30,
+      rating: 4.6,
+      reviews: 123,
+      image: "https://i.postimg.cc/JhWwRn0w/AVP03166.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 39,
+      name: "Boys Ethnic Wear",
+      price: 1899,
+      originalPrice: 2799,
+      discount: 32,
+      rating: 4.4,
+      reviews: 167,
+      image: "https://i.postimg.cc/25YtPK9r/AVP03180.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 40,
+      name: "Designer Saree",
+      price: 5999,
+      originalPrice: 8999,
       discount: 33,
       rating: 4.7,
       reviews: 89,
@@ -674,163 +825,163 @@ const ShopPage = () => {
     },
     {
       id: 41,
-      name: "coming soon",
-      price: 12000,
-      originalPrice: 4299,
+      name: "Casual Kids Wear",
+      price: 999,
+      originalPrice: 1499,
       discount: 33,
-      rating: 4.5,
-      reviews: 145,
+      rating: 4.2,
+      reviews: 234,
       image: "https://i.postimg.cc/SKQBnP6V/AVP03208.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 42,
-      name: "coming soon",
-      price: 12000,
-      originalPrice: 2199,
-      discount: 32,
-      rating: 4.3,
-      reviews: 267,
-      image: "https://i.postimg.cc/d1rjwshf/AVP03233.jpg",
       category: "child-girl"
     },
     {
+      id: 42,
+      name: "Boys Sports Wear",
+      price: 1399,
+      originalPrice: 1999,
+      discount: 30,
+      rating: 4.3,
+      reviews: 145,
+      image: "https://i.postimg.cc/d1rjwshf/AVP03233.jpg",
+      category: "child-boy"
+    },
+    {
       id: 43,
-      name: "Ombre pink kurti with handpaint",
-      price: 2199,
-      originalPrice: 2499,
-      discount: 36,
-      rating: 4.5,
-      reviews: 128,
+      name: "Traditional Kurta Set",
+      price: 2999,
+      originalPrice: 4499,
+      discount: 33,
+      rating: 4.6,
+      reviews: 123,
       image: "https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg",
       category: "ethnic-woman"
     },
     {
       id: 44,
-      name: "Sky blue kurti set",
-      price: 1999,
-      originalPrice: 6999,
-      discount: 29,
-      rating: 4.8,
-      reviews: 95,
+      name: "Girls Traditional Wear",
+      price: 1699,
+      originalPrice: 2499,
+      discount: 32,
+      rating: 4.4,
+      reviews: 178,
       image: "https://i.postimg.cc/JhSTcdwb/AVP02949.jpg",
-      category: "ethnic-woman"
+      category: "child-girl"
     },
     {
       id: 45,
-      name: "Lavender ombre kurti set",
-      price: 1899,
-      originalPrice: 3999,
-      discount: 28,
-      rating: 4.3,
+      name: "Boys Traditional Outfit",
+      price: 1999,
+      originalPrice: 2999,
+      discount: 33,
+      rating: 4.5,
       reviews: 156,
       image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 46,
-      name: "Yellow handpaint kurti set",
-      price: 1999,
-      originalPrice: 4999,
-      discount: 28,
-      rating: 4.6,
-      reviews: 203,
-      image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
-      category: "child-girl"
-    },
-    {
-      id: 47,
-      name: "A line plated kurti set",
-      price: 2299,
-      originalPrice: 8999,
-      discount: 33,
-      rating: 4.7,
-      reviews: 87,
-      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
       category: "child-boy"
     },
     {
+      id: 46,
+      name: "Designer Ethnic Set",
+      price: 3999,
+      originalPrice: 5999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 98,
+      image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 47,
+      name: "Kids Summer Wear",
+      price: 799,
+      originalPrice: 1199,
+      discount: 33,
+      rating: 4.1,
+      reviews: 267,
+      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
+      category: "child-girl"
+    },
+    {
       id: 48,
-      name: "Plated kurti set",
-      price: 1799,
-      originalPrice: 2699,
-      discount: 30,
-      rating: 4.4,
-      reviews: 312,
+      name: "Boys Summer Outfit",
+      price: 1199,
+      originalPrice: 1799,
+      discount: 33,
+      rating: 4.2,
+      reviews: 189,
       image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
       category: "child-boy"
     },
     {
       id: 49,
-      name: "Yellow color block design dress",
-      price: 1599,
-      originalPrice: 6999,
-      discount: 34,
+      name: "Elegant Cotton Saree",
+      price: 3999,
+      originalPrice: 5999,
+      discount: 33,
       rating: 4.6,
-      reviews: 89,
+      reviews: 123,
       image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
       category: "ethnic-woman"
     },
     {
       id: 50,
-      name: "Designer cotton kurta",
-      price: 2299,
-      originalPrice: 4999,
-      discount: 34,
-      rating: 4.5,
-      reviews: 145,
-      image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
-      category: "ethnic-woman"
-    },
-    {
-      id: 51,
-      name: "Beige midi dress",
-      price: 1699,
+      name: "Girls Festive Wear",
+      price: 1499,
       originalPrice: 2199,
       discount: 32,
       rating: 4.3,
-      reviews: 267,
-      image: "https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg",
+      reviews: 156,
+      image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
       category: "child-girl"
     },
     {
-      id: 52,
-      name: "A line kurti set",
-      price: 1999,
-      originalPrice: 2499,
-      discount: 28,
+      id: 51,
+      name: "Boys Festive Outfit",
+      price: 1799,
+      originalPrice: 2599,
+      discount: 29,
       rating: 4.4,
-      reviews: 198,
-      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
+      reviews: 134,
+      image: "https://i.postimg.cc/J4c4f9Pz/AVP03044.jpg",
       category: "child-boy"
     },
     {
-      id: 53,
-      name: "Green plazzo kurti set",
-      price: 1699,
-      originalPrice: 1499,
+      id: 52,
+      name: "Designer Party Wear",
+      price: 4999,
+      originalPrice: 7499,
       discount: 33,
-      rating: 4.2,
-      reviews: 345,
+      rating: 4.8,
+      reviews: 78,
+      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 53,
+      name: "Kids Party Dress",
+      price: 1299,
+      originalPrice: 1899,
+      discount: 32,
+      rating: 4.3,
+      reviews: 167,
       image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
       category: "child-girl"
     },
     {
       id: 54,
-      name: "Lavender ombre kurti set",
-      price: 1899,
-      originalPrice: 1199,
-      discount: 33,
-      rating: 4.7,
-      reviews: 456,
+      name: "Boys Party Outfit",
+      price: 1599,
+      originalPrice: 2299,
+      discount: 29,
+      rating: 4.4,
+      reviews: 145,
       image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
       category: "child-boy"
     },
     {
       id: 55,
-      name: "Green kurti with handpaint sleeves",
-      price: 1999,
-      originalPrice: 3299,
+      name: "Ethnic Party Wear",
+      price: 3499,
+      originalPrice: 4999,
       discount: 30,
       rating: 4.5,
       reviews: 123,
@@ -839,12 +990,12 @@ const ShopPage = () => {
     },
     {
       id: 56,
-      name: "Aqua blue hand paint kurti",
-      price: 2099,
-      originalPrice: 2799,
-      discount: 32,
+      name: "Traditional Party Set",
+      price: 2799,
+      originalPrice: 3999,
+      discount: 30,
       rating: 4.6,
-      reviews: 189,
+      reviews: 156,
       image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
       category: "ethnic-woman"
     }
@@ -853,48 +1004,7 @@ const ShopPage = () => {
   // Filter products based on selected category
   const filteredProducts = selectedCategory === 'all' 
     ? products 
-    : selectedCategory === 'handpaint-love'
-      ? products.filter(product =>
-          (product.name || '').toLowerCase().includes('handpaint') ||
-          (product.name || '').toLowerCase().includes('hand paint') ||
-          [
-            'https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg',
-            'https://i.postimg.cc/jdZCWpNk/AVP03127.jpg',
-            'https://i.postimg.cc/4dZcgzVD/AVP02971.jpg',
-            'https://i.postimg.cc/wMFxmNts/AVP03138.jpg',
-            'https://i.postimg.cc/qMXy1DK8/AVP03114.jpg'
-          ].includes(product.image)
-        )
-      : selectedCategory === 'ethnic-woman' // Royal Aura
-        ? products.filter(product =>
-            [
-              'https://i.postimg.cc/RC2HC571/AVP03017.jpg',
-              'https://i.postimg.cc/jjvMBdJ4/AVP03194.jpg',
-              'https://i.postimg.cc/25YtPK9r/AVP03180.jpg',
-              'https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg',
-              'https://i.postimg.cc/JhWwRn0w/AVP03166.jpg'
-            ].includes(product.image)
-          )
-        : selectedCategory === 'child-girl' // Everyday Elegance
-          ? products.filter(product =>
-              [
-                'https://i.postimg.cc/JhSTcdwb/AVP02949.jpg',
-                'https://i.postimg.cc/d0W94HzW/AVP03096.jpg',
-                'https://i.postimg.cc/Vv009D8b/AVP03081.jpg',
-                'https://i.postimg.cc/Px35RZ4z/AVP03001.jpg',
-                'https://i.postimg.cc/hGGjbp8P/AVP03031.jpg'
-              ].includes(product.image)
-            )
-          : selectedCategory === 'child-boy' // Threads Loom
-            ? products.filter(product =>
-                [
-                  'https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg',
-                  'https://i.postimg.cc/mDbPqTGR/AVP02989.jpg',
-                  'https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg',
-                  'https://i.postimg.cc/yYdsGkgv/AVP03155.jpg'
-                ].includes(product.image)
-              )
-            : products.filter(product => product.category === selectedCategory);
+    : products.filter(product => product.category === selectedCategory);
 
   // Pagination
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -961,39 +1071,15 @@ const ShopPage = () => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
-  // Effect to read category from URL parameters
-  useEffect(() => {
-    const categoryParam = searchParams.get('category');
-    if (categoryParam && categoryParam !== selectedCategory) {
-      setSelectedCategory(categoryParam);
-    }
-  }, [searchParams, selectedCategory]);
-
-  // Effect to update URL when category changes
-  useEffect(() => {
-    const categoryParam = searchParams.get('category');
-    if (selectedCategory === 'all' && categoryParam) {
-      searchParams.delete('category');
-      setSearchParams(searchParams);
-    } else if (selectedCategory !== 'all' && selectedCategory !== categoryParam) {
-      searchParams.set('category', selectedCategory);
-      setSearchParams(searchParams);
-    }
-  }, [selectedCategory, searchParams, setSearchParams]);
 
   // Category filter options
   const categoryOptions = [
-	{ value: 'all', label: 'All Products' },
-	{ value: 'ethnic-woman', label: 'Royal Aura' },
-	{ value: 'child-girl', label: 'Everyday Elegance' },
-	{ value: 'child-boy', label: 'Threads Loom' },
-	{ value: 'handpaint-love', label: 'Handpaint Love' }
+    { value: 'all', label: 'All Products' },
+    { value: 'ethnic-woman', label: 'Ethnic Woman Wear' },
+    { value: 'child-girl', label: 'Child Girl' },
+    { value: 'child-boy', label: 'Child Boy' }
   ];
 
   // Filter options and data
@@ -1157,7 +1243,97 @@ const ShopPage = () => {
         </div>
       </div>
 
-      {/* NEW ARRIVALS Section removed */}
+      {/* NEW ARRIVALS Section */}
+      <div className="bg-white dark:bg-gray-800 py-12">
+        <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
+          <h2 className="text-4xl font-light text-center text-gray-800 dark:text-golden-200 mb-12 tracking-wider">
+            NEW ARRIVALS
+          </h2>
+          <div className="flex justify-center items-center overflow-x-auto pb-4">
+            <div className="flex gap-8 lg:gap-12 xl:gap-16 min-w-max px-4">
+              {/* Suit Set */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Suit Set
+                </span>
+              </div>
+
+              {/* Sarees */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Sarees
+                </span>
+              </div>
+
+              {/* Lehenga Sets */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Lehenga Sets
+                </span>
+              </div>
+
+              {/* Dresses */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Dresses
+                </span>
+              </div>
+
+              {/* Anarkali Suit */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Anarkali Suit
+                </span>
+              </div>
+
+              {/* Kurta Sets */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Kurta Sets
+                </span>
+              </div>
+
+              {/* Loungewear */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Loungewear
+                </span>
+              </div>
+
+              {/* Co ord Sets */}
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-24 h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-gray-200 group-hover:border-pink-400 transition-all duration-300 transform group-hover:scale-110 shadow-lg group-hover:shadow-xl flex items-center justify-center bg-gray-200">
+                  <i className="fa-solid fa-image text-2xl text-gray-400"></i>
+                </div>
+                <span className="mt-4 text-base lg:text-lg font-medium text-gray-700 group-hover:text-pink-600 transition-colors">
+                  Co ord Sets
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Top Section */}
       <div className="bg-white border-b border-gray-200">
@@ -1579,7 +1755,8 @@ const ShopPage = () => {
           {currentProducts.map((product) => (
             <div
               key={product.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden w-full max-w-sm mx-auto"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden w-full max-w-sm mx-auto cursor-pointer"
+              onClick={() => handleProductClick(product.id)}
             >
               {/* Product Image */}
               <div className="relative aspect-[4/5] overflow-hidden flex items-center justify-center bg-gray-200">
@@ -1758,526 +1935,182 @@ const ShopPage = () => {
         )}
       </div>
 
-      {/* Feature Tabs Section - Replaces Price List Tables */}
+      {/* Price List Tables Section */}
       <div className="bg-white border-t border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Tab Headers */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex rounded-2xl border-2 border-gray-300 p-3 bg-gray-100">
-              <button
-                className={`px-10 py-5 rounded-xl text-lg font-semibold transition-all duration-200 ${
-                  activeTab === 'new-arrival'
-                    ? 'bg-white text-pink-600 shadow-lg'
-                    : 'text-gray-700 hover:text-pink-600'
-                }`}
-                onClick={() => setActiveTab('new-arrival')}
-              >
-                NEW ARRIVAL
-              </button>
-              <button
-                className={`px-10 py-5 rounded-xl text-lg font-semibold transition-all duration-200 ${
-                  activeTab === 'best-seller'
-                    ? 'bg-white text-pink-600 shadow-lg'
-                    : 'text-gray-700 hover:text-pink-600'
-                }`}
-                onClick={() => setActiveTab('best-seller')}
-              >
-                BEST SELLER
-              </button>
-              <button
-                className={`px-10 py-5 rounded-xl text-lg font-semibold transition-all duration-200 ${
-                  activeTab === 'top-products'
-                    ? 'bg-white text-pink-600 shadow-lg'
-                    : 'text-gray-700 hover:text-pink-600'
-                }`}
-                onClick={() => setActiveTab('top-products')}
-              >
-                TOP PRODUCTS
-              </button>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* Ethnic Woman Wear Price List */}
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                <h3 className="text-lg font-semibold text-pink-600 text-center">
+                  Ethnic Woman Wear at Best Price List
+                </h3>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">
+                        PRODUCT LIST
+                      </th>
+                      <th className="px-4 py-3 text-right text-sm font-semibold text-gray-900 border-b border-gray-200">
+                        PRICE
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Green Embroidered Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,349</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Lilac Silk Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,759</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Beige Silk Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,519</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Red Silk Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,999</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Yellow Georgette Three Piece Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹3,599</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Red Embroidered Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹3,899</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Cotton Suit With Dupatta</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹3,299</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Brown Embroidered Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹4,019</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
 
-          {/* Tab Content - List Format */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            {/* NEW ARRIVAL Products - List Format */}
-            {activeTab === 'new-arrival' && (
-              <div className="divide-y divide-gray-100">
-                {newArrivalProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    {/* Product Image */}
-                    <div 
-                      className="flex-shrink-0 w-32 h-40 rounded-lg overflow-hidden bg-gray-200 cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      {product.image ? (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'block';
-                          }}
-                        />
-                      ) : (
-                        <i className="fa-solid fa-image text-2xl text-gray-400 flex items-center justify-center h-full"></i>
-                      )}
-                      <i className="fa-solid fa-image text-2xl text-gray-400 hidden flex items-center justify-center h-full"></i>
-                    </div>
-
-                    {/* Product Info */}
-                    <div 
-                      className="flex-grow cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {product.name}
-                      </h3>
-                      
-                      {/* Star Rating */}
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="flex text-yellow-400">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <svg
-                              key={star}
-                              className={`w-5 h-5 ${
-                                star <= Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
-                              }`}
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="text-base text-gray-600">({product.reviews})</span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl font-bold text-gray-900">
-                          ₹{product.price.toLocaleString('en-IN')}
-                        </span>
-                        {product.originalPrice > product.price && (
-                          <span className="text-lg text-gray-500 line-through">
-                            ₹{product.originalPrice.toLocaleString('en-IN')}
-                          </span>
-                        )}
-                        {product.discount > 0 && (
-                          <span className="ml-2 bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">
-                            {product.discount}% off
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-0">
-                      {!isInCart(product.id) ? (
-                        <>
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Add to Wishlist functionality
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Wishlist</span>
-                          </button>
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart(product);
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Add to Cart</span>
-                          </button>
-                        </>
-                      ) : (
-                        <div className="flex items-center gap-3">
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Add to Wishlist functionality
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Wishlist</span>
-                          </button>
-                          <div className="flex items-center gap-3 px-5 py-3 bg-gray-100 rounded-lg">
-                            <button 
-                              className="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                updateCartQuantity(product, -1);
-                              }}
-                            >
-                              <span className="text-base font-bold">−</span>
-                            </button>
-                            <span className="text-base font-medium w-8 text-center">
-                              {getCartQuantity(product.id)}
-                            </span>
-                            <button 
-                              className="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                updateCartQuantity(product, 1);
-                              }}
-                            >
-                              <span className="text-base font-bold">+</span>
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Arrow Icon */}
-                    <div 
-                      className="flex-shrink-0 text-gray-400 cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                ))}
+            {/* Ethnic Girl Child Wear Price List */}
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                <h3 className="text-lg font-semibold text-pink-600 text-center">
+                  Ethnic Girl Child Wear at Best Price List
+                </h3>
               </div>
-            )}
-
-            {/* BEST SELLER Products - List Format */}
-            {activeTab === 'best-seller' && (
-              <div className="divide-y divide-gray-100">
-                {bestSellerProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    {/* Product Image */}
-                    <div 
-                      className="flex-shrink-0 w-32 h-40 rounded-lg overflow-hidden bg-gray-200 cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      {product.image ? (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'block';
-                          }}
-                        />
-                      ) : (
-                        <i className="fa-solid fa-image text-2xl text-gray-400 flex items-center justify-center h-full"></i>
-                      )}
-                      <i className="fa-solid fa-image text-2xl text-gray-400 hidden flex items-center justify-center h-full"></i>
-                    </div>
-
-                    {/* Product Info */}
-                    <div 
-                      className="flex-grow cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {product.name}
-                      </h3>
-                      
-                      {/* Star Rating */}
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="flex text-yellow-400">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <svg
-                              key={star}
-                              className={`w-5 h-5 ${
-                                star <= Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
-                              }`}
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="text-base text-gray-600">({product.reviews})</span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl font-bold text-gray-900">
-                          ₹{product.price.toLocaleString('en-IN')}
-                        </span>
-                        {product.originalPrice > product.price && (
-                          <span className="text-lg text-gray-500 line-through">
-                            ₹{product.originalPrice.toLocaleString('en-IN')}
-                          </span>
-                        )}
-                        {product.discount > 0 && (
-                          <span className="ml-2 bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">
-                            {product.discount}% off
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-0">
-                      {!isInCart(product.id) ? (
-                        <>
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Add to Wishlist functionality
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Wishlist</span>
-                          </button>
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart(product);
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Add to Cart</span>
-                          </button>
-                        </>
-                      ) : (
-                        <div className="flex items-center gap-3">
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Add to Wishlist functionality
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Wishlist</span>
-                          </button>
-                          <div className="flex items-center gap-3 px-5 py-3 bg-gray-100 rounded-lg">
-                            <button 
-                              className="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                updateCartQuantity(product, -1);
-                              }}
-                            >
-                              <span className="text-base font-bold">−</span>
-                            </button>
-                            <span className="text-base font-medium w-8 text-center">
-                              {getCartQuantity(product.id)}
-                            </span>
-                            <button 
-                              className="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                updateCartQuantity(product, 1);
-                              }}
-                            >
-                              <span className="text-base font-bold">+</span>
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Arrow Icon */}
-                    <div 
-                      className="flex-shrink-0 text-gray-400 cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                ))}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">
+                        PRODUCT LIST
+                      </th>
+                      <th className="px-4 py-3 text-right text-sm font-semibold text-gray-900 border-b border-gray-200">
+                        PRICE
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Pink Cotton Printed Lehenga Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,980</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Yellow Hand Paint Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,499</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Blue Floral Print Dress</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,065</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Purple Cotton Kurta and Dhoti Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,499</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Red Silk Top and Palazzo Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,499</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Mustard Silk Yellow Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,759</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Green Festive Collection Dress</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,799</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Night Suit Comfort Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,399</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            )}
+            </div>
 
-            {/* TOP PRODUCTS - List Format */}
-            {activeTab === 'top-products' && (
-              <div className="divide-y divide-gray-100">
-                {topProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="flex flex-col sm:flex-row items-start sm:items-center gap-6 p-8 hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    {/* Product Image */}
-                    <div 
-                      className="flex-shrink-0 w-32 h-40 rounded-lg overflow-hidden bg-gray-200 cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      {product.image ? (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'block';
-                          }}
-                        />
-                      ) : (
-                        <i className="fa-solid fa-image text-2xl text-gray-400 flex items-center justify-center h-full"></i>
-                      )}
-                      <i className="fa-solid fa-image text-2xl text-gray-400 hidden flex items-center justify-center h-full"></i>
-                    </div>
-
-                    {/* Product Info */}
-                    <div 
-                      className="flex-grow cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {product.name}
-                      </h3>
-                      
-                      {/* Star Rating */}
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="flex text-yellow-400">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <svg
-                              key={star}
-                              className={`w-5 h-5 ${
-                                star <= Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
-                              }`}
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="text-base text-gray-600">({product.reviews})</span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl font-bold text-gray-900">
-                          ₹{product.price.toLocaleString('en-IN')}
-                        </span>
-                        {product.originalPrice > product.price && (
-                          <span className="text-lg text-gray-500 line-through">
-                            ₹{product.originalPrice.toLocaleString('en-IN')}
-                          </span>
-                        )}
-                        {product.discount > 0 && (
-                          <span className="ml-2 bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">
-                            {product.discount}% off
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-0">
-                      {!isInCart(product.id) ? (
-                        <>
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Add to Wishlist functionality
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Wishlist</span>
-                          </button>
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              addToCart(product);
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Add to Cart</span>
-                          </button>
-                        </>
-                      ) : (
-                        <div className="flex items-center gap-3">
-                          <button 
-                            className="flex items-center gap-2 px-5 py-3 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Add to Wishlist functionality
-                            }}
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            <span className="text-base font-medium">Wishlist</span>
-                          </button>
-                          <div className="flex items-center gap-3 px-5 py-3 bg-gray-100 rounded-lg">
-                            <button 
-                              className="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                updateCartQuantity(product, -1);
-                              }}
-                            >
-                              <span className="text-base font-bold">−</span>
-                            </button>
-                            <span className="text-base font-medium w-8 text-center">
-                              {getCartQuantity(product.id)}
-                            </span>
-                            <button 
-                              className="w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                updateCartQuantity(product, 1);
-                              }}
-                            >
-                              <span className="text-base font-bold">+</span>
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Arrow Icon */}
-                    <div 
-                      className="flex-shrink-0 text-gray-400 cursor-pointer"
-                      onClick={() => handleProductClick(product.id)}
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                ))}
+            {/* Ethnic Boy Child Wear Price List */}
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                <h3 className="text-lg font-semibold text-pink-600 text-center">
+                  Ethnic Boy Child Wear at Best Price List
+                </h3>
               </div>
-            )}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">
+                        PRODUCT LIST
+                      </th>
+                      <th className="px-4 py-3 text-right text-sm font-semibold text-gray-900 border-b border-gray-200">
+                        PRICE
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Black Solid Cotton Kurta Pant Two Piece Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,180</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">White Cotton Kurta Pajama Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,299</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Blue Formal Shirt and Pant Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,599</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Maroon Silk Festive Wear</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,199</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Orange Party Wear Kurta Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,899</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Navy Blue Cotton Casual Set</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,499</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Yellow Traditional Dhoti Kurta</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹2,299</td>
+                    </tr>
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3 text-sm text-pink-600">Green Ethnic Wear Combo</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 text-right">₹1,799</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>

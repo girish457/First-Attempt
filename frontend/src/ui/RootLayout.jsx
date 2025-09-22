@@ -98,6 +98,7 @@ export default function RootLayout(){
             <NavLink to="/shop" className={({isActive})=>`hover:text-brand-primary transition-all duration-300 hover:scale-105 ${isActive? 'text-brand-primary font-semibold' : 'text-gray-700 dark:text-gray-300'} m-0 p-0`}>Shop</NavLink>
             <NavLink to="/about" className={({isActive})=>`hover:text-brand-primary transition-all duration-300 hover:scale-105 ${isActive? 'text-brand-primary font-semibold' : 'text-gray-700 dark:text-gray-300'} m-0 p-0`}>About Us</NavLink>
             <NavLink to="/contact" className={({isActive})=>`hover:text-brand-primary transition-all duration-300 hover:scale-105 ${isActive? 'text-brand-primary font-semibold' : 'text-gray-700 dark:text-gray-300'} m-0 p-0`}>Contact Us</NavLink>
+            <NavLink to="/admin" className={({isActive})=>`hover:text-brand-primary transition-all duration-300 hover:scale-105 ${isActive? 'text-brand-primary font-semibold' : 'text-gray-700 dark:text-gray-300'} m-0 p-0`}>Admin</NavLink>
           </nav>
           <div className="flex items-center gap-3 m-0 p-0">
             <Tooltip label="Search"><button className="w-11 h-11 grid place-items-center rounded-full hover:bg-golden-200 anim-btn text-brand-accent hover:text-brand-primary transition-all duration-300 shadow-sm hover:shadow-glossy m-0 p-0"><i className="fa-solid fa-magnifying-glass"></i></button></Tooltip>
@@ -132,6 +133,7 @@ export default function RootLayout(){
               <NavLink to="/contact" onClick={()=>setIsMobileMenu(false)} className="hover:text-brand-primary transition-colors font-medium m-0 p-0">Contact Us</NavLink>
               <NavLink to="/account" onClick={()=>setIsMobileMenu(false)} className="hover:text-brand-primary transition-colors font-medium m-0 p-0">My Account</NavLink>
               <NavLink to="/cart" onClick={()=>setIsMobileMenu(false)} className="hover:text-brand-primary transition-colors font-medium m-0 p-0">Cart</NavLink>
+              <NavLink to="/admin" onClick={()=>setIsMobileMenu(false)} className="hover:text-brand-primary transition-colors font-medium m-0 p-0">Admin</NavLink>
             </div>
           </div>
         )}

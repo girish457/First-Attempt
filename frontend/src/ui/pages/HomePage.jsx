@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useScrollAnimation, useScrollAnimationSingle } from '../../hooks/useScrollAnimation'
 
 // Removed bannerImages array since we're removing all images
@@ -13,6 +13,7 @@ import { useScrollAnimation, useScrollAnimationSingle } from '../../hooks/useScr
 // Removed products array since we're removing all images
 
 export default function HomePage() {
+  const navigate = useNavigate();
   // Updated with new Google Drive images for frames 4-6
   const [current, setCurrent] = React.useState(0)
   const [categoryOffset, setCategoryOffset] = React.useState(0) // Carousel state
@@ -29,10 +30,10 @@ export default function HomePage() {
   // Categories data with images (4 total: only the main 4 categories)
   const categories = [
     // First 4 main categories only
-    {label:'Royal aura', img:'https://i.postimg.cc/cJMJSPsm/generated-images-016.png'},
-    {label:'Everyday elegance', img:'https://i.postimg.cc/wB0dFzqS/generated-image-1.png'},
-    {label:'Threads loom', img:'https://i.postimg.cc/NMdfyT22/generated-images-017.png'},
-    {label:'Handpaint love', img:'https://i.postimg.cc/0jLvmCkj/generated-image-03.png'},
+    {label:'Royal aura', img:'https://i.postimg.cc/cJMJSPsm/generated-images-016.png', category: 'ethnic-woman'},
+    {label:'Everyday elegance', img:'https://i.postimg.cc/wB0dFzqS/generated-image-1.png', category: 'child-girl'},
+    {label:'Threads loom', img:'https://i.postimg.cc/NMdfyT22/generated-images-017.png', category: 'child-boy'},
+    {label:'Handpaint love', img:'https://i.postimg.cc/0jLvmCkj/generated-image-03.png', category: 'handpaint-love'},
   ]
   
   // Scroll animation hooks for different sections
@@ -81,35 +82,67 @@ export default function HomePage() {
   const videos = [
     { 
       src: 'https://player.vimeo.com/video/1120563936',
-      title: 'Blue Co-ord Set'
+      title: 'Ombre pink kurti with handpaint',
+      price: '₹2,199',
+      originalPrice: '₹2,499',
+      discount: '36% off',
+      productId: 1  // https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg
     },
     { 
       src: 'https://player.vimeo.com/video/1120564287',
-      title: 'Mustard Ethnic'
+      title: 'Yellow handpaint kurti set',
+      price: '₹1,999',
+      originalPrice: '₹4,999',
+      discount: '28% off',
+      productId: 4  // https://i.postimg.cc/4dZcgzVD/AVP02971.jpg
     },
     { 
       src: 'https://player.vimeo.com/video/1120564518',
-      title: 'Anarkali Collection'
+      title: 'Yellow color block design dress',
+      price: '₹1,599',
+      originalPrice: '₹6,999',
+      discount: '34% off',
+      productId: 7  // https://i.postimg.cc/RC2HC571/AVP03017.jpg
     },
     { 
       src: 'https://player.vimeo.com/video/1120564696',
-      title: 'Red Traditional'
+      title: 'nice kurti',
+      price: '₹1,499',
+      originalPrice: '₹2,199',
+      discount: '32% off',
+      productId: 21  // https://i.postimg.cc/d1rjwshf/AVP03233.jpg
     },
     { 
-      src: 'https://player.vimeo.com/video/1120563936',
-      title: 'Elegant Lehenga'
+      src: 'https://player.vimeo.com/video/1120786367',
+      title: 'Green kurti with handpaint sleeves',
+      price: '₹1,999',
+      originalPrice: '₹3,299',
+      discount: '30% off',
+      productId: 13  // https://i.postimg.cc/qMXy1DK8/AVP03114.jpg
     },
     { 
-      src: 'https://player.vimeo.com/video/1120564287',
-      title: 'Designer Kurti'
+      src: 'https://player.vimeo.com/video/1120786407',
+      title: 'Aqua blue hand paint kurti',
+      price: '₹2,099',
+      originalPrice: '₹2,799',
+      discount: '32% off',
+      productId: 14  // https://i.postimg.cc/jdZCWpNk/AVP03127.jpg
     },
     { 
-      src: 'https://player.vimeo.com/video/1120564518',
-      title: 'Floral Dress'
+      src: 'https://player.vimeo.com/video/1120786313',
+      title: 'Green plazzo kurti set',
+      price: '₹1,699',
+      originalPrice: '₹1,499',
+      discount: '33% off',
+      productId: 11  // https://i.postimg.cc/Vv009D8b/AVP03081.jpg
     },
     { 
-      src: 'https://player.vimeo.com/video/1120564696',
-      title: 'Silk Saree'
+      src: 'https://player.vimeo.com/video/1120786265',
+      title: 'Purple handpaint kurti set',
+      price: '₹2,199',
+      originalPrice: '₹9,999',
+      discount: '30% off',
+      productId: 15  // https://i.postimg.cc/wMFxmNts/AVP03138.jpg
     }
   ]
 
@@ -259,6 +292,11 @@ export default function HomePage() {
     setCurrentVideoIndex(prev => (prev === 0 ? 1 : 0))
   }
 
+  // Function to navigate to shop page with category filter
+  const handleCategoryClick = (category) => {
+    navigate(`/shop?category=${category}`);
+  };
+
   return (
     // Removed unnecessary div wrapper to reduce nesting and potential margin issues
     <div className="w-full">
@@ -312,8 +350,9 @@ export default function HomePage() {
                 <div 
                   key={`category-${index}`}
                   className="snap-start min-w-[180px] md:min-w-[220px] flex flex-col items-center group relative z-10 flex-shrink-0 select-none"
+                  onClick={() => handleCategoryClick(category.category)}
                 >
-                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden">
+                  <div className="category-circle w-40 h-40 md:w-52 md:h-52 rounded-full ring-2 ring-golden-300 hover:ring-4 hover:ring-brand-primary transition-all duration-150 ease-out shadow-golden hover:shadow-glossy relative z-10 bg-gray-100 overflow-hidden cursor-pointer">
                     {/* Display category image if available and loaded successfully, otherwise show placeholder */}
                     {category.img && !imageError[`category-${index}`] ? (
                       <img 
@@ -393,7 +432,7 @@ export default function HomePage() {
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 text-sm md:text-base transition-all duration-150 group-hover:text-brand-primary group-hover:font-bold group-hover:scale-105 group-hover:-translate-y-1 relative z-10 text-gray-700 dark:text-golden-300 font-medium">{category.label}</div>
+                  <div className="mt-4 text-sm md:text-base transition-all duration-150 group-hover:text-brand-primary group-hover:font-bold group-hover:scale-105 group-hover:-translate-y-1 relative z-10 text-gray-700 dark:text-golden-300 font-medium cursor-pointer">{category.label}</div>
                 </div>
               ))}
             </div>
@@ -411,48 +450,62 @@ export default function HomePage() {
             { 
               img: 'https://i.postimg.cc/Bvq0xb0T/generated-image01.png', 
               hoverImg: 'https://i.postimg.cc/5284BDFV/generated-image-10.png', // Frame 1 hover image
-              name: 'Elegant Red Dress' 
+              name: 'Ombre pink kurti with handpaint',
+              productId: 1 // Added product ID for navigation
             },
             { 
               img: 'https://i.postimg.cc/cJMJSPsm/generated-images-016.png', 
               hoverImg: 'https://i.postimg.cc/59GbZfBJ/generated-image-6.png', // Frame 2 hover image
-              name: 'Floral Print Kurti' 
+              name: 'Beige midi dress',
+              productId: 9 // https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg
             },
             { 
               img: 'https://i.postimg.cc/dtbQTJ36/generated-image-011.png', 
               hoverImg: 'https://i.postimg.cc/wB0dFzqS/generated-image-1.png', // Frame 3 hover image
-              name: 'Designer Anarkali' 
+              name: 'Sky blue kurti set',
+              productId: 2 // https://i.postimg.cc/JhSTcdwb/AVP02949.jpg
             },
             { 
               img: 'https://i.postimg.cc/j2WKL1rB/generated-image-04.png', 
               hoverImg: 'https://i.postimg.cc/J7pQwhY0/generated-image-2.png', // Frame 4 hover image
-              name: 'Silk Saree' 
+              name: 'nice kurti',
+              productId: 21 // https://i.postimg.cc/d1rjwshf/AVP03233.jpg
             },
             { 
               img: 'https://i.postimg.cc/0jLvmCkj/generated-image-03.png', 
               hoverImg: 'https://i.postimg.cc/bNHSXVwT/generated-image-3.png', // Frame 5 hover image
-              name: 'Cotton Lehenga' 
+              name: 'Purple handpaint kurti set',
+              productId: 15 // https://i.postimg.cc/wMFxmNts/AVP03138.jpg
             },
             { 
               img: 'https://i.postimg.cc/FRCNF4wj/generated-image-05.png', 
               hoverImg: 'https://i.postimg.cc/SxM5N9HD/generated-image-4.png', // Frame 6 hover image
-              name: 'Embroidered Suit' 
+              name: 'Orange one piece dress',
+              productId: 19 // https://i.postimg.cc/jjvMBdJ4/AVP03194.jpg
             },
             { 
               img: 'https://i.postimg.cc/HWPkdwCf/generated-image-014.png', 
               hoverImg: 'https://i.postimg.cc/NjvYjbCP/generated-image-4.png', // Frame 7 hover image
-              name: 'Party Wear Gown' 
+              name: 'Yellow handpaint kurti set',
+              productId: 4 // https://i.postimg.cc/4dZcgzVD/AVP02971.jpg
             },
             { 
               img: 'https://i.postimg.cc/YSkpb81m/generated-image-012.png', 
               hoverImg: 'https://i.postimg.cc/MZ01xpsV/generated-image-6.png', // Frame 8 hover image
-              name: 'Traditional Outfit' 
+              name: 'Yellow color block design dress',
+              productId: 7 // https://i.postimg.cc/RC2HC571/AVP03017.jpg
             }
           ].map((item, idx) => (
             <div 
               key={idx} 
               ref={addToArrivalRefs}
               className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out new-arrival-frame"
+              onClick={() => {
+                // Navigate to product detail page if productId exists, otherwise do nothing
+                if (item.productId) {
+                  navigate(`/product/${item.productId}`);
+                }
+              }}
             >
               <div className="relative overflow-hidden h-72 sm:h-80 md:h-[420px]">
                 {/* Original Image */}
@@ -552,6 +605,12 @@ export default function HomePage() {
                     key={idx} 
                     ref={addToVideoRefs}
                     className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+                    onClick={() => {
+                      // Navigate to product detail page if productId exists
+                      if (video.productId) {
+                        navigate(`/product/${video.productId}`);
+                      }
+                    }}
                   >
                     <div className="relative overflow-hidden rounded-t-2xl">
                       <div className="video-wrapper relative w-full overflow-hidden rounded-t-2xl bg-black" style={{ aspectRatio: '9/16' }}>
@@ -572,12 +631,12 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="p-4">
-                      <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
+                      <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">{video.title}</div>
                       <div className="mt-1 flex items-center gap-2">
-                        <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
-                        <div className="text-gray-500 line-through text-sm">₹2,999</div>
+                        <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">{video.price}</div>
+                        <div className="text-gray-500 line-through text-sm">{video.originalPrice}</div>
                       </div>
-                      <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
+                      <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">{video.discount}</div>
                     </div>
                   </div>
                 ))}
@@ -590,6 +649,12 @@ export default function HomePage() {
                     key={idx + 4} 
                     ref={addToVideoRefs}
                     className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
+                    onClick={() => {
+                      // Navigate to product detail page if productId exists
+                      if (video.productId) {
+                        navigate(`/product/${video.productId}`);
+                      }
+                    }}
                   >
                     <div className="relative overflow-hidden rounded-t-2xl">
                       <div className="video-wrapper relative w-full overflow-hidden rounded-t-2xl bg-black" style={{ aspectRatio: '9/16' }}>
@@ -610,12 +675,12 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="p-4">
-                      <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">Sample Product Title</div>
+                      <div className="font-medium truncate transition-colors duration-300 group-hover:text-brand-primary">{video.title}</div>
                       <div className="mt-1 flex items-center gap-2">
-                        <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">₹1,999</div>
-                        <div className="text-gray-500 line-through text-sm">₹2,999</div>
+                        <div className="font-bold transition-colors duration-300 group-hover:text-brand-secondary">{video.price}</div>
+                        <div className="text-gray-500 line-through text-sm">{video.originalPrice}</div>
                       </div>
-                      <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">30% off</div>
+                      <div className="inline-block mt-2 text-xs bg-golden-gradient text-white rounded px-3 py-1 transition-all duration-300 group-hover:shadow-md">{video.discount}</div>
                     </div>
                   </div>
                 ))}
@@ -658,105 +723,158 @@ export default function HomePage() {
             { 
               img: 'https://i.postimg.cc/JhSTcdwb/AVP02949.jpg', 
               hoverImg: 'https://i.postimg.cc/fRkKwSgk/generated-image-24.png',
-              title: 'Elegant Silk Saree', 
-              price: 'Rs. 2,499.00' 
+              title: 'Sky blue kurti set', 
+              price: '₹1,999',
+              originalPrice: '₹6,999',
+              discount: '29% off',
+              productId: 2
             },
             { 
-              img: 'https://i.postimg.cc/tCrNNmWY/AVP02962.jpg', 
+              img: 'https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg', 
               hoverImg: 'https://i.postimg.cc/L8pwyTyL/generated-image_(7).png',
-              title: 'Designer Kurti Set', 
-              price: 'Rs. 1,899.00' 
+              title: 'Lavender ombre kurti set', 
+              price: '₹1,899',
+              originalPrice: '₹3,999',
+              discount: '28% off',
+              productId: 3
             },
             { 
-              img: 'https://i.postimg.cc/qqvCt4mQ/AVP02972.jpg', 
+              img: 'https://i.postimg.cc/4dZcgzVD/AVP02971.jpg', 
               hoverImg: 'https://i.postimg.cc/NfTZ7VxQ/generated-image_(8).png',
-              title: 'Floral Print Lehenga', 
-              price: 'Rs. 3,299.00' 
+              title: 'Yellow handpaint kurti set', 
+              price: '₹1,999',
+              originalPrice: '₹4,999',
+              discount: '28% off',
+              productId: 4
             },
             { 
               img: 'https://i.postimg.cc/mDbPqTGR/AVP02989.jpg', 
               hoverImg: 'https://i.postimg.cc/zGCpVYFR/generated-image_(21).png',
-              title: 'Cotton Anarkali', 
-              price: 'Rs. 1,599.00' 
+              title: 'A line plated kurti set', 
+              price: '₹2,299',
+              originalPrice: '₹8,999',
+              discount: '33% off',
+              productId: 5
             },
             { 
-              img: 'https://i.postimg.cc/HnrkDxvG/AVP03003.jpg', 
+              img: 'https://i.postimg.cc/Px35RZ4z/AVP03001.jpg', 
               hoverImg: 'https://i.postimg.cc/9XD6zzRR/generated-image_(13).png',
-              title: 'Embroidered Suit', 
-              price: 'Rs. 2,199.00' 
+              title: 'Plated kurti set', 
+              price: '₹1,799',
+              originalPrice: '₹2,699',
+              discount: '30% off',
+              productId: 6
             },
             { 
-              img: 'https://i.postimg.cc/g0B0M84y/AVP03032.jpg', 
+              img: 'https://i.postimg.cc/hGGjbp8P/AVP03031.jpg', 
               hoverImg: 'https://i.postimg.cc/5jcq2sH3/generated-image_(14).png',
-              title: 'Traditional Gown', 
-              price: 'Rs. 2,799.00' 
+              title: 'Designer kurti paint', 
+              price: '₹2,299',
+              originalPrice: '₹4,999',
+              discount: '34% off',
+              productId: 8
             },
             { 
-              img: 'https://i.postimg.cc/h41kccW6/AVP03068.jpg', 
+              img: 'https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg', 
               hoverImg: 'https://i.postimg.cc/WzqwVB4z/generated-image_(15).png',
-              title: 'Party Wear Dress', 
-              price: 'Rs. 1,999.00' 
+              title: 'A line kurti set', 
+              price: '₹1,999',
+              originalPrice: '₹2,499',
+              discount: '28% off',
+              productId: 10
             },
             { 
-              img: 'https://i.postimg.cc/QNFfnDNc/AVP03085.jpg', 
+              img: 'https://i.postimg.cc/Vv009D8b/AVP03081.jpg', 
               hoverImg: 'https://i.postimg.cc/pXrGdSm2/generated-image-25.png',
-              title: 'Casual Ethnic Wear', 
-              price: 'Rs. 1,299.00' 
+              title: 'Green plazzo kurti set', 
+              price: '₹1,699',
+              originalPrice: '₹1,499',
+              discount: '33% off',
+              productId: 11
             },
             { 
               img: 'https://i.postimg.cc/d0W94HzW/AVP03096.jpg', 
               hoverImg: 'https://i.postimg.cc/vBNtpYbC/generated-image_(16).png',
-              title: 'Designer Salwar Suit', 
-              price: 'Rs. 2,399.00' 
+              title: 'Lavender ombre kurti set', 
+              price: '₹1,899',
+              originalPrice: '₹1,199',
+              discount: '33% off',
+              productId: 12
             },
             { 
               img: 'https://i.postimg.cc/qMXy1DK8/AVP03114.jpg', 
               hoverImg: 'https://i.postimg.cc/266xcbR4/generated-image_(17).png',
-              title: 'Banarasi Silk Dupatta', 
-              price: 'Rs. 899.00' 
+              title: 'Green kurti with handpaint sleeves', 
+              price: '₹1,999',
+              originalPrice: '₹3,299',
+              discount: '30% off',
+              productId: 13
             },
             { 
-              img: 'https://i.postimg.cc/XYqq9skN/AVP03129.jpg', 
+              img: 'https://i.postimg.cc/jdZCWpNk/AVP03127.jpg', 
               hoverImg: 'https://i.postimg.cc/tgD5Ndfq/generated-image_(18).png',
-              title: 'Chanderi Kurti', 
-              price: 'Rs. 1,499.00' 
+              title: 'Aqua blue hand paint kurti', 
+              price: '₹2,099',
+              originalPrice: '₹2,799',
+              discount: '32% off',
+              productId: 14
             },
             { 
-              img: 'https://i.postimg.cc/3x07KVZG/AVP03158.jpg', 
+              img: 'https://i.postimg.cc/yYdsGkgv/AVP03155.jpg', 
               hoverImg: 'https://i.postimg.cc/4NhWR9KP/generated-image_(20).png',
-              title: 'Georgette Saree', 
-              price: 'Rs. 2,599.00' 
+              title: 'Pink kurti set', 
+              price: '₹1,799',
+              originalPrice: '₹1,299',
+              discount: '31% off',
+              productId: 16
             },
-            // 4th row (corrected frames)
             { 
-              img: 'https://i.postimg.cc/0QchG0fx/AVP03174.jpg', 
+              img: 'https://i.postimg.cc/JhWwRn0w/AVP03166.jpg', 
               hoverImg: 'https://i.postimg.cc/zGCpVYFR/generated-image_(21).png',
-              title: 'Designer Lehenga', 
-              price: 'Rs. 3,499.00' 
+              title: 'A line dress', 
+              price: '₹1,499',
+              originalPrice: '₹2,299',
+              discount: '30% off',
+              productId: 17
             },
             { 
-              img: 'https://i.postimg.cc/ZnX7j7yk/AVP03184.jpg', 
+              img: 'https://i.postimg.cc/25YtPK9r/AVP03180.jpg', 
               hoverImg: 'https://i.postimg.cc/3w31Gftf/generated-image_(22).png',
-              title: 'Floral Kurti', 
-              price: 'Rs. 1,799.00' 
+              title: 'Wine midi dress', 
+              price: '₹1,499',
+              originalPrice: '₹1,899',
+              discount: '32% off',
+              productId: 18
             },
             { 
-              img: 'https://i.postimg.cc/Gp9Ls9r4/AVP03050.jpg', 
+              img: 'https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg', 
               hoverImg: 'https://i.postimg.cc/3rt0K84c/generated-image-26.png',
-              title: 'Anarkali Suit', 
-              price: 'Rs. 2,299.00' 
+              title: 'Beige midi dress', 
+              price: '₹1,699',
+              originalPrice: '₹2,199',
+              discount: '32% off',
+              productId: 9
             },
             { 
-              img: 'https://i.postimg.cc/59m2GhPN/AVP03140.jpg', 
+              img: 'https://i.postimg.cc/wMFxmNts/AVP03138.jpg', 
               hoverImg: 'https://i.postimg.cc/tC1JphHs/generated-image-27.png',
-              title: 'Silk Saree', 
-              price: 'Rs. 2,999.00' 
+              title: 'Purple handpaint kurti set', 
+              price: '₹2,199',
+              originalPrice: '₹9,999',
+              discount: '30% off',
+              productId: 15
             }
           ].map((product, i)=> (
             <div 
               key={i} 
               ref={addToTrendingRefs}
               className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden new-arrival-frame"
+              onClick={() => {
+                // Navigate to product detail page if productId exists
+                if (product.productId) {
+                  navigate(`/product/${product.productId}`);
+                }
+              }}
             >
               <div className="w-full h-80 md:h-96 relative overflow-hidden rounded-t-xl">
                 {/* Original Image */}
@@ -771,10 +889,17 @@ export default function HomePage() {
                   alt={`${product.title} hover`}
                   className="w-full h-full object-cover transition-all duration-500 ease-in-out absolute inset-0 hover-img"
                 />
+                {/* Discount Badge */}
+                <div className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                  {product.discount}
+                </div>
               </div>
               <div className="p-4">
                 <div className="text-sm md:text-base font-medium line-clamp-2 transition-colors duration-300 group-hover:text-brand-primary">{product.title}</div>
-                <div className="mt-2 text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">{product.price}</div>
+                <div className="mt-2 flex items-center gap-2">
+                  <div className="text-brand-secondary font-bold text-sm md:text-base transition-colors duration-300 group-hover:text-brand-primary">{product.price}</div>
+                  <div className="text-gray-500 line-through text-xs">{product.originalPrice}</div>
+                </div>
               </div>
             </div>
           ))}
@@ -785,53 +910,69 @@ export default function HomePage() {
       <section className="w-full py-12 md:py-16 bg-gradient-to-br from-white to-golden-100 relative overflow-hidden">
         <div className="absolute inset-0 bg-glossy-shine opacity-10"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 px-4 md:px-10 lg:px-16 relative z-10">
-          {[
-            {title:'NEW ARRIVAL', cta:'SHOP NOW', img:''},
-            {title:'BEST SELLER', cta:'EXPLORE COLLECTION', img:''},
-            {title:'TOP PRODUCTS', cta:'EXPLORE COLLECTION', img:''}
-          ].map((item, index)=> (
-            <div 
-              key={item.title} 
-              ref={addToPromoRefs}
-              className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
-            >
-              <div className="w-full h-[360px] sm:h-[420px] md:h-[520px] bg-gray-200 flex items-center justify-center">
-                <i className="fa-solid fa-image text-4xl text-gray-400"></i>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-golden-900/70"></div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-                <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.7)'}}>{item.title}</div>
-                <button className="golden-btn text-xs md:text-sm tracking-widest border-2 border-golden-300 bg-glossy-gold/90 hover:bg-glossy-gold transition-all duration-300 shadow-glossy hover:shadow-golden-lg">{item.cta}</button>
-              </div>
+          {/* NEW ARRIVAL card */}
+          <div 
+            key="NEW ARRIVAL" 
+            ref={addToPromoRefs}
+            className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
+          >
+            <div className="w-full h-[360px] sm:h-[420px] md:h-[520px]">
+              <img 
+                src="https://i.postimg.cc/59GbZfBJ/generated_image_6.png" 
+                alt="NEW ARRIVAL" 
+                className="w-full h-full object-cover"
+              />
             </div>
-          ))}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-golden-900/70"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+              <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.7)'}}>NEW ARRIVAL</div>
+              <button className="golden-btn text-xs md:text-sm tracking-widest border-2 border-golden-300 bg-glossy-gold/90 hover:bg-glossy-gold transition-all duration-300 shadow-glossy hover:shadow-golden-lg">SHOP NOW</button>
+            </div>
+          </div>
+          
+          {/* BEST SELLER card */}
+          <div 
+            key="BEST SELLER" 
+            ref={addToPromoRefs}
+            className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
+          >
+            <div className="w-full h-[360px] sm:h-[420px] md:h-[520px]">
+              <img 
+                src="https://i.postimg.cc/NjvYjbCP/generated_image_4.png" 
+                alt="BEST SELLER" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-golden-900/70"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+              <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.7)'}}>BEST SELLER</div>
+              <button className="golden-btn text-xs md:text-sm tracking-widest border-2 border-golden-300 bg-glossy-gold/90 hover:bg-glossy-gold transition-all duration-300 shadow-glossy hover:shadow-golden-lg">EXPLORE COLLECTION</button>
+            </div>
+          </div>
+          
+          {/* TOP PRODUCTS card */}
+          <div 
+            key="TOP PRODUCTS" 
+            ref={addToPromoRefs}
+            className="scroll-animate-rotate relative rounded-2xl overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-glossy cursor-pointer border-2 border-golden-200 hover:border-golden-400"
+          >
+            <div className="w-full h-[360px] sm:h-[420px] md:h-[520px]">
+              <img 
+                src="https://i.postimg.cc/FRCNF4wj/generated_image_05.png" 
+                alt="TOP PRODUCTS" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent transition-all duration-300 group-hover:from-golden-900/70"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+              <div className="text-2xl md:text-4xl font-bold tracking-wide mb-6 drop-shadow-lg transition-all duration-300 group-hover:text-golden-200" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.7)'}}>TOP PRODUCTS</div>
+              <button className="golden-btn text-xs md:text-sm tracking-widest border-2 border-golden-300 bg-glossy-gold/90 hover:bg-glossy-gold transition-all duration-300 shadow-glossy hover:shadow-golden-lg">EXPLORE COLLECTION</button>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Instagram-style feed */}
-      <section className="w-full py-12 md:py-16 bg-gradient-to-br from-golden-50 to-white">
-        <h2 
-          ref={instaTitleRef}
-          className="scroll-animate px-4 md:px-10 lg:px-16 text-center text-2xl md:text-3xl font-bold tracking-wide mb-8 text-gray-800 dark:text-golden-300"
-          style={{textShadow: '2px 2px 4px rgba(0,0,0,0.1)'}}
-        >
-          WHAT'S ON OUR INSTA FEED
-        </h2>
-        <div className="px-4 md:px-10 lg:px-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5">
-          {/* Removed insta feed items since we're removing all images */}
-          {[...Array(12)].map((_, i) => (
-            <div 
-              key={i} 
-              ref={addToInstaRefs}
-              className="scroll-animate-scale rounded-xl overflow-hidden transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden cursor-pointer border-2 border-transparent hover:border-brand-primary"
-            >
-              <div className="w-full aspect-[3/4] bg-gray-200 flex items-center justify-center">
-                <i className="fa-solid fa-image text-2xl text-gray-400"></i>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* Removed legacy Shop by Category, About, and bottom New Arrivals sections */}
     </div>

@@ -10,6 +10,7 @@ import CartPage from './ui/pages/CartPage.jsx'
 import AboutPage from './ui/pages/AboutPage.jsx'
 import ContactPage from './ui/pages/ContactPage.jsx'
 import AccountPage from './ui/pages/AccountPage.jsx'
+import AdminDashboard from './ui/pages/AdminDashboard.jsx'
 
 // Get the base path for GitHub Pages
 const basename = import.meta.env.PROD ? '/First-Attempt' : ''
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     { path: 'about', element: <AboutPage /> },
     { path: 'contact', element: <ContactPage /> },
     { path: 'account', element: <AccountPage /> },
+    { path: 'admin', element: <AdminDashboard /> },
   ]}
 ], {
   basename: basename
