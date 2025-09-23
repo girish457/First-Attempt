@@ -1,0 +1,58 @@
+[1mdiff --cc frontend/src/ui/pages/HomePage.jsx[m
+[1mindex 3bab9c7,bec8ffa..0000000[m
+[1m--- a/frontend/src/ui/pages/HomePage.jsx[m
+[1m+++ b/frontend/src/ui/pages/HomePage.jsx[m
+[36m@@@ -502,12 -502,8 +502,17 @@@[m [mexport default function HomePage() [m
+                className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out new-arrival-frame"[m
+                onClick={() => {[m
+                  // Navigate to product detail page if productId exists, otherwise do nothing[m
+[32m++<<<<<<< HEAD[m
+[32m +                console.log('NEW ARRIVAL frame clicked, productId:', item.productId);[m
+                  if (item.productId) {[m
+[32m +                  console.log('Navigating to product:', `/product/${item.productId}`);[m
+                    navigate(`/product/${item.productId}`);[m
+[32m +                } else {[m
+[32m +                  console.log('No productId found for this frame');[m
+[32m++=======[m
+[32m++                if (item.productId) {[m
+[32m++                  navigate(`/product/${item.productId}`);[m
+[32m++>>>>>>> 44b92281a2364c95766fc9de82db8ab39f30f735[m
+                  }[m
+                }}[m
+              >[m
+[36m@@@ -611,12 -607,8 +616,17 @@@[m
+                      className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"[m
+                      onClick={() => {[m
+                        // Navigate to product detail page if productId exists[m
+[32m++<<<<<<< HEAD[m
+[32m +                      console.log('WATCH & BUY frame clicked, productId:', video.productId);[m
+[32m +                      if (video.productId) {[m
+[32m +                        console.log('Navigating to product:', `/product/${video.productId}`);[m
+[32m +                        navigate(`/product/${video.productId}`);[m
+[32m +                      } else {[m
+[32m +                        console.log('No productId found for this frame');[m
+[32m++=======[m
+[32m+                       if (video.productId) {[m
+[32m+                         navigate(`/product/${video.productId}`);[m
+[32m++>>>>>>> 44b92281a2364c95766fc9de82db8ab39f30f735[m
+                        }[m
+                      }}[m
+                    >[m
+[36m@@@ -659,12 -651,8 +669,17 @@@[m
+                      className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"[m
+                      onClick={() => {[m
+                        // Navigate to product detail page if productId exists[m
+[32m++<<<<<<< HEAD[m
+[32m +                      console.log('WATCH & BUY frame clicked, productId:', video.productId);[m
+[32m +                      if (video.productId) {[m
+[32m +                        console.log('Navigating to product:', `/product/${video.productId}`);[m
+[32m +                        navigate(`/product/${video.productId}`);[m
+[32m +                      } else {[m
+[32m +                        console.log('No productId found for this frame');[m
+[32m++=======[m
+[32m+                       if (video.productId) {[m
+[32m+                         navigate(`/product/${video.productId}`);[m
+[32m++>>>>>>> 44b92281a2364c95766fc9de82db8ab39f30f735[m
+                        }[m
+                      }}[m
+                    >[m
