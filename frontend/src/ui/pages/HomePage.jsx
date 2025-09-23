@@ -502,8 +502,12 @@ export default function HomePage() {
               className="scroll-animate-left arrival-card rounded-2xl overflow-hidden golden-card transform hover:scale-105 hover:-translate-y-3 hover:rotate-1 hover:shadow-glossy hover:border-brand-primary cursor-pointer transition-all duration-500 ease-out new-arrival-frame"
               onClick={() => {
                 // Navigate to product detail page if productId exists, otherwise do nothing
+                console.log('NEW ARRIVAL frame clicked, productId:', item.productId);
                 if (item.productId) {
+                  console.log('Navigating to product:', `/product/${item.productId}`);
                   navigate(`/product/${item.productId}`);
+                } else {
+                  console.log('No productId found for this frame');
                 }
               }}
             >
@@ -607,8 +611,12 @@ export default function HomePage() {
                     className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
                     onClick={() => {
                       // Navigate to product detail page if productId exists
+                      console.log('WATCH & BUY frame clicked, productId:', video.productId);
                       if (video.productId) {
+                        console.log('Navigating to product:', `/product/${video.productId}`);
                         navigate(`/product/${video.productId}`);
+                      } else {
+                        console.log('No productId found for this frame');
                       }
                     }}
                   >
@@ -651,8 +659,12 @@ export default function HomePage() {
                     className="scroll-animate-right group golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer"
                     onClick={() => {
                       // Navigate to product detail page if productId exists
+                      console.log('WATCH & BUY frame clicked, productId:', video.productId);
                       if (video.productId) {
+                        console.log('Navigating to product:', `/product/${video.productId}`);
                         navigate(`/product/${video.productId}`);
+                      } else {
+                        console.log('No productId found for this frame');
                       }
                     }}
                   >
@@ -871,8 +883,12 @@ export default function HomePage() {
               className="scroll-animate golden-card transition-all duration-300 ease-out hover:scale-105 hover:shadow-golden-lg hover:border-brand-primary cursor-pointer group overflow-hidden new-arrival-frame"
               onClick={() => {
                 // Navigate to product detail page if productId exists
+                console.log('TRENDING PRODUCTS frame clicked, productId:', product.productId);
                 if (product.productId) {
+                  console.log('Navigating to product:', `/product/${product.productId}`);
                   navigate(`/product/${product.productId}`);
+                } else {
+                  console.log('No productId found for this frame');
                 }
               }}
             >

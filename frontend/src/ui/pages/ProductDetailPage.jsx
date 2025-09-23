@@ -77,12 +77,83 @@ const ProductDetailPage = () => {
         }
       ],
       additionalOffers: 8
+    },
+    // Enhanced data for some ShopPage products
+    22: {
+      brand: "RUNWAY",
+      title: "Ombre Pink Kurti with Handpaint",
+      images: [],
+      colors: [
+        { name: 'Pink', value: '#EC4899', image: 'https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg' },
+        { name: 'Lavender', value: '#C4B5FD', image: 'https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg' }
+      ],
+      sizes: ['XS', 'S', 'M', 'L', 'XL'],
+      offers: [
+        {
+          type: 'Bank Offer',
+          description: '10% Off on Supermoney UPI. Max discount of ₹50. Minimum order value of ₹250.',
+          terms: 'T&C'
+        },
+        {
+          type: 'Combo Offer',
+          description: 'Buy 2 items save 5%; Buy 3 save 7%; Buy 4+ save 10%',
+          terms: 'T&C'
+        }
+      ],
+      additionalOffers: 5
+    },
+    25: {
+      brand: "RUNWAY",
+      title: "Yellow Handpaint Kurti Set",
+      images: [],
+      colors: [
+        { name: 'Yellow', value: '#FDE047', image: 'https://i.postimg.cc/4dZcgzVD/AVP02971.jpg' },
+        { name: 'Aqua Blue', value: '#06B6D4', image: 'https://i.postimg.cc/jdZCWpNk/AVP03127.jpg' }
+      ],
+      sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      offers: [
+        {
+          type: 'Bank Offer',
+          description: '10% Off on Supermoney UPI. Max discount of ₹50. Minimum order value of ₹250.',
+          terms: 'T&C'
+        },
+        {
+          type: 'Combo Offer',
+          description: 'Buy 2 items save 5%; Buy 3 save 7%; Buy 4+ save 10%',
+          terms: 'T&C'
+        }
+      ],
+      additionalOffers: 5
+    },
+    30: {
+      brand: "RUNWAY",
+      title: "Beige Midi Dress",
+      images: [],
+      colors: [
+        { name: 'Beige', value: '#F5F5DC', image: 'https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg' },
+        { name: 'Wine', value: '#7C2D12', image: 'https://i.postimg.cc/25YtPK9r/AVP03180.jpg' }
+      ],
+      sizes: ['S', 'M', 'L', 'XL'],
+      offers: [
+        {
+          type: 'Bank Offer',
+          description: '10% Off on Supermoney UPI. Max discount of ₹50. Minimum order value of ₹250.',
+          terms: 'T&C'
+        },
+        {
+          type: 'Combo Offer',
+          description: 'Buy 2 items save 5%; Buy 3 save 7%; Buy 4+ save 10%',
+          terms: 'T&C'
+        }
+      ],
+      additionalOffers: 5
     }
     // Note: For products without specific enhanced data, we'll use defaults
   };
 
-  // Sample products data from ShopPage
+  // Sample products data from ShopPage (IDs 1-21 and 22-56)
   const allProducts = [
+    // Existing products 1-20
     {
       id: 1,
       name: "Premium Cotton Blend T-Shirt",
@@ -301,6 +372,392 @@ const ProductDetailPage = () => {
       rating: 4.5,
       reviews: 145,
       image: "",
+      category: "ethnic-woman"
+    },
+    // Additional products from ShopPage (IDs 22-56)
+    {
+      id: 22,
+      name: "Ombre pink kurti with handpaint",
+      price: 2199,
+      originalPrice: 2499,
+      discount: 36,
+      rating: 4.5,
+      reviews: 128,
+      image: "https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 23,
+      name: "Sky blue kurti set",
+      price: 1999,
+      originalPrice: 6999,
+      discount: 29,
+      rating: 4.8,
+      reviews: 95,
+      image: "https://i.postimg.cc/JhSTcdwb/AVP02949.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 24,
+      name: "Lavender ombre kurti set",
+      price: 1899,
+      originalPrice: 3999,
+      discount: 28,
+      rating: 4.3,
+      reviews: 156,
+      image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 25,
+      name: "Yellow handpaint kurti set",
+      price: 1999,
+      originalPrice: 4999,
+      discount: 28,
+      rating: 4.6,
+      reviews: 203,
+      image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 26,
+      name: "A line plated kurti set",
+      price: 2299,
+      originalPrice: 8999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 87,
+      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 27,
+      name: "Plated kurti set",
+      price: 1799,
+      originalPrice: 2699,
+      discount: 30,
+      rating: 4.4,
+      reviews: 312,
+      image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 28,
+      name: "Yellow color block design dress",
+      price: 1599,
+      originalPrice: 6999,
+      discount: 34,
+      rating: 4.6,
+      reviews: 89,
+      image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 29,
+      name: "Designer cotton kurta",
+      price: 2299,
+      originalPrice: 4999,
+      discount: 34,
+      rating: 4.5,
+      reviews: 145,
+      image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 30,
+      name: "Beige midi dress",
+      price: 1699,
+      originalPrice: 2199,
+      discount: 32,
+      rating: 4.3,
+      reviews: 267,
+      image: "https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 31,
+      name: "A line kurti set",
+      price: 1999,
+      originalPrice: 2499,
+      discount: 28,
+      rating: 4.4,
+      reviews: 198,
+      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 32,
+      name: "Green plazzo kurti set",
+      price: 1699,
+      originalPrice: 1499,
+      discount: 33,
+      rating: 4.2,
+      reviews: 345,
+      image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 33,
+      name: "Lavender ombre kurti set",
+      price: 1899,
+      originalPrice: 1199,
+      discount: 33,
+      rating: 4.7,
+      reviews: 456,
+      image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 34,
+      name: "Green kurti with handpaint sleeves",
+      price: 1999,
+      originalPrice: 3299,
+      discount: 30,
+      rating: 4.5,
+      reviews: 123,
+      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 35,
+      name: "Aqua blue hand paint kurti",
+      price: 2099,
+      originalPrice: 2799,
+      discount: 32,
+      rating: 4.6,
+      reviews: 189,
+      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 36,
+      name: "Purple handpaint kurti set",
+      price: 2199,
+      originalPrice: 9999,
+      discount: 30,
+      rating: 4.8,
+      reviews: 67,
+      image: "https://i.postimg.cc/wMFxmNts/AVP03138.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 37,
+      name: "Pink kurti set",
+      price: 1799,
+      originalPrice: 1299,
+      discount: 31,
+      rating: 4.2,
+      reviews: 234,
+      image: "https://i.postimg.cc/yYdsGkgv/AVP03155.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 38,
+      name: "A line dress",
+      price: 1499,
+      originalPrice: 2299,
+      discount: 30,
+      rating: 4.4,
+      reviews: 156,
+      image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 39,
+      name: "Wine midi dress",
+      price: 1499,
+      originalPrice: 1899,
+      discount: 32,
+      rating: 4.3,
+      reviews: 298,
+      image: "https://i.postimg.cc/25YtPK9r/AVP03180.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 40,
+      name: "Orange one piece dress",
+      price: 1599,
+      originalPrice: 5999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 89,
+      image: "https://i.postimg.cc/jjvMBdJ4/AVP03194.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 41,
+      name: "coming soon",
+      price: 12000,
+      originalPrice: 4299,
+      discount: 33,
+      rating: 4.5,
+      reviews: 145,
+      image: "https://i.postimg.cc/SKQBnP6V/AVP03208.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 42,
+      name: "coming soon",
+      price: 12000,
+      originalPrice: 2199,
+      discount: 32,
+      rating: 4.3,
+      reviews: 267,
+      image: "https://i.postimg.cc/d1rjwshf/AVP03233.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 43,
+      name: "Ombre pink kurti with handpaint",
+      price: 2199,
+      originalPrice: 2499,
+      discount: 36,
+      rating: 4.5,
+      reviews: 128,
+      image: "https://i.postimg.cc/0Q5TFBWh/AVP02939.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 44,
+      name: "Sky blue kurti set",
+      price: 1999,
+      originalPrice: 6999,
+      discount: 29,
+      rating: 4.8,
+      reviews: 95,
+      image: "https://i.postimg.cc/JhSTcdwb/AVP02949.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 45,
+      name: "Lavender ombre kurti set",
+      price: 1899,
+      originalPrice: 3999,
+      discount: 28,
+      rating: 4.3,
+      reviews: 156,
+      image: "https://i.postimg.cc/Y2z3hSSN/AVP02960.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 46,
+      name: "Yellow handpaint kurti set",
+      price: 1999,
+      originalPrice: 4999,
+      discount: 28,
+      rating: 4.6,
+      reviews: 203,
+      image: "https://i.postimg.cc/4dZcgzVD/AVP02971.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 47,
+      name: "A line plated kurti set",
+      price: 2299,
+      originalPrice: 8999,
+      discount: 33,
+      rating: 4.7,
+      reviews: 87,
+      image: "https://i.postimg.cc/mDbPqTGR/AVP02989.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 48,
+      name: "Plated kurti set",
+      price: 1799,
+      originalPrice: 2699,
+      discount: 30,
+      rating: 4.4,
+      reviews: 312,
+      image: "https://i.postimg.cc/Px35RZ4z/AVP03001.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 49,
+      name: "Yellow color block design dress",
+      price: 1599,
+      originalPrice: 6999,
+      discount: 34,
+      rating: 4.6,
+      reviews: 89,
+      image: "https://i.postimg.cc/RC2HC571/AVP03017.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 50,
+      name: "Designer cotton kurta",
+      price: 2299,
+      originalPrice: 4999,
+      discount: 34,
+      rating: 4.5,
+      reviews: 145,
+      image: "https://i.postimg.cc/hGGjbp8P/AVP03031.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 51,
+      name: "Beige midi dress",
+      price: 1699,
+      originalPrice: 2199,
+      discount: 32,
+      rating: 4.3,
+      reviews: 267,
+      image: "https://i.postimg.cc/P5Sfx1GG/AVP03051.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 52,
+      name: "A line kurti set",
+      price: 1999,
+      originalPrice: 2499,
+      discount: 28,
+      rating: 4.4,
+      reviews: 198,
+      image: "https://i.postimg.cc/Zq1SBcVQ/AVP03066.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 53,
+      name: "Green plazzo kurti set",
+      price: 1699,
+      originalPrice: 1499,
+      discount: 33,
+      rating: 4.2,
+      reviews: 345,
+      image: "https://i.postimg.cc/Vv009D8b/AVP03081.jpg",
+      category: "child-girl"
+    },
+    {
+      id: 54,
+      name: "Lavender ombre kurti set",
+      price: 1899,
+      originalPrice: 1199,
+      discount: 33,
+      rating: 4.7,
+      reviews: 456,
+      image: "https://i.postimg.cc/d0W94HzW/AVP03096.jpg",
+      category: "child-boy"
+    },
+    {
+      id: 55,
+      name: "Green kurti with handpaint sleeves",
+      price: 1999,
+      originalPrice: 3299,
+      discount: 30,
+      rating: 4.5,
+      reviews: 123,
+      image: "https://i.postimg.cc/qMXy1DK8/AVP03114.jpg",
+      category: "ethnic-woman"
+    },
+    {
+      id: 56,
+      name: "Aqua blue hand paint kurti",
+      price: 2099,
+      originalPrice: 2799,
+      discount: 32,
+      rating: 4.6,
+      reviews: 189,
+      image: "https://i.postimg.cc/jdZCWpNk/AVP03127.jpg",
       category: "ethnic-woman"
     }
   ];

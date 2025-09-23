@@ -79,7 +79,7 @@ export default function RootLayout(){
       <div className="w-full bg-glossy-gold text-white text-xs md:text-sm shadow-glossy relative overflow-hidden m-0 p-0">
         <div className="container-responsive py-2 overflow-hidden relative z-10 m-0 p-0">
           <div className="md:text-center whitespace-nowrap md:whitespace-normal [animation:marquee_12s_linear_infinite] md:[animation:none] font-medium drop-shadow-lg m-0 p-0">
-            ✨ Free Shipping on Orders Above ₹999 | Easy Returns | Premium Golden Collection ✨
+            Free Shipping on Orders Above ₹999 | Easy Returns | Premium Golden Collection
           </div>
         </div>
       </div>

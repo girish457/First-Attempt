@@ -220,7 +220,17 @@ const AccountPage = () => {
                     <button className="w-full bg-glossy-gold text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-400 transition-all duration-300 transform hover:scale-105 shadow-glossy">
                       View Orders
                     </button>
-                    <button className="w-full bg-golden-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-700 transition-all duration-300 transform hover:scale-105 shadow-glossy">
+                    <button 
+                      onClick={toggleWishlistView}
+                      className="w-full bg-golden-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-700 transition-all duration-300 transform hover:scale-105 shadow-glossy flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                        />
+                      </svg>
                       View Wishlist
                     </button>
                     <button className="w-full bg-golden-500 text-white py-3 px-6 rounded-xl font-semibold hover:bg-golden-600 transition-all duration-300 transform hover:scale-105 shadow-glossy">
@@ -248,6 +258,83 @@ const AccountPage = () => {
                   </button>
                 </div>
               </div>
+              
+              {/* Wishlist Section */}
+              {showWishlist && (
+                <div className="mt-12 bg-white rounded-3xl p-8 shadow-glossy border-2 border-golden-200">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-900">My Wishlist</h2>
+                    <button 
+                      onClick={toggleWishlistView}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  {wishlistLoading ? (
+                    <div className="text-center py-8">
+                      <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-golden-500"></div>
+                      <p className="mt-4 text-gray-600">Loading wishlist...</p>
+                    </div>
+                  ) : wishlistItems.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500">
+                      <div className="text-4xl mb-4">🤍</div>
+                      <p>Your wishlist is empty</p>
+                      <button 
+                        onClick={toggleWishlistView}
+                        className="mt-4 bg-glossy-gold text-white py-2 px-6 rounded-full font-semibold hover:bg-golden-400 transition-all duration-300 shadow-glossy"
+                      >
+                        Start Shopping
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {wishlistItems.map((product) => (
+                        <div key={product.id} className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                          <div className="relative">
+                            <img 
+                              src={product.image} 
+                              alt={product.name}
+                              className="w-full h-48 object-cover"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'flex';
+                              }}
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-gray-200 hidden">
+                              <span className="text-gray-500">No Image</span>
+                            </div>
+                            <button 
+                              onClick={() => removeFromWishlist(product.id)}
+                              className="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+                            >
+                              <svg className="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
+                                <path 
+                                  strokeLinecap="round" 
+                                  strokeLinejoin="round" 
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" 
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <div className="p-4">
+                            <h3 className="font-semibold text-gray-900 line-clamp-2 mb-2">{product.name}</h3>
+                            <div className="flex items-center justify-between">
+                              <span className="text-lg font-bold text-golden-600">₹{product.price.toLocaleString('en-IN')}</span>
+                              {product.originalPrice > product.price && (
+                                <span className="text-sm text-gray-500 line-through">₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </section>
